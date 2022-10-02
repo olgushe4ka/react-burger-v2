@@ -1,0 +1,68 @@
+.main {
+  align-items: center;
+  width: 600px;
+  max-height: 700px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585AD black;
+  z-index: 0;
+}
+
+.menuBox {
+  margin: 0;
+  padding: 0;
+}
+
+.constructorBox {
+  display: flex;
+  height: 80px;
+  align-content: center;
+  text-align: left;
+}
+
+.darkBackround {
+  width: 536px;
+  display: flex;
+  background: #1C1C21;
+  border-radius: 40px;
+  justify-content: space-between;
+  align-content: center;
+  text-align: left;
+}
+
+.priceBox {
+  display: flex;
+  align-self: center;
+  max-height: 24px;
+}
+
+.priceBoxLarge {
+  height: 33px;
+  display: flex;
+  align-self: center;
+}
+
+.priceIconLarge {
+  height: 33px;
+  width: 33px;
+}
+
+.title {
+  align-self: center;
+  max-width: 240px;
+}
+
+.image {
+  width: 80px;
+  height: 40px;
+  align-self: center;
+}
+
+.dragIcon {
+  align-self: center;
+}
+
+.totalSumBox {
+  display: flex;
+  justify-content: flex-end;
+}
