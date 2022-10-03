@@ -42,7 +42,7 @@
   align-self: center;
 }
 
-.priceIconLarge {
+.priceIconLarge svg{
   height: 33px;
   width: 33px;
 }

@@ -34,7 +34,7 @@ function OrderConstructor(props) {
 function Sum() {
     return (
         <div className={`${burgerConstructorStyles.priceBoxLarge} pl-0 pr-10 pb-0 pt-0`}>
-            <p className="text text_type_main-large">
+            <p className="text text_type_main-large mr-2">
                 500
             </p>
             <div className={burgerConstructorStyles.priceIconLarge}>  <CurrencyIcon type="primary" />
