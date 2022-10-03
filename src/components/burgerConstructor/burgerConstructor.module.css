@@ -4,7 +4,7 @@
   max-height: 700px;
   overflow-y: scroll;
   scrollbar-width: thin;
-  scrollbar-color: #8585AD black;
+  scrollbar-color: #8585ad black;
   z-index: 0;
 }
 
@@ -23,7 +23,7 @@
 .darkBackround {
   width: 536px;
   display: flex;
-  background: #1C1C21;
+  background: #1c1c21;
   border-radius: 40px;
   justify-content: space-between;
   align-content: center;
@@ -34,17 +34,6 @@
   display: flex;
   align-self: center;
   max-height: 24px;
-}
-
-.priceBoxLarge {
-  height: 33px;
-  display: flex;
-  align-self: center;
-}
-
-.priceIconLarge svg{
-  height: 33px;
-  width: 33px;
 }
 
 .title {
@@ -65,4 +54,15 @@
 .totalSumBox {
   display: flex;
   justify-content: flex-end;
+}
+
+.priceIconLarge svg {
+  height: 33px;
+  width: 33px;
+}
+
+.priceBoxLarge {
+  height: 33px;
+  display: flex;
+  align-self: center;
 }

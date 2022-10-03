@@ -4,11 +4,12 @@
   max-height: 700px;
   overflow-y: scroll;
   scrollbar-width: thin;
-  scrollbar-color: #8585AD black;
+  scrollbar-color: #8585ad black;
   z-index: 0;
 }
 
 .headerfixed {
+  display: flex;
   position: sticky;
   top: 0;
 }

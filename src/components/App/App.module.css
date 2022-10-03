@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+
+.title {
+  text-align: start;
+}
+
+.appWithoutHeader {
+  display: inline-block;
+}
+
+.displayFlex {
+  display: flex;
+}
