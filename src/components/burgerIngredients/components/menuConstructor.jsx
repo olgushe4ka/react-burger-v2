@@ -3,6 +3,7 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
 function Menuconstructor(props) {
   return (
@@ -21,5 +22,13 @@ function Menuconstructor(props) {
     </div>
   );
 }
+
+
+Menuconstructor.propTypes = {
+  price: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 
 export default Menuconstructor;

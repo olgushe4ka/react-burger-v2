@@ -1,8 +1,5 @@
 import burgerConstructorStyles from "./burgerConstructor.module.css";
 import {
-  CurrencyIcon,
-  DeleteIcon,
-  DragIcon,
   Button,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { cart } from "../../utils/data";
@@ -39,9 +36,19 @@ function BurgerConstructor() {
 }
 
 BurgerConstructor.propTypes = {
-  price: PropTypes.number,
-  type: PropTypes.string,
-  name: PropTypes.string,
+  price: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 export default BurgerConstructor;
+
+
+
+
+
+
+
+
+
+

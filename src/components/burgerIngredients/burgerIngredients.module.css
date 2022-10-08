@@ -9,9 +9,12 @@
 }
 
 .headerfixed {
-  display: flex;
   position: sticky;
   top: 0;
+}
+
+.tabs{
+  display: flex;
 }
 
 .h1text {

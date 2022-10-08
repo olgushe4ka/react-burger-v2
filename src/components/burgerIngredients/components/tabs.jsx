@@ -3,7 +3,7 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
 function Tabs() {
   return (
-    <div className={`${ingredientsStyles.headerfixed}`}>
+    <div className={`${ingredientsStyles.tabs}`}>
       <Tab value="one" active={true}>
         Булки
       </Tab>

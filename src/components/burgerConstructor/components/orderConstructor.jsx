@@ -4,6 +4,7 @@ import {
   DeleteIcon,
   DragIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
 function OrderConstructor(props) {
   return (
@@ -47,5 +48,13 @@ function OrderConstructor(props) {
     </div>
   );
 }
+
+
+OrderConstructor.propTypes = {
+  price: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
 
 export default OrderConstructor;

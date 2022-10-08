@@ -12,7 +12,7 @@ import Menuconstructor from "./components/menuConstructor";
 function BurgerIngredients() {
   return (
     <section className={`${ingredientsStyles.main} pl-15 pr-15 pb-0 pt-0`}>
-      <div className={ingredientsStyles.header_fixed}>
+      <div className={ingredientsStyles.headerfixed}>
         <Tabs />
       </div>
       <p
