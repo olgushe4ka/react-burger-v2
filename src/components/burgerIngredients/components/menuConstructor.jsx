@@ -23,12 +23,10 @@ function Menuconstructor(props) {
   );
 }
 
-
 Menuconstructor.propTypes = {
   price: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
-
 
 export default Menuconstructor;

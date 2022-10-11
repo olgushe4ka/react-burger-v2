@@ -2,6 +2,9 @@ import BurgerConstructor from "../burgerConstructor/burgerConstructor";
 import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import AppHeader from "../appHeader/appHeader";
 import appStyles from "./App.module.css";
+import OrderDetails from "../OrderDetails/OrderDetails";
+
+
 
 function App() {
   return (
@@ -18,11 +21,12 @@ function App() {
           <BurgerIngredients />
           <BurgerConstructor />{" "}
         </div>
+     
+   
       </div>
+      {/* <OrderDetails /> */}
     </div>
   );
 }
 
 export default App;
-
-

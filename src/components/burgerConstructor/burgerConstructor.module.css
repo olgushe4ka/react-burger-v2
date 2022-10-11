@@ -1,6 +1,6 @@
 .main {
   align-items: center;
-  width: 600px;
+  max-width: 632px;
   max-height: 700px;
   overflow-y: scroll;
   scrollbar-width: thin;
@@ -49,6 +49,11 @@
 
 .dragIcon {
   align-self: center;
+  position: absolute;
+  top: 0;
+  top: 40%;
+  left: -30px;
+  z-index: 5;
 }
 
 .totalSumBox {
@@ -65,4 +70,17 @@
   height: 33px;
   display: flex;
   align-self: center;
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listElement {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  position: relative;
 }
