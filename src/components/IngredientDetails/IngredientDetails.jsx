@@ -3,6 +3,9 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 
 function IngredientDetails(props) {
+
+//    const ingredientsData= {fat, proteins}
+
     return (
         <div className={`${ingredientDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
             <a href="" className={`${ingredientDetailsStyles.closeIcon}`} >  <CloseIcon type="primary" /> </a>

@@ -4,33 +4,23 @@ import {
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import { useState } from "react";
-import IngredientDetails from "../../IngredientDetails/IngredientDetails";
-import Modal from "../../Modal/Modal";
 
-function Menuconstructor(props) {
 
-  //Модальные окна
-  const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = useState(false);
+function Menuconstructor(props, oninredientClick) {
 
-  const closeAllModals = () => {
-    setIsIngredientDetailsOpened(false);  };
-
-  const handleEscKeydown = (e) => {
-    e.key === "Escape" && closeAllModals();  };
-
-  const openModal = () => {
-    debugger
-    setIsIngredientDetailsOpened(true);  }
+console.log(props);
 
   return (
-    <>
-      <div className={`${ingredientsStyles.ingredietBox} pl-5 pr-5 pb-0 pt-6`}  onClick={openModal}>
+       <div className={`${ingredientsStyles.ingredietBox} pl-5 pr-5 pb-0 pt-6`}  >
         <div className={`${ingredientsStyles.counter}`}>
           {" "}
           <Counter count={1} size="small" />{" "}
         </div>
-        <img  src={props.image} alt="фото ингридиента" />
+        <img  src={props.image} alt="фото ингридиента" 
+        onClick={() => {
+          debugger;
+          oninredientClick(props)}} 
+        />
         <div className={ingredientsStyles.priceBox}>
           {" "}
           <p className="text text_type_main-medium mr-2">{props.price}</p>
@@ -39,22 +29,7 @@ function Menuconstructor(props) {
         <p className="text text_type_main-small mt-2">{props.name}</p>
       </div>
 
-      {isIngredientDetailsOpened && (
-        <Modal
-          onOverlayClick={closeAllModals}
-          onEscKeydown={handleEscKeydown}
-        >
-          <IngredientDetails
-            image={props.image}
-            proteins={props.proteins}
-            fat={props.fat}
-            carbohydrates={props.carbohydrates}
-            calories={props.calories}
-            name={props.name}
-          />
-        </Modal>
-      )}
-    </>
+ 
   );
 }
 
@@ -65,3 +40,4 @@ Menuconstructor.propTypes = {
 };
 
 export default Menuconstructor;
+
