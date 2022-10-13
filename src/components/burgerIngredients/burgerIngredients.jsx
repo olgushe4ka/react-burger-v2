@@ -4,12 +4,15 @@ import Tabs from "./components/tabs";
 import Menuconstructor from "./components/menuConstructor";
 import Api from "../Api/Api";
 
+
+
 function BurgerIngredients() {
   const data = Api("https://norma.nomoreparties.space/api/ingredients");
 
   const buns = data.filter((item) => item.type === "bun");
   const mains = data.filter((item) => item.type === "main");
   const sauces = data.filter((item) => item.type === "sauce");
+
 
   return (
     <section className={`${ingredientsStyles.main} pl-15 pr-15 pb-0 pt-0`}>
@@ -34,6 +37,7 @@ function BurgerIngredients() {
             />
           );
         })}
+
       </div>
       <p
         className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}

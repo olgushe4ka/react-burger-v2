@@ -1,0 +1,32 @@
+.main {
+    margin: auto;
+    z-index: 12;
+    position: relative;
+    width: 720px;
+    max-height: 720px;
+    background: #1C1C21;
+    border: 1px solid rgba(76, 76, 255, 0.2);
+    box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 1px rgba(0, 0, 0, 0.04);
+    border-radius: 40px;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+}
+
+.infoBox {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+
+}
+
+.textnumbers {
+    color: #8585AD;
+}
+
+.textTipe {
+    color: #8585AD;
+}

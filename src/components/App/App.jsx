@@ -3,6 +3,7 @@ import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import AppHeader from "../appHeader/appHeader";
 import appStyles from "./App.module.css";
 import OrderDetails from "../OrderDetails/OrderDetails";
+import IngredientDetails from "../IngredientDetails/IngredientDetails";
 
 
 
@@ -21,10 +22,10 @@ function App() {
           <BurgerIngredients />
           <BurgerConstructor />{" "}
         </div>
-     
-   
+
+
       </div>
-      {/* <OrderDetails /> */}
+
     </div>
   );
 }
