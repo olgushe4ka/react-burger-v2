@@ -1,14 +1,11 @@
-
 import { useEffect } from "react";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import ModStyles from "./Modal.module.css";
-import ReactDOM from 'react-dom'
-
+import ReactDOM from "react-dom";
 
 const modalsContainer = document.querySelector("#modals");
 
 const Modal = ({ title, onOverlayClick, onEscKeydown, children }) => {
-
   useEffect(() => {
     document.addEventListener("keydown", onEscKeydown);
 
@@ -20,10 +17,10 @@ const Modal = ({ title, onOverlayClick, onEscKeydown, children }) => {
   return ReactDOM.createPortal(
     <>
       <div className={ModStyles.main}>
-        <h3>{title}</h3> 
-        {children} 
+        <h3>{title}</h3>
+        {children}
       </div>
-      <ModalOverlay onClick={onOverlayClick} /> 
+      <ModalOverlay onClick={onOverlayClick} />
     </>,
     modalsContainer
   );

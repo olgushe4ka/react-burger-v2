@@ -21,35 +21,29 @@ function BurgerConstructor() {
     e.key === "Escape" && closeAllModals();
   };
 
-  const openModal = () =>{
+  const openModal = () => {
     setIsOrderDetailsOpened(true);
-  }
+  };
 
   return (
     <>
-    <section className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}>
-      <OrderConstructor />
-      <div
-        className={`${burgerConstructorStyles.totalSumBox} pl-4 pr-4 pb-0 pt-10`}
+      <section
+        className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}
       >
-        <Sum></Sum>
-        <Button
-          type="primary"
-          size="medium"
-          onClick={openModal}
+        <OrderConstructor />
+        <div
+          className={`${burgerConstructorStyles.totalSumBox} pl-4 pr-4 pb-0 pt-10`}
         >
-          Оформить заказ
-        </Button>
-      </div>
-    </section>
+          <Sum></Sum>
+          <Button type="primary" size="medium" onClick={openModal}>
+            Оформить заказ
+          </Button>
+        </div>
+      </section>
 
-    {isOrderDetailsOpened && (
-        <Modal
-     
-          onOverlayClick={closeAllModals}
-          onEscKeydown={handleEscKeydown}
-        >
-         <OrderDetails />
+      {isOrderDetailsOpened && (
+        <Modal onOverlayClick={closeAllModals} onEscKeydown={handleEscKeydown}>
+          <OrderDetails />
         </Modal>
       )}
     </>

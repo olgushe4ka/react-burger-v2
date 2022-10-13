@@ -5,8 +5,6 @@ import appStyles from "./App.module.css";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 
-
-
 function App() {
   return (
     <div className={appStyles.App}>
@@ -22,10 +20,7 @@ function App() {
           <BurgerIngredients />
           <BurgerConstructor />{" "}
         </div>
-
-
       </div>
-
     </div>
   );
 }
