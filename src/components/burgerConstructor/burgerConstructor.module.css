@@ -2,7 +2,6 @@
   align-items: center;
   max-width: 632px;
   max-height: 700px;
-  overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: #8585ad black;
   z-index: 0;
@@ -76,6 +75,8 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  overflow-y: scroll;
+  max-height: 475px;
 }
 
 .listElement {
@@ -83,4 +84,10 @@
   margin: 0;
   padding: 0;
   position: relative;
+}
+
+.orderConstructor {
+ display: flex; 
+ flex-direction: column;
+ gap: 8px;
 }

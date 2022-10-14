@@ -13,9 +13,8 @@ function Api(baseUrl) {
   useEffect(() => {
     const getIngredientsData = async () => {
       try {
-        const res = await fetch(baseUrl);
-        const data = await checkResponse(res);
-        setIngredients(data.data);
+        const res = await fetch(baseUrl).then(checkResponse);
+        setIngredients(res.data);
       } catch (err) {
         console.log(err.message);
       }
@@ -24,15 +23,6 @@ function Api(baseUrl) {
   }, []);
   return ingredients;
 
-  // return (
-  //     <ul>
-  //       {ingredients.map(ingredient => (
-  //         <li key={ingredient._id}>
-  //           {ingredient.name} {ingredient.price}
-  //         </li>
-  //       ))}
-  //     </ul>
-  //   );
 }
 
 export default Api;

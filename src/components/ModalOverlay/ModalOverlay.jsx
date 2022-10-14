@@ -1,6 +1,12 @@
 import modalOverlayStyles from "./ModalOverlay.module.css";
+import PropTypes from "prop-types";
+
 
 export default function ModalOverlay({ closeModal }) {
-  // пропс onClick - это колбэк для клика по подложке, который закрывает модальное окно
   return <div className={modalOverlayStyles.overlay} onClick={closeModal} />;
 }
+
+ModalOverlay.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+
+};

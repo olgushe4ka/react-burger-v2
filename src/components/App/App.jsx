@@ -2,10 +2,13 @@ import BurgerConstructor from "../burgerConstructor/burgerConstructor";
 import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import AppHeader from "../appHeader/appHeader";
 import appStyles from "./App.module.css";
-import OrderDetails from "../OrderDetails/OrderDetails";
-import IngredientDetails from "../IngredientDetails/IngredientDetails";
+import Api from "../Api/Api";
+
 
 function App() {
+
+  const dataApi = Api("https://norma.nomoreparties.space/api/ingredients");
+
   return (
     <div className={appStyles.App}>
       <AppHeader />
@@ -16,9 +19,8 @@ function App() {
           Соберите бургер
         </h1>
         <div className={`${appStyles.displayFlex}`}>
-          {" "}
-          <BurgerIngredients />
-          <BurgerConstructor />{" "}
+          <BurgerIngredients data={dataApi} />
+          <BurgerConstructor />
         </div>
       </div>
     </div>

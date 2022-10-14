@@ -2,28 +2,54 @@ import { useEffect } from "react";
 import ModalOverlay from "../ModalOverlay/ModalOverlay";
 import ModStyles from "./Modal.module.css";
 import ReactDOM from "react-dom";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
 const modalsContainer = document.querySelector("#modals");
 
-const Modal = ({ title, onOverlayClick, onEscKeydown, children }) => {
+const Modal = ({ title, closeAllModals, children }) => {
+
+
+  const handleEscKeydown = (e) => {
+    e.key === "Escape" && closeAllModals();
+  };
+
+
   useEffect(() => {
-    document.addEventListener("keydown", onEscKeydown);
+    document.addEventListener("keydown", handleEscKeydown);
 
     return () => {
-      document.removeEventListener("keydown", onEscKeydown);
+      document.removeEventListener("keydown", handleEscKeydown);
     };
   }, []);
+
 
   return ReactDOM.createPortal(
     <>
       <div className={ModStyles.main}>
-        <h3>{title}</h3>
+
+      <button className={`${ModStyles.closeIcon}`} onClick={closeAllModals} >
+         <CloseIcon type="primary" />
+      </button>
+      <h2
+        className={`${ModStyles.title} text text_type_main-large pl-10 pr-10 pb-1 pt-10`}
+      >
+      {title}
+      </h2>
+
         {children}
       </div>
-      <ModalOverlay onClick={onOverlayClick} />
+      <ModalOverlay closeModal={closeAllModals} />
     </>,
     modalsContainer
   );
 };
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  closeAllModals: PropTypes.func.isRequired,
+
+};
+
 
 export default Modal;

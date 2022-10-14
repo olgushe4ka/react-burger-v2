@@ -2,29 +2,25 @@ import ingredientsStyles from "./burgerIngredients.module.css";
 import PropTypes from "prop-types";
 import Tabs from "./components/tabs";
 import Menuconstructor from "./components/menuConstructor";
-import Api from "../Api/Api";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 
-function BurgerIngredients() {
-  const data = Api("https://norma.nomoreparties.space/api/ingredients");
+function BurgerIngredients({ data }) {
 
-  const buns = data.filter((item) => item.type === "bun");
-  const mains = data.filter((item) => item.type === "main");
-  const sauces = data.filter((item) => item.type === "sauce");
+  const buns = useMemo(() => data.filter((item) => item.type === 'bun'), [data]);
+  const mains = useMemo(() => data.filter((item) => item.type === 'main'), [data]);
+  const sauces = useMemo(() => data.filter((item) => item.type === 'sauce'), [data]);
+
 
   //Модальные окна
   const [ingredientsData, setIngredientsData] =
     useState(null);
 
-  const closeAllModals = () => {
+  const closeModal = () => {
     setIngredientsData(null);
   };
 
-  const handleEscKeydown = (e) => {
-    e.key === "Escape" && closeAllModals();
-  };
 
   return (
     <>
@@ -67,7 +63,7 @@ function BurgerIngredients() {
             return (
               <div onClick={() => setIngredientsData(dataIng)}>
                 <Menuconstructor
-                   props={dataIng}
+                  props={dataIng}
                   key={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
@@ -103,7 +99,8 @@ function BurgerIngredients() {
       </section>
 
       {ingredientsData && (
-        <Modal onOverlayClick={closeAllModals} onEscKeydown={handleEscKeydown}>
+        <Modal closeAllModals={closeModal}
+          title={'Детали ингридиента'} >
           <IngredientDetails props={ingredientsData} />
         </Modal>
       )}

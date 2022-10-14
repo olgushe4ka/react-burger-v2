@@ -8,17 +8,10 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 
 function BurgerConstructor() {
-  const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); // Булевый стейт для одной конкретной модалки
+  const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); 
 
-  // Закрытие всех модалок
-  const closeAllModals = () => {
+  const closeModal = () => {
     setIsOrderDetailsOpened(false);
-    // тут же закрываем и другие модалки
-  };
-
-  // Обработка нажатия Esc
-  const handleEscKeydown = (e) => {
-    e.key === "Escape" && closeAllModals();
   };
 
   const openModal = () => {
@@ -42,7 +35,7 @@ function BurgerConstructor() {
       </section>
 
       {isOrderDetailsOpened && (
-        <Modal onOverlayClick={closeAllModals} onEscKeydown={handleEscKeydown}>
+        <Modal closeAllModals={closeModal}>
           <OrderDetails />
         </Modal>
       )}
