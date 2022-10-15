@@ -37,18 +37,17 @@ function BurgerIngredients({ data }) {
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {buns.map((dataIng) => {
             return (
-              <>
-                <div onClick={() => setIngredientsData(dataIng)}>
+      
+                <div key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
                   <Menuconstructor
                     props={dataIng}
-                    key={dataIng._id}
                     price={dataIng.price}
                     type={dataIng.type}
                     image={dataIng.image}
                     name={dataIng.name}
                   />
                 </div>
-              </>
+
             );
           })}
         </div>
@@ -61,15 +60,14 @@ function BurgerIngredients({ data }) {
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {sauces.map((dataIng) => {
             return (
-              <div onClick={() => setIngredientsData(dataIng)}>
+              <div  key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
                 <Menuconstructor
                   props={dataIng}
-                  key={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
-                />{" "}
+                />
               </div>
             );
           })}
@@ -83,10 +81,9 @@ function BurgerIngredients({ data }) {
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {mains.map((dataIng) => {
             return (
-              <div onClick={() => setIngredientsData(dataIng)}>
+              <div  key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
                 <Menuconstructor
                   props={dataIng}
-                  key={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
@@ -109,9 +106,7 @@ function BurgerIngredients({ data }) {
 }
 
 BurgerIngredients.propTypes = {
-  price: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
 };
 
 export default BurgerIngredients;

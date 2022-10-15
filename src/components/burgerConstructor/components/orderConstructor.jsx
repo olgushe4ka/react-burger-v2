@@ -4,9 +4,20 @@ import {
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
-import { cart } from "../../../utils/data";
+import { useMemo } from "react";
 
-function OrderConstructor(props) {
+
+function OrderConstructor({ cart }) {
+
+  const bun = useMemo(() => cart.find(
+    (ingredient) => ingredient.type === "bun"
+  ));
+
+
+  const ingredients = useMemo(() => cart.filter(
+    (ingredient) => ingredient.type !== "bun"
+  ));
+
   return (
     <div className={`${burgerConstructorStyles.orderConstructor} pl-9 pr-5 pb-0 pt-6`} >
       <ConstructorElement
@@ -18,9 +29,9 @@ function OrderConstructor(props) {
       />
 
       <ul className={`${burgerConstructorStyles.list}`}>
-        {cart.map((cartItem) => {
+        {ingredients.map((ingredientItem) => {
           return (
-            <li
+            <li key={ingredientItem._id}
               className={`${burgerConstructorStyles.listElement} pl-0 pr-0 pb-2 pt-2`}
             >
               <div
@@ -31,11 +42,10 @@ function OrderConstructor(props) {
 
               <ConstructorElement
                 isLocked={false}
-                key={cartItem._id}
-                price={cartItem.price}
-                type={cartItem.type}
-                thumbnail={cartItem.image}
-                text={cartItem.name}
+                price={ingredientItem.price}
+                type={ingredientItem.type}
+                thumbnail={ingredientItem.image}
+                text={ingredientItem.name}
               />
             </li>
           );
@@ -54,9 +64,7 @@ function OrderConstructor(props) {
 }
 
 OrderConstructor.propTypes = {
-  price: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};
+  cart: PropTypes.array.isRequired,
+ };
 
 export default OrderConstructor;

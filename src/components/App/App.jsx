@@ -2,12 +2,34 @@ import BurgerConstructor from "../burgerConstructor/burgerConstructor";
 import BurgerIngredients from "../burgerIngredients/burgerIngredients";
 import AppHeader from "../appHeader/appHeader";
 import appStyles from "./App.module.css";
-import Api from "../Api/Api";
+import { getIngredients } from "../../utils/burger-api";
+import { useEffect, useState } from "react";
 
 
 function App() {
 
-  const dataApi = Api("https://norma.nomoreparties.space/api/ingredients");
+   function IngredientsApi() {
+
+    const [ingredients, setIngredients] = useState([]);
+
+    useEffect(() => {
+      const getIngredientsData = async () => {
+        try {
+          const res = await getIngredients();
+   
+          setIngredients(res.data);
+        } catch (err) {
+          console.log(err.message);
+        }
+      };
+      getIngredientsData();
+    }, []);
+    return ingredients;
+  }
+
+  const ingredientsApi = IngredientsApi();
+
+
 
   return (
     <div className={appStyles.App}>
@@ -19,12 +41,13 @@ function App() {
           Соберите бургер
         </h1>
         <div className={`${appStyles.displayFlex}`}>
-          <BurgerIngredients data={dataApi} />
-          <BurgerConstructor />
+          <BurgerIngredients data={ingredientsApi} />
+          <BurgerConstructor data={ingredientsApi} />
         </div>
       </div>
     </div>
   );
 }
+
 
 export default App;

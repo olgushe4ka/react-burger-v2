@@ -28,14 +28,14 @@ const Modal = ({ title, closeAllModals, children }) => {
     <>
       <div className={ModStyles.main}>
 
-      <button className={`${ModStyles.closeIcon}`} onClick={closeAllModals} >
-         <CloseIcon type="primary" />
-      </button>
-      <h2
-        className={`${ModStyles.title} text text_type_main-large pl-10 pr-10 pb-1 pt-10`}
-      >
-      {title}
-      </h2>
+        <button className={`${ModStyles.closeIcon}`} onClick={closeAllModals} >
+          <CloseIcon type="primary" />
+        </button>
+        <h2
+          className={`${ModStyles.title} text text_type_main-large pl-10 pr-10 pb-1 pt-10`}
+        >
+          {title}
+        </h2>
 
         {children}
       </div>
@@ -48,7 +48,7 @@ const Modal = ({ title, closeAllModals, children }) => {
 Modal.propTypes = {
   title: PropTypes.string,
   closeAllModals: PropTypes.func.isRequired,
-
+  children: PropTypes.string,
 };
 
 
