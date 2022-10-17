@@ -5,6 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
+import { ingredientPropType } from "../../../utils/prop-types";
 
 
 function OrderConstructor({ cart }) {
@@ -63,8 +64,9 @@ function OrderConstructor({ cart }) {
   );
 }
 
+
 OrderConstructor.propTypes = {
-  cart: PropTypes.array.isRequired,
+  cart: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
  };
 
 export default OrderConstructor;

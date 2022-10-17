@@ -7,29 +7,21 @@ import { useEffect, useState } from "react";
 
 
 function App() {
+  const [ingredients, setIngredients] = useState([]);
 
-   function IngredientsApi() {
-
-    const [ingredients, setIngredients] = useState([]);
-
-    useEffect(() => {
-      const getIngredientsData = async () => {
-        try {
-          const res = await getIngredients();
-   
-          setIngredients(res.data);
-        } catch (err) {
-          console.log(err.message);
-        }
-      };
-      getIngredientsData();
-    }, []);
-    return ingredients;
-  }
-
-  const ingredientsApi = IngredientsApi();
-
-
+  useEffect(() => {
+    const getIngredientsData = async () => {
+      try {
+        const res = await getIngredients();
+ 
+        setIngredients(res.data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    
+    getIngredientsData();
+  }, []);
 
   return (
     <div className={appStyles.App}>
@@ -41,8 +33,8 @@ function App() {
           Соберите бургер
         </h1>
         <div className={`${appStyles.displayFlex}`}>
-          <BurgerIngredients data={ingredientsApi} />
-          <BurgerConstructor data={ingredientsApi} />
+          <BurgerIngredients data={ingredients} />
+          <BurgerConstructor data={ingredients} />
         </div>
       </div>
     </div>

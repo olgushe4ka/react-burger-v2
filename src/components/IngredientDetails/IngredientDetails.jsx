@@ -1,19 +1,20 @@
 import ingredientDetailsStyles from "./IngredientDetails.module.css";
 import PropTypes from "prop-types";
+import { ingredientPropType } from "../../utils/prop-types";
 
 
-function IngredientDetails(data) {
-  const props = data.props;
+function IngredientDetails(ingredients) {
+
 
   return (
     <div className={`${ingredientDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
       <div className={ingredientDetailsStyles.image}>
-           <img src={props.image} alt="logo" />
+           <img src={ingredients.ingredients.image} alt="logo" />
       </div>
       <p
         className={`${ingredientDetailsStyles.name} text text_type_main-medium  pl-0 pr-0 pb-8 pt-4`}
       >
-        {props.name}
+        {ingredients.ingredients.name}
       </p>
 
       <div
@@ -30,7 +31,7 @@ function IngredientDetails(data) {
           <p
             className={`${ingredientDetailsStyles.textnumbers} text text_type_digits-default pl-0 pr-0 pb-0 pt-0`}
           >
-            {props.calories}
+            {ingredients.ingredients.calories}
           </p>
         </div>
         <div
@@ -44,7 +45,7 @@ function IngredientDetails(data) {
           <p
             className={`${ingredientDetailsStyles.textnumbers} text text_type_digits-default pl-0 pr-0 pb-0 pt-0`}
           >
-            {props.proteins}
+            {ingredients.ingredients.proteins}
           </p>
         </div>
         <div
@@ -58,7 +59,7 @@ function IngredientDetails(data) {
           <p
             className={`${ingredientDetailsStyles.textnumbers} text text_type_digits-default pl-0 pr-0 pb-0 pt-0`}
           >
-            {props.fat}
+            {ingredients.ingredients.fat}
           </p>
         </div>
         <div
@@ -72,7 +73,7 @@ function IngredientDetails(data) {
           <p
             className={`${ingredientDetailsStyles.textnumbers} text text_type_digits-default pl-0 pr-0 pb-0 pt-0`}
           >
-            {props.carbohydrates}
+            {ingredients.ingredients.carbohydrates}
           </p>
         </div>
       </div>
@@ -82,12 +83,9 @@ function IngredientDetails(data) {
 
 
 IngredientDetails.propTypes = {
-  carbohydrates: PropTypes.string.isRequired,
-  fat: PropTypes.string.isRequired,
-  proteins: PropTypes.string.isRequired,
-  calories: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  ingredients: PropTypes.object.isRequired
 };
 
 export default IngredientDetails;
+
+

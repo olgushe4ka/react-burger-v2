@@ -5,6 +5,7 @@ import Menuconstructor from "./components/menuConstructor";
 import { useState, useMemo } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
+import { ingredientPropType } from "../../utils/prop-types";
 
 function BurgerIngredients({ data }) {
 
@@ -26,43 +27,40 @@ function BurgerIngredients({ data }) {
     <>
       <section className={`${ingredientsStyles.main} pl-15 pr-15 pb-0 pt-0`}>
         <div className={ingredientsStyles.headerfixed}>
-          <Tabs />
+          <Tabs value={buns} />
         </div>
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
-          value="buns"
+          id="buns"
         >
           Булки
         </p>
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {buns.map((dataIng) => {
             return (
-      
-                <div key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
-                  <Menuconstructor
-                    props={dataIng}
-                    price={dataIng.price}
-                    type={dataIng.type}
-                    image={dataIng.image}
-                    name={dataIng.name}
-                  />
-                </div>
+              <div key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
+                <Menuconstructor
+                  price={dataIng.price}
+                  type={dataIng.type}
+                  image={dataIng.image}
+                  name={dataIng.name}
+                />
+              </div>
 
             );
           })}
         </div>
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
-          value="sauces"
+          id="sauces"
         >
           Соусы
         </p>
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {sauces.map((dataIng) => {
             return (
-              <div  key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
+              <div key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
                 <Menuconstructor
-                  props={dataIng}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
@@ -74,16 +72,15 @@ function BurgerIngredients({ data }) {
         </div>
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
-          value="mains"
+          id="mains"
         >
           Начинки
         </p>
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {mains.map((dataIng) => {
             return (
-              <div  key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
+              <div key={dataIng._id} onClick={() => setIngredientsData(dataIng)}>
                 <Menuconstructor
-                  props={dataIng}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
@@ -98,15 +95,18 @@ function BurgerIngredients({ data }) {
       {ingredientsData && (
         <Modal closeAllModals={closeModal}
           title={'Детали ингридиента'} >
-          <IngredientDetails props={ingredientsData} />
+          <IngredientDetails ingredients={ingredientsData} />
         </Modal>
       )}
     </>
   );
 }
 
+
 BurgerIngredients.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
 };
+
+
 
 export default BurgerIngredients;

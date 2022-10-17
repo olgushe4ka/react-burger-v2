@@ -6,6 +6,7 @@ import Sum from "./components/sum";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
+import { ingredientPropType } from "../../utils/prop-types";
 
 function BurgerConstructor({data}) {
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false); 
@@ -27,7 +28,7 @@ function BurgerConstructor({data}) {
         <div
           className={`${burgerConstructorStyles.totalSumBox} pl-4 pr-4 pb-0 pt-10`}
         >
-          <Sum></Sum>
+          <Sum />
           <Button type="primary" size="medium" onClick={openModal} htmlType="button">
             Оформить заказ
           </Button>
@@ -43,8 +44,9 @@ function BurgerConstructor({data}) {
   );
 }
 
+
 BurgerConstructor.propTypes = {
-  data: PropTypes.array.isRequired,
-  };
+  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
+};
 
 export default BurgerConstructor;
