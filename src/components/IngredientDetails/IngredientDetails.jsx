@@ -81,8 +81,12 @@ function IngredientDetails({ingredients}) {
 }
 
 
+// IngredientDetails.propTypes = {
+//   ingredients: PropTypes.any.isRequired
+// };
+
 IngredientDetails.propTypes = {
-  ingredients: PropTypes.any.isRequired
+  ingredients: ingredientPropType.isRequired
 };
 
 
