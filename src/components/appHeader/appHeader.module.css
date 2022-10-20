@@ -1,0 +1,42 @@
+.header {
+  height: 88px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: #1c1c21;
+  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04),
+    0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+}
+
+.boxLeft {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  color: white;
+}
+
+.icon {
+  align-items: center;
+  height: 22px;
+}
+
+.logo {
+  align-items: center;
+}
+
+.lentaZakazov {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.konstructor {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
