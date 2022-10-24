@@ -8,7 +8,16 @@ function checkResponse(res) {
 }
 
 export function getIngredients() {
-    return fetch(`${baseUrl}/ingredients`)
-      .then(checkResponse)
-  }
-  
+  return fetch(`${baseUrl}/ingredients`).then(checkResponse);
+}
+
+export function saveOrder(data) {
+
+  return fetch(`${baseUrl}/orders`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data),
+  }).then(checkResponse);
+}

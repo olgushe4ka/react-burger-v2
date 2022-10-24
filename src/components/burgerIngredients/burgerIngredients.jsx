@@ -2,12 +2,16 @@ import ingredientsStyles from "./burgerIngredients.module.css";
 import PropTypes from "prop-types";
 import Tabs from "./components/tabs";
 import Menuconstructor from "./components/menuConstructor";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useContext } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import { ingredientPropType } from "../../utils/prop-types";
+import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 
-function BurgerIngredients({ data }) {
+
+function BurgerIngredients() {
+
+  const data = useContext(BurgerIngredientsContext);
 
   const buns = useMemo(() => data.filter((item) => item.type === 'bun'), [data]);
   const mains = useMemo(() => data.filter((item) => item.type === 'main'), [data]);
@@ -103,9 +107,9 @@ function BurgerIngredients({ data }) {
 }
 
 
-BurgerIngredients.propTypes = {
-  data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
-};
+// BurgerIngredients.propTypes = {
+//   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
+// };
 
 
 

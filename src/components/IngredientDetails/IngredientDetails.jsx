@@ -1,5 +1,4 @@
 import ingredientDetailsStyles from "./IngredientDetails.module.css";
-import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types";
 
 
@@ -81,9 +80,6 @@ function IngredientDetails({ingredients}) {
 }
 
 
-// IngredientDetails.propTypes = {
-//   ingredients: PropTypes.any.isRequired
-// };
 
 IngredientDetails.propTypes = {
   ingredients: ingredientPropType.isRequired
