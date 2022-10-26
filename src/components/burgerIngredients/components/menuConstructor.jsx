@@ -28,5 +28,3 @@ Menuconstructor.propTypes = {
 };
 
 export default Menuconstructor;
-
-

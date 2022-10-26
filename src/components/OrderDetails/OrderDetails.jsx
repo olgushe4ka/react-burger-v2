@@ -2,14 +2,14 @@ import OrderDetailsStyles from "./OrderDetails.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
 import PropTypes from "prop-types";
 
-function OrderDetails({orderNumber}) {
-  console.log(orderNumber) 
+function OrderDetails({ orderNumber }) {
+  console.log(orderNumber);
   return (
     <div className={`${OrderDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
       <p
         className={`${OrderDetailsStyles.orderNumber} text text_type_digits-large`}
       >
-       {orderNumber}
+        {orderNumber}
       </p>
 
       <p
@@ -32,10 +32,8 @@ function OrderDetails({orderNumber}) {
   );
 }
 
-
 OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired
+  orderNumber: PropTypes.number.isRequired,
 };
-
 
 export default OrderDetails;

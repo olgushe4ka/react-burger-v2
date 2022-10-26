@@ -12,11 +12,10 @@ export function getIngredients() {
 }
 
 export function saveOrder(data) {
-
   return fetch(`${baseUrl}/orders`, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(data),
   }).then(checkResponse);

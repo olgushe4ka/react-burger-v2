@@ -6,8 +6,6 @@ import { getIngredients } from "../../utils/burger-api";
 import { useEffect, useState } from "react";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 
-
-
 function App() {
   const [ingredients, setIngredients] = useState([]);
 
@@ -28,23 +26,21 @@ function App() {
   return (
     <div className={appStyles.App}>
       <BurgerIngredientsContext.Provider value={ingredients}>
-     
-          <AppHeader />
-          <div className={`${appStyles.appWithoutHeader}`}>
-            <h1
-              className={`${appStyles.title} text text_type_main-large pl-15 pr-0 pb-5 pt-10`}
-            >
-              Соберите бургер
-            </h1>
-            <div className={`${appStyles.displayFlex}`}>
-              <BurgerIngredients  />
-              <BurgerConstructor />
-            </div>
+        <AppHeader />
+        <div className={`${appStyles.appWithoutHeader}`}>
+          <h1
+            className={`${appStyles.title} text text_type_main-large pl-15 pr-0 pb-5 pt-10`}
+          >
+            Соберите бургер
+          </h1>
+          <div className={`${appStyles.displayFlex}`}>
+            {ingredients && <BurgerIngredients />}
+            {ingredients && <BurgerConstructor />}
           </div>
-            </BurgerIngredientsContext.Provider>
+        </div>
+      </BurgerIngredientsContext.Provider>
     </div>
   );
 }
-
 
 export default App;
