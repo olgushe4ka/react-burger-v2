@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className={appStyles.App}>
-      <BurgerIngredientsContext.Provider value={ingredients}>
+
         <AppHeader />
         <div className={`${appStyles.appWithoutHeader}`}>
           <h1
@@ -34,11 +34,13 @@ function App() {
             Соберите бургер
           </h1>
           <div className={`${appStyles.displayFlex}`}>
+          <BurgerIngredientsContext.Provider value={ingredients}>
             {ingredients && <BurgerIngredients />}
             {ingredients && <BurgerConstructor />}
+            </BurgerIngredientsContext.Provider>
           </div>
         </div>
-      </BurgerIngredientsContext.Provider>
+
     </div>
   );
 }

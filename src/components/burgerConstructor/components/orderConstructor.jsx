@@ -3,9 +3,7 @@ import {
   DragIcon,
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import { useMemo, useContext } from "react";
-import { ingredientPropType } from "../../../utils/prop-types";
 import BurgerIngredientsContext from "../../../context/burger-ingredients-context";
 
 function OrderConstructor() {
@@ -70,9 +68,5 @@ function OrderConstructor() {
     </div>
   );
 }
-
-// OrderConstructor.propTypes = {
-//   cart: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
-//  };
 
 export default OrderConstructor;

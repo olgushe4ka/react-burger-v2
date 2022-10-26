@@ -1,7 +1,7 @@
 import ingredientsStyles from "./burgerIngredients.module.css";
 import PropTypes from "prop-types";
 import Tabs from "./components/tabs";
-import Menuconstructor from "./components/menuConstructor";
+import MenuConstructor from "./components/menuConstructor";
 import { useState, useMemo, useContext, useRef } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
@@ -85,7 +85,7 @@ function BurgerIngredients() {
                 key={dataIng._id}
                 onClick={() => setIngredientsData(dataIng)}
               >
-                <Menuconstructor
+                <MenuConstructor
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
@@ -108,7 +108,7 @@ function BurgerIngredients() {
                 key={dataIng._id}
                 onClick={() => setIngredientsData(dataIng)}
               >
-                <Menuconstructor
+                <MenuConstructor
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
@@ -131,7 +131,7 @@ function BurgerIngredients() {
                 key={dataIng._id}
                 onClick={() => setIngredientsData(dataIng)}
               >
-                <Menuconstructor
+                <MenuConstructor
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
