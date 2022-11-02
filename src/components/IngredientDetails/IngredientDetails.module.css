@@ -4,15 +4,13 @@
   position: relative;
   width: 720px;
   max-height: 720px;
- }
-
+}
 
 .infoBox {
   display: flex;
   justify-content: space-between;
   text-align: center;
 }
-
 
 .textnumbers {
   color: #8585ad;
@@ -29,4 +27,3 @@
   margin: auto;
   justify-content: center;
 }
-

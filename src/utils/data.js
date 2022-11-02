@@ -325,5 +325,4 @@ export const cart = [
     image_large: "https://code.s3.yandex.net/react/code/meat-02-large.png",
     __v: 0,
   },
-  
 ];

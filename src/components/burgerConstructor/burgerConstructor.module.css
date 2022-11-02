@@ -48,10 +48,6 @@
 
 .dragIcon {
   align-self: center;
-  position: absolute;
-  top: 0;
-  top: 40%;
-  left: -30px;
   z-index: 5;
 }
 
@@ -74,9 +70,9 @@
 .list {
   list-style-type: none;
   margin: 0;
-  padding: 0;
   overflow-y: scroll;
   max-height: 475px;
+  padding: 0;
 }
 
 .listElement {
@@ -87,7 +83,7 @@
 }
 
 .orderConstructor {
- display: flex; 
- flex-direction: column;
- gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

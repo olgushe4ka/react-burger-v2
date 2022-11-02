@@ -1,14 +1,11 @@
 import ingredientDetailsStyles from "./IngredientDetails.module.css";
-import PropTypes from "prop-types";
 import { ingredientPropType } from "../../utils/prop-types";
 
-
-function IngredientDetails({ingredients}) {
-
+function IngredientDetails({ ingredients }) {
   return (
     <div className={`${ingredientDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
       <div className={ingredientDetailsStyles.image}>
-           <img src={ingredients.image} alt="logo" />
+        <img src={ingredients.image} alt="logo" />
       </div>
       <p
         className={`${ingredientDetailsStyles.name} text text_type_main-medium  pl-0 pr-0 pb-8 pt-4`}
@@ -80,16 +77,8 @@ function IngredientDetails({ingredients}) {
   );
 }
 
-
-// IngredientDetails.propTypes = {
-//   ingredients: PropTypes.any.isRequired
-// };
-
 IngredientDetails.propTypes = {
-  ingredients: ingredientPropType.isRequired
+  ingredients: ingredientPropType.isRequired,
 };
 
-
 export default IngredientDetails;
-
-

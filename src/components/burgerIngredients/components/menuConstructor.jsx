@@ -5,7 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
-function Menuconstructor(props) {
+function MenuConstructor(props) {
   return (
     <div className={`${ingredientsStyles.ingredietBox} pl-5 pr-5 pb-0 pt-6`}>
       <div className={`${ingredientsStyles.counter}`}>
@@ -21,12 +21,10 @@ function Menuconstructor(props) {
   );
 }
 
-Menuconstructor.propTypes = {
+MenuConstructor.propTypes = {
   price: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
 
-export default Menuconstructor;
-
-
+export default MenuConstructor;
