@@ -2,15 +2,37 @@ import ingredientsStyles from "./burgerIngredients.module.css";
 import PropTypes from "prop-types";
 import Tabs from "./components/tabs";
 import MenuConstructor from "./components/menuConstructor";
-import { useState, useMemo, useContext, useRef } from "react";
+import { useState, useMemo, useContext, useRef, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import { ingredientPropType } from "../../utils/prop-types";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch, useSelector } from 'react-redux';
+import { getItems } from "../../services/actions/ingredients";
 
 function BurgerIngredients() {
-  const data = useContext(BurgerIngredientsContext);
+  //const data = useContext(BurgerIngredientsContext);
+
+  const dispatch = useDispatch();
+  const data = useSelector(
+    state => state.ingredients.ingredients
+  );
+  
+  useEffect(
+    () => {
+      dispatch(getItems());
+    },
+    [dispatch]
+  );
+
+
+
+
+
+
+
+
 
   const buns = useMemo(
     () => data.filter((item) => item.type === "bun"),

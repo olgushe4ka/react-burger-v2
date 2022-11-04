@@ -7,6 +7,9 @@ import { useEffect, useState } from "react";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 
 function App() {
+
+
+
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -33,10 +36,10 @@ function App() {
           Соберите бургер
         </h1>
         <div className={`${appStyles.displayFlex}`}>
-          <BurgerIngredientsContext.Provider value={ingredients}>
+          {/* <BurgerIngredientsContext.Provider value={ingredients}> */}
             {ingredients && <BurgerIngredients />}
             {ingredients && <BurgerConstructor />}
-          </BurgerIngredientsContext.Provider>
+          {/* </BurgerIngredientsContext.Provider> */}
         </div>
       </div>
     </div>
