@@ -68,14 +68,11 @@ function BurgerIngredients() {
   //Прокрутка Tab
   const [currentTab, setCurrentTab] = useState("buns");
 
-  //    const scrollTab = () => {
-
-  //   currentTab?.scrollIntoView({
-  //     behavior: "smooth",
-  //   });
-  // }
-
-  //  scrollTab();
+   const onTabClick = (tab) => {
+    setCurrentTab(tab);
+    const element = document.getElementById(tab);
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <>
@@ -85,21 +82,21 @@ function BurgerIngredients() {
             <Tab
               value="buns"
               active={currentTab === "buns"}
-              onClick={setCurrentTab}
+              onClick={onTabClick}
             >
               Булки
             </Tab>
             <Tab
               value="sauces"
               active={currentTab === "sauces"}
-              onClick={setCurrentTab}
+              onClick={onTabClick}
             >
               Соусы
             </Tab>
             <Tab
               value="mains"
               active={currentTab === "mains"}
-              onClick={setCurrentTab}
+              onClick={onTabClick}
             >
               Начинки
             </Tab>
