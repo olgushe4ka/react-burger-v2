@@ -5,6 +5,8 @@ import appStyles from "./App.module.css";
 import { getIngredients } from "../../utils/burger-api";
 import { useEffect, useState } from "react";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 function App() {
 
@@ -36,10 +38,10 @@ function App() {
           Соберите бургер
         </h1>
         <div className={`${appStyles.displayFlex}`}>
-          {/* <BurgerIngredientsContext.Provider value={ingredients}> */}
+        <DndProvider backend={HTML5Backend}>
             {ingredients && <BurgerIngredients />}
             {ingredients && <BurgerConstructor />}
-          {/* </BurgerIngredientsContext.Provider> */}
+            </DndProvider >
         </div>
       </div>
     </div>

@@ -78,7 +78,7 @@ function BurgerIngredients() {
     <>
       <section className={`${ingredientsStyles.main} pl-15 pr-15 pb-0 pt-0`}>
         <div className={ingredientsStyles.headerfixed}>
-          <div className={`${ingredientsStyles.tabs}`}>
+          <div className={`${ingredientsStyles.tabs}`} >
             <Tab
               value="buns"
               active={currentTab === "buns"}
