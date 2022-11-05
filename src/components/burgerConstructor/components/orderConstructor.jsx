@@ -5,9 +5,14 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useMemo, useContext } from "react";
 import BurgerIngredientsContext from "../../../context/burger-ingredients-context";
+import { useSelector } from "react-redux";
 
 function OrderConstructor() {
-  const cart = useContext(BurgerIngredientsContext);
+  //const cart = useContext(BurgerIngredientsContext);
+
+const cart = useSelector(
+  state => state.ingredients.cart
+);
 
   const ingredients = useMemo(() =>
     cart.filter((ingredient) => ingredient.type !== "bun")

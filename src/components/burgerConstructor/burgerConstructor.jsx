@@ -4,17 +4,28 @@ import PropTypes from "prop-types";
 import OrderConstructor from "./components/orderConstructor";
 import Sum from "./components/sum";
 import OrderDetails from "../OrderDetails/OrderDetails";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "../Modal/Modal";
 import { ingredientPropType } from "../../utils/prop-types";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { saveOrder } from "../../utils/burger-api";
+import { useDispatch, useSelector } from 'react-redux';
+import { orderBurger } from "../../services/actions/ingredients";
+import { data } from "../../utils/data";
+
+
 
 function BurgerConstructor() {
-  const ingredientsAll = useContext(BurgerIngredientsContext);
+
+  const ingredientsAll = useSelector(
+    state => state.ingredients.cart
+  );
+
   const ingredients = ingredientsAll.map((ingrItem) => {
     return ingrItem._id;
   });
+
+  console.log(ingredients)
 
   //открытие Модального окна
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
@@ -24,18 +35,30 @@ function BurgerConstructor() {
   };
 
   const openModal = () => {
-    handleOrderClick();
     setIsOrderDetailsOpened(true);
   };
 
-  //Формирование номера заказа Модального окна
-  const [modalData, setModalData] = useState(null);
 
-  const handleOrderClick = () => {
-    saveOrder({ ingredients }).then((data) => {
-      setModalData(data);
-    });
-  };
+
+
+  //Формирование номера заказа Модального окна через redux
+
+  const modalData = useSelector(
+    state => state.ingredients.orderDetails
+  );
+
+  console.log(modalData)
+  const dispatch = useDispatch();
+
+   
+  useEffect(
+    () => {
+      dispatch(orderBurger({ ingredients }));
+    },
+    [dispatch]
+  );
+
+
 
   return (
     <>

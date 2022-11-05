@@ -20,7 +20,9 @@ import {
     CONSTRUCTOR_REORDER,
 
     RESET_INGREDIENT_MODAL, 
-    SET_INGREDIENT_MODAL
+    SET_INGREDIENT_MODAL,
+
+    TAKE_ORDER_NUMBER
 
   } from '../actions/ingredients';
   
@@ -32,11 +34,38 @@ import {
     ingredientsFailed: false,  
     
 
-    constructor: [],
+    cart: [  {
+      _id: "60d3b41abdacab0026a733cb",
+      name: "Сыр с астероидной плесенью",
+      type: "main",
+      proteins: 84,
+      fat: 48,
+      carbohydrates: 420,
+      calories: 3377,
+      price: 4142,
+      image: "https://code.s3.yandex.net/react/code/cheese.png",
+      image_mobile: "https://code.s3.yandex.net/react/code/cheese-mobile.png",
+      image_large: "https://code.s3.yandex.net/react/code/cheese-large.png",
+      __v: 0,
+    },
+    {
+      _id: "60d3b41abdacab0026a733c6",
+      name: "Флюоресцентная булка R2-D3",
+      type: "bun",
+      proteins: 44,
+      fat: 26,
+      carbohydrates: 85,
+      calories: 643,
+      price: 988,
+      image: "https://code.s3.yandex.net/react/code/bun-01.png",
+      image_mobile: "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
+      image_large: "https://code.s3.yandex.net/react/code/bun-01-large.png",
+      __v: 0,
+    },],
 
-    ingredientDetails: [],
+    ingredientDetails: null,
 
-    orderDetails: [],
+    orderDetails: null,
     orderDetailsIsLoading: false,
     orderDetailsFailed: false,  
 
@@ -47,6 +76,20 @@ import {
 
   export const ingredientsReducer = (state = initialState, action) => {
     switch (action.type) {
+      case GET_ORDER_DETAILS_REQUEST: {
+        return {
+          ...state,
+          orderDetailsIsLoading: true
+        };
+      }
+      case GET_ORDER_DETAILS_SUCCESS: {
+        return { ...state, orderDetailsFailed: false, orderDetails: action.items, orderDetailsIsLoading: false };
+      }
+      case GET_ORDER_DETAILS_FAILED: {
+        return { ...state, orderDetailsFailed: true, orderDetailsIsLoading: false };
+      }
+
+
       case GET_INGREDIENTS_REQUEST: {
         return {
           ...state,
@@ -60,7 +103,17 @@ import {
         return { ...state, ingredientsFailed: true, ingredientsIsLoading: false };
       }
   
+      case SET_INGREDIENT_MODAL: {
+        return {
+          ...state, ingredientDetails: action.payload,
+        }
+      }
 
+      case RESET_INGREDIENT_MODAL: {
+        return {
+          ...state, ingredientDetails: null,
+        }
+      }
 
       // case GET_RECOMMENDED_ITEMS_REQUEST: {
       //   return {

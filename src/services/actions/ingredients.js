@@ -21,7 +21,7 @@ export const CONSTRUCTOR_REORDER = 'CONSTRUCTOR_REORDER';
 export const RESET_INGREDIENT_MODAL = 'RESET_INGREDIENT_MODAL';
 export const SET_INGREDIENT_MODAL = 'SET_INGREDIENT_MODAL';
 
-
+export const TAKE_ORDER_NUMBER = 'SET_ORDER_NUMBER';
 
 // export function applyPromo(code) {
 //   return function(dispatch) {
@@ -64,25 +64,57 @@ export function getItems() {
 }
 
 
-
-export const orderBurger = (orderData) => (dispatch) => {
+export function orderBurger(orderData) {
+  return function(dispatch) {
     dispatch({
-      type: GET_ORDER_DETAILS_REQUEST,
+      type: GET_ORDER_DETAILS_REQUEST
     });
-    return saveOrder(orderData)
-      .then((res) => {
+    saveOrder(orderData).then(res => {
+      if (res && res.success) {
         dispatch({
           type: GET_ORDER_DETAILS_SUCCESS,
-          payload: res,
+          items: res
         });
-      })
-      .catch((err) => {
+      } else {
         dispatch({
-          type: GET_ORDER_DETAILS_FAILED,
-          payload: err,
+          type: GET_ORDER_DETAILS_FAILED
         });
-      });
+      }
+    });
   };
+}
+
+
+
+//   // const useHandleOrderClick = () => {
+//   //   useEffect(
+//   //     () => {
+//   //       dispatch(orderBurger({ ingredients }));
+//   //     },
+//   //     [dispatch]
+//   //   );
+//   // };
+
+
+
+// export const orderBurger = (orderData) => (dispatch) => {
+//     dispatch({
+//       type: GET_ORDER_DETAILS_REQUEST,
+//     });
+//     return saveOrder(orderData)
+//       .then((res) => {
+//         dispatch({
+//           type: GET_ORDER_DETAILS_SUCCESS,
+//           payload: res
+//         });
+//       })
+//       .catch((err) => {
+//         dispatch({
+//           type: GET_ORDER_DETAILS_FAILED,
+//           payload: err,
+//         });
+//       });
+//   };
 
 
 // export function getRecommendedItems() {

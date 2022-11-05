@@ -6,14 +6,13 @@ import { useState, useMemo, useContext, useRef, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import { ingredientPropType } from "../../utils/prop-types";
-import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from 'react-redux';
-import { getItems } from "../../services/actions/ingredients";
+import { getItems, SET_INGREDIENT_MODAL, RESET_INGREDIENT_MODAL } from "../../services/actions/ingredients";
+
 
 function BurgerIngredients() {
-  //const data = useContext(BurgerIngredientsContext);
-
+ 
   const dispatch = useDispatch();
   const data = useSelector(
     state => state.ingredients.ingredients
@@ -25,11 +24,6 @@ function BurgerIngredients() {
     },
     [dispatch]
   );
-
-
-
-
-
 
 
 
@@ -48,11 +42,28 @@ function BurgerIngredients() {
   );
 
   //Модальные окна
-  const [ingredientsData, setIngredientsData] = useState(null);
 
-  const closeModal = () => {
-    setIngredientsData(null);
+  const onIngredientClick = (data) => {
+    dispatch({ type: SET_INGREDIENT_MODAL, payload: data });
+   
   };
+
+  const ingredientsData = useSelector(state => state.ingredients.ingredientDetails)
+
+
+  const closeIngredientModal = () => {
+    dispatch({ type: RESET_INGREDIENT_MODAL });
+  };
+
+
+  //const [ingredientsData, setIngredientsData] = useState(null);
+
+  
+
+  // const closeModal = () => {
+  //   setIngredientsData(null);
+  // };
+
 
   //Прокрутка Tab
   const [currentTab, setCurrentTab] = useState("buns");
@@ -105,7 +116,7 @@ function BurgerIngredients() {
             return (
               <div
                 key={dataIng._id}
-                onClick={() => setIngredientsData(dataIng)}
+                onClick={() => onIngredientClick(dataIng)}
               >
                 <MenuConstructor
                   price={dataIng.price}
@@ -128,7 +139,7 @@ function BurgerIngredients() {
             return (
               <div
                 key={dataIng._id}
-                onClick={() => setIngredientsData(dataIng)}
+                onClick={() => onIngredientClick(dataIng)}
               >
                 <MenuConstructor
                   price={dataIng.price}
@@ -151,7 +162,7 @@ function BurgerIngredients() {
             return (
               <div
                 key={dataIng._id}
-                onClick={() => setIngredientsData(dataIng)}
+                onClick={() => onIngredientClick(dataIng)}
               >
                 <MenuConstructor
                   price={dataIng.price}
@@ -166,7 +177,7 @@ function BurgerIngredients() {
       </section>
 
       {ingredientsData && (
-        <Modal closeAllModals={closeModal} title={"Детали ингридиента"}>
+        <Modal closeAllModals={closeIngredientModal} title={"Детали ингридиента"}>
           <IngredientDetails ingredients={ingredientsData} />
         </Modal>
       )}

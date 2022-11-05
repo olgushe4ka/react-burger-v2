@@ -2,9 +2,13 @@ import burgerConstructorStyles from "../burgerConstructor.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useContext, useMemo } from "react";
 import BurgerIngredientsContext from "../../../context/burger-ingredients-context";
+import { useSelector } from "react-redux";
 
 function Sum() {
-  const cart = useContext(BurgerIngredientsContext);
+ // const cart = useContext(BurgerIngredientsContext);
+  const cart = useSelector(
+    state => state.ingredients.cart
+  );
 
   const ingredients = useMemo(() =>
     cart.filter((ingredient) => ingredient.type !== "bun")
