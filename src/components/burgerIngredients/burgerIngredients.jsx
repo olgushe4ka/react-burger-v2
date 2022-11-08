@@ -1,7 +1,7 @@
 import ingredientsStyles from "./burgerIngredients.module.css";
 import PropTypes from "prop-types";
 import Tabs from "./components/tabs";
-import MenuConstructor from "./components/menuConstructor";
+import IngredientConstructor from "./components/ingredientConstructor";
 import { useState, useMemo, useContext, useRef, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
@@ -9,15 +9,17 @@ import { ingredientPropType } from "../../utils/prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from 'react-redux';
 import { getItems, SET_INGREDIENT_MODAL, RESET_INGREDIENT_MODAL } from "../../services/actions/ingredients";
+import { useDrag } from 'react-dnd';
+
 
 
 function BurgerIngredients() {
- 
+
   const dispatch = useDispatch();
   const data = useSelector(
     state => state.ingredients.ingredients
   );
-  
+
   useEffect(
     () => {
       dispatch(getItems());
@@ -45,7 +47,7 @@ function BurgerIngredients() {
 
   const onIngredientClick = (data) => {
     dispatch({ type: SET_INGREDIENT_MODAL, payload: data });
-   
+
   };
 
   const ingredientsData = useSelector(state => state.ingredients.ingredientDetails)
@@ -56,23 +58,27 @@ function BurgerIngredients() {
   };
 
 
-  //const [ingredientsData, setIngredientsData] = useState(null);
-
-  
-
-  // const closeModal = () => {
-  //   setIngredientsData(null);
-  // };
-
 
   //Прокрутка Tab
   const [currentTab, setCurrentTab] = useState("buns");
 
-   const onTabClick = (tab) => {
+  const onTabClick = (tab) => {
     setCurrentTab(tab);
     const element = document.getElementById(tab);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
+
+  // //Drag and drop
+  // const [{ opacity }, ref] = useDrag({
+  //   type: 'ingredient',
+  //   item: { ingredientsData },
+
+  //   // collect: monitor => ({
+  //   //   opacity: monitor.isDragging() ? 0.5 : 1
+  //   //  })
+  // });
+
+
 
   return (
     <>
@@ -113,9 +119,12 @@ function BurgerIngredients() {
             return (
               <div
                 key={dataIng._id}
+                id={Math.random().toString(36).slice(2)}
                 onClick={() => onIngredientClick(dataIng)}
+
               >
-                <MenuConstructor
+                <IngredientConstructor
+                  id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
@@ -138,7 +147,8 @@ function BurgerIngredients() {
                 key={dataIng._id}
                 onClick={() => onIngredientClick(dataIng)}
               >
-                <MenuConstructor
+                <IngredientConstructor
+                  id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
@@ -161,7 +171,8 @@ function BurgerIngredients() {
                 key={dataIng._id}
                 onClick={() => onIngredientClick(dataIng)}
               >
-                <MenuConstructor
+                <IngredientConstructor
+                  id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}

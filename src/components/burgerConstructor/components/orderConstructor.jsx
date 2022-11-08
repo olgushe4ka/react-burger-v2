@@ -22,7 +22,9 @@ const cart = useSelector(
     cart.filter((ingredient) => ingredient.type === "bun")
   );
 
-  const bun = buns[0];
+  const bun = buns[buns.length - 1];
+
+  
 
   return (
     <div

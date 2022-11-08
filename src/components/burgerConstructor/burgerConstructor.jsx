@@ -10,13 +10,15 @@ import { ingredientPropType } from "../../utils/prop-types";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { saveOrder } from "../../utils/burger-api";
 import { useDispatch, useSelector } from 'react-redux';
-import { orderBurger } from "../../services/actions/ingredients";
+import { CONSTRUCTOR_ADD_INGREDIENTS, orderBurger } from "../../services/actions/ingredients";
 import { data } from "../../utils/data";
+import { useDrop } from 'react-dnd';
+
 
 
 
 function BurgerConstructor() {
-
+  
   const ingredientsAll = useSelector(
     state => state.ingredients.cart
   );
@@ -25,7 +27,6 @@ function BurgerConstructor() {
     return ingrItem._id;
   });
 
-  console.log(ingredients)
 
   //открытие Модального окна
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
@@ -38,8 +39,7 @@ function BurgerConstructor() {
     setIsOrderDetailsOpened(true);
   };
 
-
-
+ 
 
   //Формирование номера заказа Модального окна через redux
 
@@ -47,8 +47,7 @@ function BurgerConstructor() {
     state => state.ingredients.orderDetails
   );
 
-  console.log(modalData)
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
    
   useEffect(
@@ -59,13 +58,31 @@ function BurgerConstructor() {
   );
 
 
+  // DND
+  const moveIngredientToConstructor = (item) => {
+    dispatch({
+      type: CONSTRUCTOR_ADD_INGREDIENTS
+      , payload: item
+    });
+  }
+
+  
+  const [{ isHover }, drop] = useDrop({
+    accept: 'ingredient',
+
+    collect: monitor => ({
+      isHover: monitor.isOver()
+    }),      drop(ingredient){moveIngredientToConstructor(ingredient)}
+  });
+
+   //state.burgerStructure.ingredients = state.burgerStructure.ingredients.map((item) => ({ ...item, isDragging: item.dragId === action.payload }));
 
   return (
     <>
       <section
         className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}
       >
-        <OrderConstructor />
+        <div ref={drop}> <OrderConstructor /> </div>
         <div
           className={`${burgerConstructorStyles.totalSumBox} pl-4 pr-4 pb-0 pt-10`}
         >

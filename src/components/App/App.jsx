@@ -8,11 +8,11 @@ import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
+
 function App() {
 
-
-
   const [ingredients, setIngredients] = useState([]);
+
 
   useEffect(() => {
     const getIngredientsData = async () => {
@@ -28,6 +28,7 @@ function App() {
     getIngredientsData();
   }, []);
 
+
   return (
     <div className={appStyles.App}>
       <AppHeader />
@@ -39,8 +40,9 @@ function App() {
         </h1>
         <div className={`${appStyles.displayFlex}`}>
         <DndProvider backend={HTML5Backend}>
-            {ingredients && <BurgerIngredients />}
-            {ingredients && <BurgerConstructor />}
+            {ingredients && <BurgerIngredients  />}
+            {ingredients && <BurgerConstructor 
+            />}
             </DndProvider >
         </div>
       </div>
