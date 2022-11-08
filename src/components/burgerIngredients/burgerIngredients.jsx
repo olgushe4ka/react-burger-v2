@@ -7,28 +7,21 @@ import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
 import { ingredientPropType } from "../../utils/prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from 'react-redux';
-import { getItems, SET_INGREDIENT_MODAL, RESET_INGREDIENT_MODAL } from "../../services/actions/ingredients";
-import { useDrag } from 'react-dnd';
-
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getItems,
+  SET_INGREDIENT_MODAL,
+  RESET_INGREDIENT_MODAL,
+} from "../../services/actions/ingredients";
+import { useDrag } from "react-dnd";
 
 function BurgerIngredients() {
-
   const dispatch = useDispatch();
-  const data = useSelector(
-    state => state.ingredients.ingredients
-  );
+  const data = useSelector((state) => state.ingredients.ingredients);
 
-  useEffect(
-    () => {
-      dispatch(getItems());
-    },
-    [dispatch]
-  );
-
-
-
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
 
   const buns = useMemo(
     () => data.filter((item) => item.type === "bun"),
@@ -47,17 +40,15 @@ function BurgerIngredients() {
 
   const onIngredientClick = (data) => {
     dispatch({ type: SET_INGREDIENT_MODAL, payload: data });
-
   };
 
-  const ingredientsData = useSelector(state => state.ingredients.ingredientDetails)
-
+  const ingredientsData = useSelector(
+    (state) => state.ingredients.ingredientDetails
+  );
 
   const closeIngredientModal = () => {
     dispatch({ type: RESET_INGREDIENT_MODAL });
   };
-
-
 
   //Прокрутка Tab
   const [currentTab, setCurrentTab] = useState("buns");
@@ -78,13 +69,11 @@ function BurgerIngredients() {
   //   //  })
   // });
 
-
-
   return (
     <>
       <section className={`${ingredientsStyles.main} pl-15 pr-15 pb-0 pt-0`}>
         <div className={ingredientsStyles.headerfixed}>
-          <div className={`${ingredientsStyles.tabs}`} >
+          <div className={`${ingredientsStyles.tabs}`}>
             <Tab
               value="buns"
               active={currentTab === "buns"}
@@ -121,7 +110,6 @@ function BurgerIngredients() {
                 key={dataIng._id}
                 id={Math.random().toString(36).slice(2)}
                 onClick={() => onIngredientClick(dataIng)}
-
               >
                 <IngredientConstructor
                   id={dataIng._id}
@@ -143,10 +131,7 @@ function BurgerIngredients() {
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {sauces.map((dataIng) => {
             return (
-              <div
-                key={dataIng._id}
-                onClick={() => onIngredientClick(dataIng)}
-              >
+              <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
                   id={dataIng._id}
                   price={dataIng.price}
@@ -167,10 +152,7 @@ function BurgerIngredients() {
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {mains.map((dataIng) => {
             return (
-              <div
-                key={dataIng._id}
-                onClick={() => onIngredientClick(dataIng)}
-              >
+              <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
                   id={dataIng._id}
                   price={dataIng.price}
@@ -185,7 +167,10 @@ function BurgerIngredients() {
       </section>
 
       {ingredientsData && (
-        <Modal closeAllModals={closeIngredientModal} title={"Детали ингридиента"}>
+        <Modal
+          closeAllModals={closeIngredientModal}
+          title={"Детали ингридиента"}
+        >
           <IngredientDetails ingredients={ingredientsData} />
         </Modal>
       )}

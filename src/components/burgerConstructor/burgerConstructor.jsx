@@ -9,24 +9,20 @@ import Modal from "../Modal/Modal";
 import { ingredientPropType } from "../../utils/prop-types";
 import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { saveOrder } from "../../utils/burger-api";
-import { useDispatch, useSelector } from 'react-redux';
-import { CONSTRUCTOR_ADD_INGREDIENTS, orderBurger } from "../../services/actions/ingredients";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  CONSTRUCTOR_ADD_INGREDIENTS,
+  orderBurger,
+} from "../../services/actions/ingredients";
 import { data } from "../../utils/data";
-import { useDrop } from 'react-dnd';
-
-
-
+import { useDrop } from "react-dnd";
 
 function BurgerConstructor() {
-  
-  const ingredientsAll = useSelector(
-    state => state.ingredients.cart
-  );
+  const ingredientsAll = useSelector((state) => state.ingredients.cart);
 
   const ingredients = ingredientsAll.map((ingrItem) => {
     return ingrItem._id;
   });
-
 
   //открытие Модального окна
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
@@ -39,50 +35,43 @@ function BurgerConstructor() {
     setIsOrderDetailsOpened(true);
   };
 
- 
-
   //Формирование номера заказа Модального окна через redux
 
-  const modalData = useSelector(
-    state => state.ingredients.orderDetails
-  );
+  const modalData = useSelector((state) => state.ingredients.orderDetails);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-   
-  useEffect(
-    () => {
-      dispatch(orderBurger({ ingredients }));
-    },
-    [dispatch]
-  );
-
+  useEffect(() => {
+    dispatch(orderBurger({ ingredients }));
+  }, [dispatch]);
 
   // DND
   const moveIngredientToConstructor = (item) => {
     dispatch({
-      type: CONSTRUCTOR_ADD_INGREDIENTS
-      , payload: item
+      type: CONSTRUCTOR_ADD_INGREDIENTS,
+      payload: item,
     });
-  }
+  };
 
-  
   const [{ isHover }, drop] = useDrop({
-    accept: 'ingredient',
+    accept: "ingredient",
 
-    collect: monitor => ({
-      isHover: monitor.isOver()
-    }),      drop(ingredient){moveIngredientToConstructor(ingredient)}
+    collect: (monitor) => ({
+      isHover: monitor.isOver(),
+    }),
+    drop(ingredient) {
+      moveIngredientToConstructor(ingredient);
+    },
   });
 
-   //state.burgerStructure.ingredients = state.burgerStructure.ingredients.map((item) => ({ ...item, isDragging: item.dragId === action.payload }));
-
-  return (
+   return (
     <>
       <section
         className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}
       >
-        <div ref={drop}> <OrderConstructor /> </div>
+        <div ref={drop}>
+          <OrderConstructor />
+        </div>
         <div
           className={`${burgerConstructorStyles.totalSumBox} pl-4 pr-4 pb-0 pt-10`}
         >

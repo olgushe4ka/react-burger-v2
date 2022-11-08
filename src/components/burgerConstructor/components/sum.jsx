@@ -5,10 +5,8 @@ import BurgerIngredientsContext from "../../../context/burger-ingredients-contex
 import { useSelector } from "react-redux";
 
 function Sum() {
- // const cart = useContext(BurgerIngredientsContext);
-  const cart = useSelector(
-    state => state.ingredients.cart
-  );
+  // const cart = useContext(BurgerIngredientsContext);
+  const cart = useSelector((state) => state.ingredients.cart);
 
   const ingredients = useMemo(() =>
     cart.filter((ingredient) => ingredient.type !== "bun")
