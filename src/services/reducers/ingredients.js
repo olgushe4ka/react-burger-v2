@@ -1,3 +1,4 @@
+import { isTemplateSpan } from "typescript";
 import {
   GET_ORDER_DETAILS_FAILED,
   GET_ORDER_DETAILS_REQUEST,
@@ -15,6 +16,8 @@ import {
   RESET_INGREDIENT_MODAL,
   SET_INGREDIENT_MODAL,
   TAKE_ORDER_NUMBER,
+  CONSTRUCTOR_ONLY_ONE_BUN_IN_ARRAY,
+  CONSTRUCTOR_ADD_BUNS,
 } from "../actions/ingredients";
 
 const initialState = {
@@ -102,7 +105,6 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
 
-    
     case CONSTRUCTOR_ADD_INGREDIENTS: {
       return {
         ...state,
@@ -111,6 +113,95 @@ export const ingredientsReducer = (state = initialState, action) => {
         ),
       };
     }
+
+    // case CONSTRUCTOR_ADD_INGREDIENTS: {
+    //   if (
+    //     state.ingredients.filter(
+    //       (items) => items._id === action.payload.id && items.type !== "bun"
+    //     )
+    //   ) {
+    //     return {
+    //       ...state,
+    //       cartIngredients: state.cartIngredients.concat(
+    //         state.ingredients.filter(
+    //           (items) => items._id === action.payload.id && items.type !== "bun"
+    //         )
+    //       ),
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       cartBuns: state.ingredients.filter(
+    //         (items) => items._id === action.payload.id  && items.type === "bun"
+    //       ),
+    //     };
+    //   }
+    // }
+
+    // cartIngredients:  state.cartIngredients.concat(
+    //   state.ingredients.filter(
+    //     (items) => items._id === action.payload.id && items.type !== "bun"
+    //   )
+    // ),
+    // cartBuns: state.ingredients.filter(
+    //   (items) => items._id === action.payload.id && items.type === "bun"
+    // ),
+
+    // cartIngredients:  state.cartIngredients.concat(
+    //   state.ingredients.filter(
+    //     (items) => items._id === action.payload.id && items.type !== "bun"
+    //   )
+    // ),
+    // cartBuns: state.ingredients.filter(
+    //   (items) => items._id === action.payload.id && items.type === "bun"
+    // ),
+
+    // ||
+    // state.cart.splice( 0,
+    //   (state.ingredients.filter((items) => items._id === action.payload.id && items.type === 'bun' ))
+    // ),
+
+    // cart: [state.cart.concat(
+    //         state.ingredients.filter((items) => items._id === action.payload.id && items.type !== 'bun' )
+    //       )
+    //       &&
+    //       state.cart.push(
+    //         (state.ingredients.filter((items) => items._id === action.payload.id && items.type === 'bun' ))
+    //       )],
+
+    // cart: [(state.cart.filter((items) => items._id === action.payload.id &&
+    //  items._type === 'bun'
+    // ? state.cart.concat()
+    // : state.cart.push())
+    // )]
+
+    // { ...state,
+    //   items: [...state.items].filter(item => item.id !== action.id) }
+
+    // case CONSTRUCTOR_ONLY_ONE_BUN_IN_ARRAY: {
+    //   return {
+    //     ...state,
+
+    //     cart: state.cart(
+    //       state.ingredients.map((item) => item._type === 'bun')
+    //     ),
+
+    //       ...state,
+    //       cart: state.cart.filter(item => item._type === 'bun')
+    //     })
+    //   };
+    // }
+
+    //     case CONSTRUCTOR_ADD_INGREDIENTS: {
+    //             return {
+
+    //        state.cart(state.ingredients.filter((items) => items._id === action.payload.id)
+    //        (items.type === "bun")
+    //        ?  cart: state.cart.concat
+    // : cart: state.cart.splice()
+
+    //       };
+    //     }
 
     default: {
       return state;

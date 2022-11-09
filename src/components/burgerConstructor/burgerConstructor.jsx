@@ -11,8 +11,7 @@ import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { saveOrder } from "../../utils/burger-api";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  CONSTRUCTOR_ADD_INGREDIENTS,
-  orderBurger,
+  CONSTRUCTOR_ADD_INGREDIENTS,   orderBurger, 
 } from "../../services/actions/ingredients";
 import { data } from "../../utils/data";
 import { useDrop } from "react-dnd";
@@ -53,7 +52,8 @@ function BurgerConstructor() {
     });
   };
 
-  const [{ isHover }, drop] = useDrop({
+
+  const [{ isHover }, dropIng] = useDrop({
     accept: "ingredient",
 
     collect: (monitor) => ({
@@ -69,7 +69,7 @@ function BurgerConstructor() {
       <section
         className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}
       >
-        <div ref={drop}>
+        <div ref={dropIng}>
           <OrderConstructor />
         </div>
         <div

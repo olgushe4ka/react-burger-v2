@@ -22,6 +22,9 @@ export const SET_INGREDIENT_MODAL = "SET_INGREDIENT_MODAL";
 
 export const TAKE_ORDER_NUMBER = "SET_ORDER_NUMBER";
 
+export const CONSTRUCTOR_ONLY_ONE_BUN_IN_ARRAY = 'CONSTRUCTOR_ONLY_ONE_BUN_IN_ARRAY';
+export const CONSTRUCTOR_ADD_BUNS = 'CONSTRUCTOR_ADD_BUNS'
+
 export function getItems() {
   return function (dispatch) {
     dispatch({

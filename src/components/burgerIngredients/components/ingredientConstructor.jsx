@@ -5,6 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
+import { useSelector } from "react-redux";
 
 function IngredientConstructor(props) {
   const { id, name, price, image } = props;
@@ -19,13 +20,23 @@ function IngredientConstructor(props) {
     }),
   });
 
+//Counter
+  let counter = 0;
+
+  const ingredientInTheCart = useSelector(
+    (state) => state.ingredients.cart
+  );
+
+  ingredientInTheCart?.forEach((ingredient) => ingredient.name === name && (counter += 1));
+
+
   return (
     <div
       className={`${ingredientsStyles.ingredietBox} pl-5 pr-5 pb-0 pt-6`}
       id={id}
       ref={drag} >
       <div className={`${ingredientsStyles.counter}`}>
-        <Counter count={1} size="small" />
+        {(counter>0) && <Counter count={counter} size="small" />}
       </div>
       <img src={image} alt="фото ингридиента" />
       <div className={ingredientsStyles.priceBox}>

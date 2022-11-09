@@ -13,7 +13,7 @@ import {
   SET_INGREDIENT_MODAL,
   RESET_INGREDIENT_MODAL,
 } from "../../services/actions/ingredients";
-import { useDrag } from "react-dnd";
+
 
 function BurgerIngredients() {
   const dispatch = useDispatch();
@@ -59,15 +59,6 @@ function BurgerIngredients() {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
-  // //Drag and drop
-  // const [{ opacity }, ref] = useDrag({
-  //   type: 'ingredient',
-  //   item: { ingredientsData },
-
-  //   // collect: monitor => ({
-  //   //   opacity: monitor.isDragging() ? 0.5 : 1
-  //   //  })
-  // });
 
   return (
     <>
