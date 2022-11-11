@@ -14,7 +14,6 @@ function IngredientConstructor(props) {
   const [{ opacity }, drag] = useDrag({
     type: "ingredient",
   item: {item, index},
-   //item: () => { return { index, item }},
 
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1,

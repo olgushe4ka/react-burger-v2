@@ -1,19 +1,14 @@
 import burgerConstructorStyles from "./burgerConstructor.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import OrderConstructor from "./components/orderConstructor";
 import Sum from "./components/sum";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import { useState, useContext, useEffect, useCallback } from "react";
 import Modal from "../Modal/Modal";
-import { ingredientPropType } from "../../utils/prop-types";
-import BurgerIngredientsContext from "../../context/burger-ingredients-context";
-import { saveOrder } from "../../utils/burger-api";
 import { useDispatch, useSelector } from "react-redux";
 import {
   CONSTRUCTOR_ADD_INGREDIENTS, orderBurger,
 } from "../../services/actions/ingredients";
-import { data } from "../../utils/data";
 import { useDrop } from "react-dnd";
 
 function BurgerConstructor() {
@@ -48,11 +43,6 @@ const getOrderNumber = useCallback(
   [dispatch],
 );
 
-  // useEffect(() => {
-  //   dispatch(orderBurger({ ingredients }));
-  // }, [dispatch]);
-
-  // Add item to cinstructor
   const moveIngredientToConstructor = ( items) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
@@ -105,9 +95,5 @@ const getOrderNumber = useCallback(
     </>
   );
 }
-
-// BurgerConstructor.propTypes = {
-//   data: PropTypes.arrayOf(ingredientPropType.isRequired).isRequired
-// };
 
 export default BurgerConstructor;

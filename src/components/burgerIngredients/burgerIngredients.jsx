@@ -1,6 +1,4 @@
 import ingredientsStyles from "./burgerIngredients.module.css";
-import PropTypes from "prop-types";
-import Tabs from "./components/tabs";
 import IngredientConstructor from "./components/ingredientConstructor";
 import { useState, useMemo, useContext, useRef, useEffect } from "react";
 import Modal from "../Modal/Modal";

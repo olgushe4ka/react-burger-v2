@@ -8,14 +8,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import { CONSTRUCTOR_ADD_INGREDIENTS } from "../../../services/actions/ingredients";
 import OrderIngConstructor from "./orderIngConstructor";
-//import update from 'immutability-helper'
-
 
 
 function OrderConstructor() {
   const dispatch = useDispatch();
-
-  // const [idForDrop, setForDrop] = useState([]);
 
   const cart = useSelector(
     state => state.ingredients.cart
@@ -49,13 +45,8 @@ function OrderConstructor() {
     }),
     drop(ingredient) {
       moveIngredientToConstructor(ingredient);
-      //const projectId = ingredient.getItem().uuid;
-    },
+         },
   });
-
-
-  // DND Sorting
-
 
 
   return (
@@ -76,10 +67,8 @@ function OrderConstructor() {
           return (
             <li
               key={Math.random().toString(36).slice(2)}
-              // ref={drag}
               className={`${burgerConstructorStyles.listElement} pl-0 pr-0 pb-2 pt-2`}
-            // {setForDrop(ingredientItem._id)}
-            >
+                        >
               <div
                 className={`${burgerConstructorStyles.dragIcon} pl-0 pr-3 pb-0 pt-0`}
               >
