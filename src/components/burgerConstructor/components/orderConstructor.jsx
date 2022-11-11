@@ -47,6 +47,7 @@ function OrderConstructor() {
     }),
     drop(ingredient) {
       moveIngredientToConstructor(ingredient);
+      //const projectId = ingredient.getItem().uuid;
     },
   });
 
@@ -54,17 +55,20 @@ function OrderConstructor() {
   // DND Sorting
   //state.burgerStructure.ingredients = state.burgerStructure.ingredients.map((item) => ({ ...item, isDragging: item.dragId === action.payload }));
 
-  let index = 1;
-  let id = 2;
+  const ingredientDragID = ingredients.map((ingredientItem) =>  { return (ingredientItem.isDragging === true )});
+
+  console.log(ingredientDragID);
 
   const [{ opacity }, drag] = useDrag({
-
     type: "sorting",
-    item: () => {
-      return { id, index } },
+    item: 'id ',
+    // item: () => {
+    //   const id = ingredientDragID;
+    //   return { id, index } },
 
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1,
+      id: monitor.getItem()
     }),
   });
 
