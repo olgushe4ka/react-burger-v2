@@ -3,10 +3,13 @@ import {
   DragIcon,
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useMemo, useContext, useState } from "react";
+import { useMemo, useContext, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import { CONSTRUCTOR_ADD_INGREDIENTS } from "../../../services/actions/ingredients";
+import OrderIngConstructor from "./orderIngConstructor";
+//import update from 'immutability-helper'
+
 
 
 function OrderConstructor() {
@@ -28,7 +31,6 @@ function OrderConstructor() {
   );
 
   const bun = buns[buns.length - 1];
-
 
 
   //DND 
@@ -53,24 +55,6 @@ function OrderConstructor() {
 
 
   // DND Sorting
-  //state.burgerStructure.ingredients = state.burgerStructure.ingredients.map((item) => ({ ...item, isDragging: item.dragId === action.payload }));
-
-  const ingredientDragID = ingredients.map((ingredientItem) =>  { return (ingredientItem.isDragging === true )});
-
-  console.log(ingredientDragID);
-
-  const [{ opacity }, drag] = useDrag({
-    type: "sorting",
-    item: 'id ',
-    // item: () => {
-    //   const id = ingredientDragID;
-    //   return { id, index } },
-
-    collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0.5 : 1,
-      id: monitor.getItem()
-    }),
-  });
 
 
 
@@ -88,11 +72,11 @@ function OrderConstructor() {
         />
       </div>
       <ul className={`${burgerConstructorStyles.list}`} >
-        {ingredients.map((ingredientItem) => {
+        {ingredients.map((ingredientItem, index) => {
           return (
             <li
-              key={ingredientItem._id}
-              ref={drag}
+              key={Math.random().toString(36).slice(2)}
+              // ref={drag}
               className={`${burgerConstructorStyles.listElement} pl-0 pr-0 pb-2 pt-2`}
             // {setForDrop(ingredientItem._id)}
             >
@@ -101,12 +85,13 @@ function OrderConstructor() {
               >
                 <DragIcon type="primary" />
               </div>
-              <ConstructorElement
-                isLocked={false}
+              <OrderIngConstructor
                 price={ingredientItem.price}
                 type={ingredientItem.type}
-                thumbnail={ingredientItem.image}
-                text={ingredientItem.name}
+                image={ingredientItem.image}
+                name={ingredientItem.name}
+                index={index}
+                id={ingredientItem._id}
               />
             </li>
           );

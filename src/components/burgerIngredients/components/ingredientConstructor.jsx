@@ -8,12 +8,13 @@ import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
 
 function IngredientConstructor(props) {
-  const { id, name, price, image } = props;
+  const { id, name, price, image, index, item } = props;
 
   //Drag and drop
   const [{ opacity }, drag] = useDrag({
     type: "ingredient",
-    item: { id },
+  item: {item, index},
+   //item: () => { return { index, item }},
 
     collect: (monitor) => ({
       opacity: monitor.isDragging() ? 0.5 : 1,

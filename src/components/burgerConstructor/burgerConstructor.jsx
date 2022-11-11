@@ -11,7 +11,7 @@ import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { saveOrder } from "../../utils/burger-api";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  CONSTRUCTOR_ADD_INGREDIENTS,   orderBurger, 
+  CONSTRUCTOR_ADD_INGREDIENTS, orderBurger,
 } from "../../services/actions/ingredients";
 import { data } from "../../utils/data";
 import { useDrop } from "react-dnd";
@@ -32,6 +32,7 @@ function BurgerConstructor() {
 
   const openModal = () => {
     setIsOrderDetailsOpened(true);
+    getOrderNumber()
   };
 
   //Формирование номера заказа Модального окна через redux
@@ -40,31 +41,40 @@ function BurgerConstructor() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
+const getOrderNumber = useCallback(
+  () => {
     dispatch(orderBurger({ ingredients }));
-  }, [dispatch]);
+  },
+  [dispatch],
+);
 
-  // DND
-  const moveIngredientToConstructor = (item) => {
+  // useEffect(() => {
+  //   dispatch(orderBurger({ ingredients }));
+  // }, [dispatch]);
+
+  // Add item to cinstructor
+  const moveIngredientToConstructor = ( items) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
-      payload: item,
+      items:  items
     });
   };
 
 
+
+  // DND
   const [{ isHover }, dropIng] = useDrop({
     accept: "ingredient",
 
     collect: (monitor) => ({
       isHover: monitor.isOver(),
     }),
-    drop(ingredient) {
-      moveIngredientToConstructor(ingredient);
+    drop(ing) {
+      moveIngredientToConstructor(ing);
     },
   });
 
-   return (
+  return (
     <>
       <section
         className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}

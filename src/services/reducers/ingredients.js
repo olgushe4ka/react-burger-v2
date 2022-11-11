@@ -1,4 +1,5 @@
 import { isTemplateSpan } from "typescript";
+import { cart } from "../../utils/data";
 import {
   GET_ORDER_DETAILS_FAILED,
   GET_ORDER_DETAILS_REQUEST,
@@ -17,7 +18,7 @@ import {
   SET_INGREDIENT_MODAL,
   TAKE_ORDER_NUMBER,
   CONSTRUCTOR_ONLY_ONE_BUN_IN_ARRAY,
-  CONSTRUCTOR_ADD_BUNS,
+  CONSTRUCTOR_ADD_BUNS, CONSTRUCTOR_SORT_INGREDIENTS
 } from "../actions/ingredients";
 
 const initialState = {
@@ -105,12 +106,42 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
 
+    // case CONSTRUCTOR_ADD_INGREDIENTS: {
+    //   return {
+    //     ...state,
+    //     cart: state.cart.concat(
+    //       state.ingredients.filter((items) => items._id === action.payload.id)
+    //     ),
+    //   };
+    // }
+
     case CONSTRUCTOR_ADD_INGREDIENTS: {
       return {
         ...state,
-        cart: state.cart.concat(
-          state.ingredients.filter((items) => items._id === action.payload.id)
-        ),
+        cart: [...state.cart, action.items.item]
+                
+      };
+    }
+
+    case CONSTRUCTOR_SORT_INGREDIENTS: {
+
+      const dragItem = state.cart[action.payload.dragIndex]
+      const hoverItem = state.cart[action.payload.hoverIndex]
+
+      const sortIngredients = [...state.cart]
+      
+      sortIngredients[action.payload.dragIndex] = hoverItem
+      sortIngredients[action.payload.hoverIndex] = dragItem
+
+      console.log(state.cart)
+
+      console.log(dragItem)
+      console.log(hoverItem)
+
+      return {
+
+        ...state,
+        cart: sortIngredients
       };
     }
 

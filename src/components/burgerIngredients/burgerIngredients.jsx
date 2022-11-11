@@ -103,12 +103,14 @@ function BurgerIngredients() {
                 onClick={() => onIngredientClick(dataIng)}
               >
                 <IngredientConstructor
+                item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
-                />
+                  index={Math.random().toString(36).slice(2)}
+                                  />
               </div>
             );
           })}
@@ -124,11 +126,13 @@ function BurgerIngredients() {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
+                item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
+                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
             );
@@ -145,11 +149,13 @@ function BurgerIngredients() {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
+                item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
+                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
             );
