@@ -1,15 +1,39 @@
 import OrderDetailsStyles from "./OrderDetails.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import {  orderBurger,} from "../../services/actions/ingredients";
 
-function OrderDetails({ orderNumber }) {
-  console.log(orderNumber);
+
+function OrderDetails() {
+
+  const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
+  const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
+  const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
+  const ingredientsId = ingredientsAll.map((ingrItem) => { return ingrItem._id; });
+
+  const ingredients = ingredientsId.slice(1);
+
+  const dispatch = useDispatch();
+
+
+  useEffect(
+    () => {
+      dispatch(orderBurger({ ingredients }));
+    },
+    [dispatch],
+  );
+
+  const modalData = useSelector((state) => state.ingredients.orderDetails);
+
+
   return (
     <div className={`${OrderDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
       <p
         className={`${OrderDetailsStyles.orderNumber} text text_type_digits-large`}
       >
-        {orderNumber}
+        {modalData?.order.number}
       </p>
 
       <p

@@ -41,23 +41,23 @@ function BurgerConstructor() {
 
   const openModal = () => {
     setIsOrderDetailsOpened(true);
-   getOrderNumber()
+   //getOrderNumber()
   };
 
   //Формирование номера заказа Модального окна через redux
-  const getOrderNumber = useCallback(() => {
-        return () => dispatch(orderBurger({ingredients}));
-  }, [])
+  // const getOrderNumber = useCallback(() => {
+  //       return () => dispatch(orderBurger({ingredients}));
+  // }, [])
 
   const dispatch = useDispatch();
 
-  //const getOrderNumber = () => 
-  // useEffect(
-  //   () => {
-  //     dispatch(orderBurger({ingredients}));
-  //   },
-  //   [dispatch],
-  // );
+  // //const getOrderNumber = () => 
+  // // useEffect(
+  // //   () => {
+  // //     dispatch(orderBurger({ingredients}));
+  // //   },
+  // //   [dispatch],
+  // // );// 
 
 
 
@@ -72,7 +72,7 @@ function BurgerConstructor() {
     });
   };
 
-  const modalData = useSelector((state) => state.ingredients.orderDetails);
+ // const modalData = useSelector((state) => state.ingredients.orderDetails);
 
   // DND
   const [{ isHover }, dropIng] = useDrop({
@@ -118,7 +118,7 @@ function BurgerConstructor() {
 
       {isOrderDetailsOpened && (
         <Modal closeAllModals={closeModal}>
-          <OrderDetails orderNumber={modalData?.order?.number} />
+          <OrderDetails  />
         </Modal>
       )}
     </div>
