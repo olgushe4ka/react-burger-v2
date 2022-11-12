@@ -4,7 +4,6 @@ import {
   GET_ORDER_DETAILS_FAILED,
   GET_ORDER_DETAILS_REQUEST,
   GET_ORDER_DETAILS_SUCCESS,
-
   GET_INGREDIENTS_FAILED,
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
@@ -16,7 +15,8 @@ import {
   SET_INGREDIENT_MODAL,
   TAKE_ORDER_NUMBER,
   CONSTRUCTOR_ONLY_ONE_BUN_IN_ARRAY,
-  CONSTRUCTOR_ADD_BUNS, CONSTRUCTOR_SORT_INGREDIENTS
+  CONSTRUCTOR_ADD_BUNS,
+  CONSTRUCTOR_SORT_INGREDIENTS,
 } from "../actions/ingredients";
 
 const initialState = {
@@ -65,6 +65,7 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
     case GET_ORDER_DETAILS_FAILED: {
+
       return {
         ...state,
         orderDetailsFailed: true,
@@ -87,7 +88,7 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
     case GET_INGREDIENTS_FAILED: {
-      return { ...state, ingredientsFailed: true, ingredientsIsLoading: false };
+           return { ...state, ingredientsFailed: true, ingredientsIsLoading: false };
     }
 
     case SET_INGREDIENT_MODAL: {
@@ -105,32 +106,44 @@ export const ingredientsReducer = (state = initialState, action) => {
     }
 
     case CONSTRUCTOR_ADD_INGREDIENTS: {
+const type = action.items.item.type
+
+if (type !=='bun' )
       return {
         ...state,
-        cart: [...state.cart, action.items.item]
-                
+        cart: [...state.cart, action.items.item],
       };
+      else return {
+        ...state,
+        cart: [state.cart, action.items.item],
+      }
     }
 
+
+    // case CONSTRUCTOR_ADD_INGREDIENTS: {
+    //   return {
+    //     ...state,
+    //     cart: [...state.cart, action.items.item],
+    //   };
+    // }
+
     case CONSTRUCTOR_SORT_INGREDIENTS: {
+      const dragItem = state.cart[action.payload.dragIndex];
+      const hoverItem = state.cart[action.payload.hoverIndex];
 
-      const dragItem = state.cart[action.payload.dragIndex]
-      const hoverItem = state.cart[action.payload.hoverIndex]
+      const sortIngredients = [...state.cart];
 
-      const sortIngredients = [...state.cart]
-      
-      sortIngredients[action.payload.dragIndex] = hoverItem
-      sortIngredients[action.payload.hoverIndex] = dragItem
+      sortIngredients[action.payload.dragIndex] = hoverItem;
+      sortIngredients[action.payload.hoverIndex] = dragItem;
 
-      console.log(state.cart)
+      console.log(state.cart);
 
-      console.log(dragItem)
-      console.log(hoverItem)
+      console.log(dragItem);
+      console.log(hoverItem);
 
       return {
-
         ...state,
-        cart: sortIngredients
+        cart: sortIngredients,
       };
     }
 
