@@ -23,35 +23,47 @@ function BurgerConstructor() {
 
   const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
 
-  const ingredients = ingredientsAll.map((ingrItem) => {
+  const ingredientsId = ingredientsAll.map((ingrItem) => {
     return ingrItem._id;
   });
 
-  
+  const ingredients = ingredientsId.slice(1);
+
+  console.log(ingredients);
+
   //открытие Модального окна
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 
+  
   const closeModal = () => {
     setIsOrderDetailsOpened(false);
   };
 
   const openModal = () => {
     setIsOrderDetailsOpened(true);
-    getOrderNumber()
+   getOrderNumber()
   };
 
   //Формирование номера заказа Модального окна через redux
-
-  const modalData = useSelector((state) => state.ingredients.orderDetails);
+  const getOrderNumber = useCallback(() => {
+        return () => dispatch(orderBurger({ingredients}));
+  }, [])
 
   const dispatch = useDispatch();
 
-  const getOrderNumber = useCallback(
-    () => {
-      dispatch(orderBurger({ ingredients }));
-    },
-    [dispatch],
-  );
+  //const getOrderNumber = () => 
+  // useEffect(
+  //   () => {
+  //     dispatch(orderBurger({ingredients}));
+  //   },
+  //   [dispatch],
+  // );
+
+
+
+
+
+
 
   const moveIngredientToConstructor = (items) => {
     dispatch({
@@ -59,6 +71,8 @@ function BurgerConstructor() {
       items: items
     });
   };
+
+  const modalData = useSelector((state) => state.ingredients.orderDetails);
 
   // DND
   const [{ isHover }, dropIng] = useDrop({

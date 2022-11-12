@@ -13,22 +13,7 @@ import OrderIngConstructor from "./orderIngConstructor";
 function OrderConstructor() {
   const dispatch = useDispatch();
 
-  // const cart = useSelector(
-  //   state => state.ingredients.cart
-  // );
-
-
-  // const ingredients = useMemo(() =>
-  //   cart.filter((ingredient) => ingredient.type !== "bun")
-  // );
-
-  // const buns = useMemo(() =>
-  //   cart.filter((ingredient) => ingredient.type === "bun")
-  // );
-
-  // const bun = buns[buns.length - 1];
-
-  const ingredients = useSelector((state) => state.ingredients.cartIng);
+    const ingredients = useSelector((state) => state.ingredients.cartIng);
   const buns = useSelector((state) => state.ingredients.cartBun);
 
   const bun = buns[buns.length - 1]
@@ -65,6 +50,7 @@ function OrderConstructor() {
           price={bun?.price}
           thumbnail={bun?.image}
           text={bun?.name + " (верх)"}
+          id={bun?._id}
         />
       </div> ) }
       <ul className={`${burgerConstructorStyles.list}`} >
@@ -98,6 +84,7 @@ function OrderConstructor() {
           price={bun?.price}
           thumbnail={bun?.image}
           text={bun?.name + " (низ)"}
+          id={bun?._id}
         />
       </div>)}
     </div>

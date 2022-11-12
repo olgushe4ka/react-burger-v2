@@ -20,7 +20,6 @@ function Sum() {
   const buns = useSelector((state) => state.ingredients.cartBun);
 
   
-
   const bun = buns[buns.length - 1];
 
   const ingredientsArr = ingredients.map((ingredient) => {
