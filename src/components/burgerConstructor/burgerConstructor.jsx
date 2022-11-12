@@ -3,87 +3,58 @@ import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import OrderConstructor from "./components/orderConstructor";
 import Sum from "./components/sum";
 import OrderDetails from "../OrderDetails/OrderDetails";
-import { useState, useContext, useEffect, useCallback } from "react";
+import { useState } from "react";
 import Modal from "../Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  CONSTRUCTOR_ADD_INGREDIENTS, orderBurger,
+  CONSTRUCTOR_ADD_INGREDIENTS,
 } from "../../services/actions/ingredients";
 import { useDrop } from "react-dnd";
 
 function BurgerConstructor() {
+  const dispatch = useDispatch();
 
-  const ingredientInTheCart = useSelector(
-    (state) => state.ingredients.cartIng
-  );
-
-  const bunInTheCart = useSelector(
-    (state) => state.ingredients.cartBun
-  );
+  const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
+  const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
 
   const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
 
-  const ingredientsId = ingredientsAll.map((ingrItem) => {
-    return ingrItem._id;
-  });
-
-  const ingredients = ingredientsId.slice(1);
-
-  console.log(ingredients);
 
   //открытие Модального окна
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 
-  
+
   const closeModal = () => {
     setIsOrderDetailsOpened(false);
   };
 
   const openModal = () => {
     setIsOrderDetailsOpened(true);
-   //getOrderNumber()
   };
 
-  //Формирование номера заказа Модального окна через redux
-  // const getOrderNumber = useCallback(() => {
-  //       return () => dispatch(orderBurger({ingredients}));
-  // }, [])
 
-  const dispatch = useDispatch();
+  // DND
 
-  // //const getOrderNumber = () => 
-  // // useEffect(
-  // //   () => {
-  // //     dispatch(orderBurger({ingredients}));
-  // //   },
-  // //   [dispatch],
-  // // );// 
-
-
-
-
-
-
-
-  const moveIngredientToConstructor = (items) => {
+  // const moveIngredientToConstructor = (items) => {
+  //   dispatch({
+  //     type: CONSTRUCTOR_ADD_INGREDIENTS,
+  //     items: items
+  //   });
+  // };
+  const moveIngredientToConstructor = (id) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
-      items: items
+      items: id
     });
   };
 
- // const modalData = useSelector((state) => state.ingredients.orderDetails);
-
-  // DND
   const [{ isHover }, dropIng] = useDrop({
     accept: "ingredient",
 
     collect: (monitor) => ({
       isHover: monitor.isOver(),
     }),
-    drop(ing) {
-      moveIngredientToConstructor(ing);
-    },
+    drop(ing) { moveIngredientToConstructor(ing); },
   });
 
   return (
@@ -93,7 +64,7 @@ function BurgerConstructor() {
         <p className="text text_type_main-medium" >
           Вы можете добавить ингредиенты, перетащив их из списка сюда.
         </p>
-        </div>)}
+      </div>)}
 
       {ingredientsAll.length > 0 && (<section
         className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}
@@ -118,7 +89,7 @@ function BurgerConstructor() {
 
       {isOrderDetailsOpened && (
         <Modal closeAllModals={closeModal}>
-          <OrderDetails  />
+          <OrderDetails />
         </Modal>
       )}
     </div>

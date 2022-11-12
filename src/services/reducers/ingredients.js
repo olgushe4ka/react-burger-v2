@@ -24,7 +24,7 @@ const initialState = {
   ingredientsIsLoading: false,
   ingredientsFailed: false,
 
-  cartBun: [ ],
+  cartBun: [],
 
   cartIng: [],
 
@@ -52,7 +52,6 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
     case GET_ORDER_DETAILS_FAILED: {
-
       return {
         ...state,
         orderDetailsFailed: true,
@@ -75,7 +74,7 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
     case GET_INGREDIENTS_FAILED: {
-           return { ...state, ingredientsFailed: true, ingredientsIsLoading: false };
+      return { ...state, ingredientsFailed: true, ingredientsIsLoading: false };
     }
 
     case SET_INGREDIENT_MODAL: {
@@ -92,45 +91,51 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
 
-    case CONSTRUCTOR_ADD_INGREDIENTS: {
-const type = action.items.item.type
+    // case CONSTRUCTOR_ADD_INGREDIENTS: {
 
-if (type !=='bun' )
-      return {
-        ...state,
-        cartIng: [...state.cartIng, action.items.item],
-      };
-      else return {
-        ...state,
-        cartBun: [state.cartBun, action.items.item],
+    //   const type = action.items.item.type;
+
+    //    if (type !== "bun")
+    //     return {
+    //       ...state,
+    //       cartIng: [...state.cartIng, action.items.item],
+    //     };
+    //   else
+    //     return {
+    //       ...state,
+    //       cartBun: [state.cartBun, action.items.item],
+    //     };
+    // }
+
+    case CONSTRUCTOR_ADD_INGREDIENTS: {
+
+      const element = state.ingredients.filter((item) => item._id === action.items.id);
+
+      if (element[0].type !== "bun") {
+              return {
+          ...state,
+          cartIng: [...state.cartIng, element[0]],
+        };
+      } else {
+        return {
+          ...state,
+          cartBun: [state.cartBun, element[0]],
+        };
       }
     }
 
-
-    // case CONSTRUCTOR_ADD_INGREDIENTS: {
-    //   return {
-    //     ...state,
-    //     cart: [...state.cart, action.items.item],
-    //   };
-    // }
-
     case CONSTRUCTOR_SORT_INGREDIENTS: {
-      const dragItem = state.cart[action.payload.dragIndex];
-      const hoverItem = state.cart[action.payload.hoverIndex];
+      const dragItem = state.cartIng[action.payload.dragIndex];
+      const hoverItem = state.cartIng[action.payload.hoverIndex];
 
-      const sortIngredients = [...state.cart];
+      const sortIngredients = [...state.cartIng];
 
       sortIngredients[action.payload.dragIndex] = hoverItem;
       sortIngredients[action.payload.hoverIndex] = dragItem;
 
-      console.log(state.cart);
-
-      console.log(dragItem);
-      console.log(hoverItem);
-
       return {
         ...state,
-        cart: sortIngredients,
+        cartIng: sortIngredients,
       };
     }
 

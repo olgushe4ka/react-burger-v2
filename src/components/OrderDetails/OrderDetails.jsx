@@ -1,6 +1,5 @@
 import OrderDetailsStyles from "./OrderDetails.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {  orderBurger,} from "../../services/actions/ingredients";
@@ -56,8 +55,5 @@ function OrderDetails() {
   );
 }
 
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired,
-};
 
 export default OrderDetails;

@@ -13,10 +13,11 @@ function IngredientConstructor(props) {
   //Drag and drop
   const [{ opacity }, drag] = useDrag({
     type: "ingredient",
-  item: {item, index},
+ // item: {item, index},
+  item: {id},
 
     collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0.5 : 1,
+      opacity: monitor.isDragging() ? 1 : 0.5,
     }),
   });
 

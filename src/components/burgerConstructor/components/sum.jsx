@@ -6,16 +6,6 @@ import { useSelector } from "react-redux";
 
 function Sum() {
   
-  // const cart = useSelector((state) => state.ingredients.cart);
-
-  // const ingredients = useMemo(() =>
-  //   cart.filter((ingredient) => ingredient.type !== "bun")
-  // );
-
-  // const buns = useMemo(() =>
-  //   cart.filter((ingredient) => ingredient.type === "bun")
-  // );
-
   const ingredients = useSelector((state) => state.ingredients.cartIng);
   const buns = useSelector((state) => state.ingredients.cartBun);
 
