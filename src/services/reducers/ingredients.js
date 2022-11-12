@@ -24,22 +24,9 @@ const initialState = {
   ingredientsIsLoading: false,
   ingredientsFailed: false,
 
-  cart: [
-    {
-      _id: "60666c42cc7b410027a1a9b2",
-      name: "Флюоресцентная булка R2-D3",
-      type: "bun",
-      proteins: 44,
-      fat: 26,
-      carbohydrates: 85,
-      calories: 643,
-      price: 988,
-      image: "https://code.s3.yandex.net/react/code/bun-01.png",
-      image_mobile: "https://code.s3.yandex.net/react/code/bun-01-mobile.png",
-      image_large: "https://code.s3.yandex.net/react/code/bun-01-large.png",
-      __v: 0,
-    },
-  ],
+  cartBun: [ ],
+
+  cartIng: [],
 
   ingredientDetails: null,
 
@@ -111,11 +98,11 @@ const type = action.items.item.type
 if (type !=='bun' )
       return {
         ...state,
-        cart: [...state.cart, action.items.item],
+        cartIng: [...state.cartIng, action.items.item],
       };
       else return {
         ...state,
-        cart: [state.cart, action.items.item],
+        cartBun: [state.cartBun, action.items.item],
       }
     }
 

@@ -13,20 +13,25 @@ import OrderIngConstructor from "./orderIngConstructor";
 function OrderConstructor() {
   const dispatch = useDispatch();
 
-  const cart = useSelector(
-    state => state.ingredients.cart
-  );
+  // const cart = useSelector(
+  //   state => state.ingredients.cart
+  // );
 
 
-  const ingredients = useMemo(() =>
-    cart.filter((ingredient) => ingredient.type !== "bun")
-  );
+  // const ingredients = useMemo(() =>
+  //   cart.filter((ingredient) => ingredient.type !== "bun")
+  // );
 
-  const buns = useMemo(() =>
-    cart.filter((ingredient) => ingredient.type === "bun")
-  );
+  // const buns = useMemo(() =>
+  //   cart.filter((ingredient) => ingredient.type === "bun")
+  // );
 
-  const bun = buns[buns.length - 1];
+  // const bun = buns[buns.length - 1];
+
+  const ingredients = useSelector((state) => state.ingredients.cartIng);
+  const buns = useSelector((state) => state.ingredients.cartBun);
+
+  const bun = buns[buns.length - 1]
 
 
   //DND 
@@ -53,7 +58,7 @@ function OrderConstructor() {
     <div
       className={`${burgerConstructorStyles.orderConstructor} pl-9 pr-5 pb-0 pt-6`} ref={drop}
     >
-      <div className={`pl-8 pr-0 pb-0 pt-0`}>
+      { buns.length > 0 && (<div className={`pl-8 pr-0 pb-0 pt-0`}>
         <ConstructorElement
           type="top"
           isLocked={true}
@@ -61,7 +66,7 @@ function OrderConstructor() {
           thumbnail={bun?.image}
           text={bun?.name + " (верх)"}
         />
-      </div>
+      </div> ) }
       <ul className={`${burgerConstructorStyles.list}`} >
         {ingredients.map((ingredientItem, index) => {
           return (
@@ -86,7 +91,7 @@ function OrderConstructor() {
           );
         })}
       </ul>
-      <div className={`pl-8 pr-0 pb-0 pt-0`}>
+      { buns.length > 0 && (<div className={`pl-8 pr-0 pb-0 pt-0`}>
         <ConstructorElement
           type="bottom"
           isLocked={true}
@@ -94,7 +99,7 @@ function OrderConstructor() {
           thumbnail={bun?.image}
           text={bun?.name + " (низ)"}
         />
-      </div>
+      </div>)}
     </div>
   );
 }

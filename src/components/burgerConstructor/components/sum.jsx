@@ -5,18 +5,23 @@ import BurgerIngredientsContext from "../../../context/burger-ingredients-contex
 import { useSelector } from "react-redux";
 
 function Sum() {
-  // const cart = useContext(BurgerIngredientsContext);
-  const cart = useSelector((state) => state.ingredients.cart);
+  
+  // const cart = useSelector((state) => state.ingredients.cart);
 
-  const ingredients = useMemo(() =>
-    cart.filter((ingredient) => ingredient.type !== "bun")
-  );
+  // const ingredients = useMemo(() =>
+  //   cart.filter((ingredient) => ingredient.type !== "bun")
+  // );
 
-  const buns = useMemo(() =>
-    cart.filter((ingredient) => ingredient.type === "bun")
-  );
+  // const buns = useMemo(() =>
+  //   cart.filter((ingredient) => ingredient.type === "bun")
+  // );
 
-  const bun = buns[0];
+  const ingredients = useSelector((state) => state.ingredients.cartIng);
+  const buns = useSelector((state) => state.ingredients.cartBun);
+
+  
+
+  const bun = buns[buns.length - 1];
 
   const ingredientsArr = ingredients.map((ingredient) => {
     return ingredient.price;

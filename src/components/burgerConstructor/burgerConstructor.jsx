@@ -12,12 +12,22 @@ import {
 import { useDrop } from "react-dnd";
 
 function BurgerConstructor() {
-  const ingredientsAll = useSelector((state) => state.ingredients.cart);
+
+  const ingredientInTheCart = useSelector(
+    (state) => state.ingredients.cartIng
+  );
+
+  const bunInTheCart = useSelector(
+    (state) => state.ingredients.cartBun
+  );
+
+  const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
 
   const ingredients = ingredientsAll.map((ingrItem) => {
     return ingrItem._id;
   });
 
+  
   //открытие Модального окна
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 
@@ -36,21 +46,19 @@ function BurgerConstructor() {
 
   const dispatch = useDispatch();
 
-const getOrderNumber = useCallback(
-  () => {
-    dispatch(orderBurger({ ingredients }));
-  },
-  [dispatch],
-);
+  const getOrderNumber = useCallback(
+    () => {
+      dispatch(orderBurger({ ingredients }));
+    },
+    [dispatch],
+  );
 
-  const moveIngredientToConstructor = ( items) => {
+  const moveIngredientToConstructor = (items) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
-      items:  items
+      items: items
     });
   };
-
-
 
   // DND
   const [{ isHover }, dropIng] = useDrop({
@@ -65,11 +73,18 @@ const getOrderNumber = useCallback(
   });
 
   return (
-    <>
-      <section
+    <div ref={dropIng}>
+      {ingredientsAll.length === 0 && (<div className={`${burgerConstructorStyles.main} ml-10 mr-10 mb-10 mt-10`}>
+        <p className="text text_type_main-medium ml-0 mr-0 mb-10 mt-10" >Заказ пуст.</p>
+        <p className="text text_type_main-medium" >
+          Вы можете добавить ингредиенты, перетащив их из списка сюда.
+        </p>
+        </div>)}
+
+      {ingredientsAll.length > 0 && (<section
         className={`${burgerConstructorStyles.main} pl-4 pr-4 pb-0 pt-0`}
       >
-        <div ref={dropIng}>
+        <div >
           <OrderConstructor />
         </div>
         <div
@@ -85,14 +100,14 @@ const getOrderNumber = useCallback(
             Оформить заказ
           </Button>
         </div>
-      </section>
+      </section>)}
 
       {isOrderDetailsOpened && (
         <Modal closeAllModals={closeModal}>
           <OrderDetails orderNumber={modalData?.order?.number} />
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

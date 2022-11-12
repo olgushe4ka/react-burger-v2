@@ -24,10 +24,16 @@ function IngredientConstructor(props) {
   let counter = 0;
 
   const ingredientInTheCart = useSelector(
-    (state) => state.ingredients.cart
+    (state) => state.ingredients.cartIng
   );
 
-  ingredientInTheCart?.forEach((ingredient) => ingredient.name === name && (counter += 1));
+  const bunInTheCart = useSelector(
+    (state) => state.ingredients.cartBun
+  );
+
+  const allIngInTheCart = [...bunInTheCart, ...ingredientInTheCart]
+
+  allIngInTheCart?.forEach((ingredient) => ingredient.name === name && (counter += 1));
 
 
   return (
