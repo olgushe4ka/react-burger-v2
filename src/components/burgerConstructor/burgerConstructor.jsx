@@ -10,6 +10,7 @@ import {
   CONSTRUCTOR_ADD_INGREDIENTS,
 } from "../../services/actions/ingredients";
 import { useDrop } from "react-dnd";
+import { v4 as uuidv4 } from 'uuid';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
@@ -35,16 +36,12 @@ function BurgerConstructor() {
 
   // DND
 
-  // const moveIngredientToConstructor = (items) => {
-  //   dispatch({
-  //     type: CONSTRUCTOR_ADD_INGREDIENTS,
-  //     items: items
-  //   });
-  // };
   const moveIngredientToConstructor = (id) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
-      items: id
+      payload: {...id,
+        keyId: uuidv4()
+      }
     });
   };
 

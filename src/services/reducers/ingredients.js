@@ -91,28 +91,22 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
 
-    // case CONSTRUCTOR_ADD_INGREDIENTS: {
-
-    //   const type = action.items.item.type;
-
-    //    if (type !== "bun")
-    //     return {
-    //       ...state,
-    //       cartIng: [...state.cartIng, action.items.item],
-    //     };
-    //   else
-    //     return {
-    //       ...state,
-    //       cartBun: [state.cartBun, action.items.item],
-    //     };
-    // }
-
     case CONSTRUCTOR_ADD_INGREDIENTS: {
+      const element = state.ingredients.filter(
+        (item) => item._id === action.payload.id
+      );
 
-      const element = state.ingredients.filter((item) => item._id === action.items.id);
+      console.log(element)
+
+      //element[0].push(action.payload.keyId)
+
+      element[0]['keyId'] = action.payload.keyId;
+
+      console.log(element)
+
 
       if (element[0].type !== "bun") {
-              return {
+        return {
           ...state,
           cartIng: [...state.cartIng, element[0]],
         };
@@ -122,6 +116,16 @@ export const ingredientsReducer = (state = initialState, action) => {
           cartBun: [state.cartBun, element[0]],
         };
       }
+    }
+
+    case CONSTRUCTOR_DELETE_INGREDIENTS: {
+      const ingredientsClone = [...state.cartIng];
+      ingredientsClone.splice(action.playload, 1);
+
+      return {
+        ...state,
+        cartIng: ingredientsClone,
+      };
     }
 
     case CONSTRUCTOR_SORT_INGREDIENTS: {

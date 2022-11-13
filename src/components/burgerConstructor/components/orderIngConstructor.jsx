@@ -9,7 +9,7 @@ import { useCallback } from 'react'
 
 function OrderIngConstructor(props) {
 
-    const { id, name, price, image, type, index } = props;
+    const { id, name, price, image, type, index, handleClose } = props;
 
     // DND Sorting
     const ref = useRef(null);
@@ -25,6 +25,8 @@ function OrderIngConstructor(props) {
         },
         [],
     );
+
+
 
     const [{ isDragging }, drag] = useDrag({
         type: "sortingIng",
@@ -82,6 +84,7 @@ function OrderIngConstructor(props) {
                 thumbnail={image}
                 text={name}
                 id={id}
+                handleClose={handleClose}
             />
         </div>
     );

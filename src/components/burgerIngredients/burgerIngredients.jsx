@@ -11,6 +11,8 @@ import {
   SET_INGREDIENT_MODAL,
   RESET_INGREDIENT_MODAL,
 } from "../../services/actions/ingredients";
+import { useInView, InView } from 'react-intersection-observer';
+
 
 
 function BurgerIngredients() {
