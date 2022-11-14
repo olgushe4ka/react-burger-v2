@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { orderBurger, } from "../../services/actions/ingredients";
 import { TailSpin } from 'react-loader-spinner'
-//import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-
 
 function OrderDetails() {
 
@@ -13,12 +11,9 @@ function OrderDetails() {
   const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
   const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
-  const ingredientsId = ingredientsAll.map((ingrItem) => { return ingrItem._id; });
-
-  const ingredients = ingredientsId.slice(1);
+  const ingredients = ingredientsAll.map((ingrItem) => { return ingrItem._id; });
 
   const dispatch = useDispatch();
-
 
   useEffect(
     () => {
@@ -34,7 +29,7 @@ function OrderDetails() {
     <div className={`${OrderDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
 
       {isLoading && (
-        <div className={`${OrderDetailsStyles.loading}`}>
+        <div className={`${OrderDetailsStyles.loading} `}>
           <TailSpin
             color="white"
             strokeColor="grey"
