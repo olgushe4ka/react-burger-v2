@@ -1,5 +1,3 @@
-import { isTemplateSpan } from "typescript";
-import { cart } from "../../utils/data";
 import {
   GET_ORDER_DETAILS_FAILED,
   GET_ORDER_DETAILS_REQUEST,
@@ -96,14 +94,7 @@ export const ingredientsReducer = (state = initialState, action) => {
         (item) => item._id === action.payload.id
       );
 
-      console.log(element)
-
-      //element[0].push(action.payload.keyId)
-
-      element[0]['keyId'] = action.payload.keyId;
-
-      console.log(element)
-
+      element[0]["keyId"] = action.payload.keyId;
 
       if (element[0].type !== "bun") {
         return {
@@ -127,6 +118,7 @@ export const ingredientsReducer = (state = initialState, action) => {
         cartIng: ingredientsClone,
       };
     }
+
 
     case CONSTRUCTOR_SORT_INGREDIENTS: {
       const dragItem = state.cartIng[action.payload.dragIndex];

@@ -1,9 +1,8 @@
 import ingredientsStyles from "./burgerIngredients.module.css";
 import IngredientConstructor from "./components/ingredientConstructor";
-import { useState, useMemo, useContext, useRef, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
-import { ingredientPropType } from "../../utils/prop-types";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,7 +10,8 @@ import {
   SET_INGREDIENT_MODAL,
   RESET_INGREDIENT_MODAL,
 } from "../../services/actions/ingredients";
-import { useInView, InView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer';
+
 
 
 
@@ -50,7 +50,8 @@ function BurgerIngredients() {
     dispatch({ type: RESET_INGREDIENT_MODAL });
   };
 
-  //Прокрутка Tab
+
+  //Tab
   const [currentTab, setCurrentTab] = useState("buns");
 
   const onTabClick = (tab) => {
@@ -58,6 +59,39 @@ function BurgerIngredients() {
     const element = document.getElementById(tab);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
+
+
+
+  //Прокрутка Tab
+
+  //const ref = useRef()
+
+  const { ref, inView } = useInView({ threshold: 0, });
+
+  const { ref: refBuns, inView: inViewBuns } = useInView({ threshold: 0, });
+  const { ref: refSauces, inView: inViewSauces } = useInView({ threshold: 0, });
+  const { ref: refMains, inView: inViewMains } = useInView({ threshold: 0, });
+
+
+
+
+  useEffect(() => {
+    if (inViewBuns) {
+      setCurrentTab('buns')
+    };
+    if (inViewSauces) {
+      setCurrentTab('sauces')
+    };
+    if (inViewMains) {
+      setCurrentTab('mains')
+    };
+  }, [inViewBuns, inViewSauces, inViewMains])
+
+  console.log(inView)
+  console.log(inViewBuns)
+  console.log(inViewSauces)
+  console.log(inViewMains)
+
 
 
   return (
@@ -91,10 +125,11 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="buns"
+          ref={refBuns}
         >
           Булки
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} >
           {buns.map((dataIng) => {
             return (
               <div
@@ -103,14 +138,14 @@ function BurgerIngredients() {
                 onClick={() => onIngredientClick(dataIng)}
               >
                 <IngredientConstructor
-                item={dataIng}
+                  item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
                   index={Math.random().toString(36).slice(2)}
-                                  />
+                />
               </div>
             );
           })}
@@ -118,15 +153,16 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="sauces"
+         
         >
           Соусы
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}  ref={refSauces}>
           {sauces.map((dataIng) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
-                item={dataIng}
+                  item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
@@ -141,15 +177,16 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="mains"
+          
         >
           Начинки
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} ref={refMains}>
           {mains.map((dataIng) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
-                item={dataIng}
+                  item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
@@ -158,6 +195,7 @@ function BurgerIngredients() {
                   index={Math.random().toString(36).slice(2)}
                 />
               </div>
+
             );
           })}
         </div>
