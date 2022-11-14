@@ -22,8 +22,8 @@ function Sum() {
     (previousValue, currentValue) => previousValue + currentValue,
     initialSum
   );
-
-  const sumWithBuns = (sumIngredWithInitial + bun?.price * 2).toLocaleString(
+ 
+  const sumWithBuns = (sumIngredWithInitial + (bun?.price ?? 0) * 2).toLocaleString(
     "ru-RU"
   );
 
