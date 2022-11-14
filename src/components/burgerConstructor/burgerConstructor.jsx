@@ -36,11 +36,11 @@ function BurgerConstructor() {
 
   // DND
 
-  const moveIngredientToConstructor = (id) => {
+  const moveIngredientToConstructor = (item) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
-      payload: {...id,
-        keyId: uuidv4()
+      payload: {
+        ...item,
       }
     });
   };

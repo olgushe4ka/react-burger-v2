@@ -16,6 +16,7 @@ import {
   CONSTRUCTOR_ADD_BUNS,
   CONSTRUCTOR_SORT_INGREDIENTS,
 } from "../actions/ingredients";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   ingredients: [],
@@ -89,36 +90,31 @@ export const ingredientsReducer = (state = initialState, action) => {
       };
     }
 
-    case CONSTRUCTOR_ADD_INGREDIENTS: {
-      const element = state.ingredients.filter(
-        (item) => item._id === action.payload.id
-      );
+        case CONSTRUCTOR_ADD_INGREDIENTS: {
 
-      element[0]["keyId"] = action.payload.keyId;
-
-      if (element[0].type !== "bun") {
+      if (action.payload.item.type !== "bun") {
         return {
           ...state,
-          cartIng: [...state.cartIng, element[0]],
+          cartIng: state.cartIng.concat({...action.payload.item, id: uuidv4()}),
+
         };
       } else {
         return {
           ...state,
-          cartBun: [state.cartBun, element[0]],
+          cartBun: [action.payload.item],
         };
       }
     }
 
     case CONSTRUCTOR_DELETE_INGREDIENTS: {
       const ingredientsClone = [...state.cartIng];
-      ingredientsClone.splice(action.playload, 1);
+      ingredientsClone.splice(action.payload.index, 1);
 
       return {
         ...state,
         cartIng: ingredientsClone,
       };
     }
-
 
     case CONSTRUCTOR_SORT_INGREDIENTS: {
       const dragItem = state.cartIng[action.payload.dragIndex];

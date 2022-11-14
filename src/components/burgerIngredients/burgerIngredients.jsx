@@ -60,38 +60,16 @@ function BurgerIngredients() {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
-
-
-  //Прокрутка Tab
-
-  //const ref = useRef()
-
-  const { ref, inView } = useInView({ threshold: 0, });
-
+ 
   const { ref: refBuns, inView: inViewBuns } = useInView({ threshold: 0, });
-  const { ref: refSauces, inView: inViewSauces } = useInView({ threshold: 0, });
-  const { ref: refMains, inView: inViewMains } = useInView({ threshold: 0, });
-
-
-
+  const { ref: refSauces, inView: inViewSauces } = useInView({ threshold: 0.8, });
+  const { ref: refMains, inView: inViewMains } = useInView({ threshold: 0.5, });
 
   useEffect(() => {
-    if (inViewBuns) {
-      setCurrentTab('buns')
-    };
-    if (inViewSauces) {
-      setCurrentTab('sauces')
-    };
-    if (inViewMains) {
-      setCurrentTab('mains')
-    };
+    if (inViewBuns) { setCurrentTab('buns') };
+    if (inViewSauces) { setCurrentTab('sauces') };
+    if (inViewMains) { setCurrentTab('mains') };
   }, [inViewBuns, inViewSauces, inViewMains])
-
-  console.log(inView)
-  console.log(inViewBuns)
-  console.log(inViewSauces)
-  console.log(inViewMains)
-
 
 
   return (
@@ -153,11 +131,11 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="sauces"
-         
+
         >
           Соусы
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}  ref={refSauces}>
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} ref={refSauces}>
           {sauces.map((dataIng) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
@@ -177,7 +155,7 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="mains"
-          
+
         >
           Начинки
         </p>

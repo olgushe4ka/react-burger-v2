@@ -20,12 +20,12 @@ function OrderConstructor() {
   const bun = buns[buns.length - 1]
 
 
-//Удаление элемента
+  //Удаление элемента
   const deleteIngredient = (indexOf) => {
     dispatch
       ({
         type: CONSTRUCTOR_DELETE_INGREDIENTS,
-      payload: indexOf,
+        payload: indexOf,
       });
 
   }
@@ -49,8 +49,7 @@ function OrderConstructor() {
         {ingredients.map((ingredientItem, index) => {
           return (
             <li
-              //key={ingredientItem._id}
-              key={ingredientItem.keyId}
+              key={ingredientItem.id}
               className={`${burgerConstructorStyles.listElement} pl-0 pr-0 pb-2 pt-2`}
             >
               <div
@@ -65,7 +64,7 @@ function OrderConstructor() {
                 name={ingredientItem.name}
                 index={index}
                 id={ingredientItem._id}
-                handleClose={() => deleteIngredient({index})}
+                handleClose={() => deleteIngredient({ index })}
               />
             </li>
           );
