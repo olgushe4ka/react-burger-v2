@@ -7,7 +7,7 @@ import { useState } from "react";
 import Modal from "../Modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  CONSTRUCTOR_ADD_INGREDIENTS,
+  CONSTRUCTOR_ADD_INGREDIENTS, CONSTRUCTOR_REMOVE_INGREDIENTS
 } from "../../services/actions/ingredients";
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from 'uuid';
@@ -25,8 +25,16 @@ function BurgerConstructor() {
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = useState(false);
 
 
+  const cleanCart = () => {
+    dispatch({
+      type: CONSTRUCTOR_REMOVE_INGREDIENTS,
+          });
+  };
+
+
   const closeModal = () => {
     setIsOrderDetailsOpened(false);
+    cleanCart()
   };
 
   const openModal = () => {
