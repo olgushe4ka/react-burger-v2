@@ -97,7 +97,7 @@ export const ingredientsReducer = (state = initialState, action) => {
           ...state,
           cartIng: state.cartIng.concat({
             ...action.payload.item,
-            id: uuidv4(),
+            id: action.payload.keyId,
           }),
         };
       } else {
