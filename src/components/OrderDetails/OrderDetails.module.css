@@ -16,3 +16,8 @@
   text-align: center;
   color: #8585ad;
 }
+
+.loading {
+  position: absolute;
+  left: 43%;
+}

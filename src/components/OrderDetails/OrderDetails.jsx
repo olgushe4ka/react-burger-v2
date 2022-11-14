@@ -2,14 +2,14 @@ import OrderDetailsStyles from "./OrderDetails.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {  orderBurger,} from "../../services/actions/ingredients";
-//import { TailSpin } from  'react-loader-spinner'
+import { orderBurger, } from "../../services/actions/ingredients";
+import { TailSpin } from 'react-loader-spinner'
 //import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 
 function OrderDetails() {
 
-
+  const isLoading = useSelector((state) => state.ingredients.orderDetailsIsLoading);
   const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
   const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
@@ -32,16 +32,17 @@ function OrderDetails() {
 
   return (
     <div className={`${OrderDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
-{/* 
 
-<TailSpin
-color="white"
-  strokeColor="grey"
-  strokeWidth="5"
-  animationDuration="0.75"
-  width="96"
-  visible={true}
-/> */}
+      {isLoading && (
+        <div className={`${OrderDetailsStyles.loading}`}>
+          <TailSpin
+            color="white"
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="96"
+            visible={true}
+          /> </div>)}
 
       <p
         className={`${OrderDetailsStyles.orderNumber} text text_type_digits-large`}
