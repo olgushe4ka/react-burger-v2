@@ -5,10 +5,27 @@ import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
 
+import { compose, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import { rootReducer } from "./services/reducers";
+import thunk from "redux-thunk";
+import { configureStore } from "@reduxjs/toolkit";
+
+const composeEnhancers =
+  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
+
+const enhancer = composeEnhancers(applyMiddleware(thunk));
+
+const store = configureStore({ reducer: rootReducer }, enhancer);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-  <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

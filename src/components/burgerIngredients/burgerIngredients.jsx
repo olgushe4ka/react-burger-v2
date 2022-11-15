@@ -1,16 +1,27 @@
 import ingredientsStyles from "./burgerIngredients.module.css";
-import PropTypes from "prop-types";
-import Tabs from "./components/tabs";
-import MenuConstructor from "./components/menuConstructor";
-import { useState, useMemo, useContext, useRef } from "react";
+import IngredientConstructor from "./components/ingredientConstructor";
+import { useState, useMemo, useEffect } from "react";
 import Modal from "../Modal/Modal";
 import IngredientDetails from "../IngredientDetails/IngredientDetails";
-import { ingredientPropType } from "../../utils/prop-types";
-import BurgerIngredientsContext from "../../context/burger-ingredients-context";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getItems,
+  SET_INGREDIENT_MODAL,
+  RESET_INGREDIENT_MODAL,
+} from "../../services/actions/ingredients";
+import { useInView } from 'react-intersection-observer';
+
+
+
 
 function BurgerIngredients() {
-  const data = useContext(BurgerIngredientsContext);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.ingredients.ingredients);
+
+  useEffect(() => {
+    dispatch(getItems());
+  }, [dispatch]);
 
   const buns = useMemo(
     () => data.filter((item) => item.type === "bun"),
@@ -26,23 +37,40 @@ function BurgerIngredients() {
   );
 
   //Модальные окна
-  const [ingredientsData, setIngredientsData] = useState(null);
 
-  const closeModal = () => {
-    setIngredientsData(null);
+  const onIngredientClick = (data) => {
+    dispatch({ type: SET_INGREDIENT_MODAL, payload: data });
   };
 
-  //Прокрутка Tab
+  const ingredientsData = useSelector(
+    (state) => state.ingredients.ingredientDetails
+  );
+
+  const closeIngredientModal = () => {
+    dispatch({ type: RESET_INGREDIENT_MODAL });
+  };
+
+
+  //Tab
   const [currentTab, setCurrentTab] = useState("buns");
 
-  //    const scrollTab = () => {
+  const onTabClick = (tab) => {
+    setCurrentTab(tab);
+    const element = document.getElementById(tab);
+    if (element) element.scrollIntoView({ behavior: "smooth" });
+  };
 
-  //   currentTab?.scrollIntoView({
-  //     behavior: "smooth",
-  //   });
-  // }
+ 
+  const { ref: refBuns, inView: inViewBuns } = useInView({ threshold: 0, });
+  const { ref: refSauces, inView: inViewSauces } = useInView({ threshold: 0.8, });
+  const { ref: refMains, inView: inViewMains } = useInView({ threshold: 0.5, });
 
-  //  scrollTab();
+  useEffect(() => {
+    if (inViewBuns) { setCurrentTab('buns') };
+    if (inViewSauces) { setCurrentTab('sauces') };
+    if (inViewMains) { setCurrentTab('mains') };
+  }, [inViewBuns, inViewSauces, inViewMains])
+
 
   return (
     <>
@@ -52,21 +80,21 @@ function BurgerIngredients() {
             <Tab
               value="buns"
               active={currentTab === "buns"}
-              onClick={setCurrentTab}
+              onClick={onTabClick}
             >
               Булки
             </Tab>
             <Tab
               value="sauces"
               active={currentTab === "sauces"}
-              onClick={setCurrentTab}
+              onClick={onTabClick}
             >
               Соусы
             </Tab>
             <Tab
               value="mains"
               active={currentTab === "mains"}
-              onClick={setCurrentTab}
+              onClick={onTabClick}
             >
               Начинки
             </Tab>
@@ -75,21 +103,26 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="buns"
+          ref={refBuns}
         >
           Булки
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} >
           {buns.map((dataIng) => {
             return (
               <div
                 key={dataIng._id}
-                onClick={() => setIngredientsData(dataIng)}
+                id={Math.random().toString(36).slice(2)}
+                onClick={() => onIngredientClick(dataIng)}
               >
-                <MenuConstructor
+                <IngredientConstructor
+                  item={dataIng}
+                  id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
+                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
             );
@@ -98,21 +131,22 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="sauces"
+
         >
           Соусы
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} ref={refSauces}>
           {sauces.map((dataIng) => {
             return (
-              <div
-                key={dataIng._id}
-                onClick={() => setIngredientsData(dataIng)}
-              >
-                <MenuConstructor
+              <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
+                <IngredientConstructor
+                  item={dataIng}
+                  id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
+                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
             );
@@ -121,30 +155,35 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="mains"
+
         >
           Начинки
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} ref={refMains}>
           {mains.map((dataIng) => {
             return (
-              <div
-                key={dataIng._id}
-                onClick={() => setIngredientsData(dataIng)}
-              >
-                <MenuConstructor
+              <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
+                <IngredientConstructor
+                  item={dataIng}
+                  id={dataIng._id}
                   price={dataIng.price}
                   type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
+                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
+
             );
           })}
         </div>
       </section>
 
       {ingredientsData && (
-        <Modal closeAllModals={closeModal} title={"Детали ингридиента"}>
+        <Modal
+          closeAllModals={closeIngredientModal}
+          title={"Детали ингридиента"}
+        >
           <IngredientDetails ingredients={ingredientsData} />
         </Modal>
       )}

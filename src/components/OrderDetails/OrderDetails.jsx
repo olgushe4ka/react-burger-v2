@@ -1,15 +1,48 @@
 import OrderDetailsStyles from "./OrderDetails.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { orderBurger, } from "../../services/actions/ingredients";
+import { TailSpin } from 'react-loader-spinner'
 
-function OrderDetails({ orderNumber }) {
-  console.log(orderNumber);
+function OrderDetails() {
+
+  const isLoading = useSelector((state) => state.ingredients.orderDetailsIsLoading);
+  const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
+  const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
+  const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
+  const ingredients = ingredientsAll.map((ingrItem) => { return ingrItem._id; });
+
+  const dispatch = useDispatch();
+
+  useEffect(
+    () => {
+      dispatch(orderBurger({ ingredients }));
+    },
+    [dispatch],
+  );
+
+  const modalData = useSelector((state) => state.ingredients.orderDetails);
+
+
   return (
     <div className={`${OrderDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
+
+      {isLoading && (
+        <div className={`${OrderDetailsStyles.loading} `}>
+          <TailSpin
+            color="white"
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="96"
+            visible={true}
+          /> </div>)}
+
       <p
         className={`${OrderDetailsStyles.orderNumber} text text_type_digits-large`}
       >
-        {orderNumber}
+        {modalData?.order.number}
       </p>
 
       <p
@@ -32,8 +65,5 @@ function OrderDetails({ orderNumber }) {
   );
 }
 
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired,
-};
 
 export default OrderDetails;
