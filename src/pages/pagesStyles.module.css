@@ -1,0 +1,21 @@
+.main {
+  margin-top: 180px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.registredBox {
+  display: flex;
+}
+
+.textDownlogin {
+  color: #8585AD;
+}
+
+.linkDownlogin {
+  color: #4C4CFF;
+  text-decoration: none;
+}
