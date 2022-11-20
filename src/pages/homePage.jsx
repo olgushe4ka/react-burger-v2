@@ -1,14 +1,16 @@
-import BurgerConstructor from "../burgerConstructor/burgerConstructor";
-import BurgerIngredients from "../burgerIngredients/burgerIngredients";
-import AppHeader from "../appHeader/appHeader";
-import appStyles from "./App.module.css";
-import { getIngredients } from "../../utils/burger-api";
+
+import AppHeader from "../components/appHeader/appHeader";
+import BurgerConstructor from "../components/burgerConstructor/burgerConstructor";
+import BurgerIngredients from "../components/burgerIngredients/burgerIngredients";
+import styles from "./homePage.module.css";
+
 import { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { getIngredients } from "../utils/burger-api";
 
 
-function App() {
+function HomePage() {
 const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -26,15 +28,15 @@ const [ingredients, setIngredients] = useState([]);
   }, []);
 
   return (
-    <div className={appStyles.App}>
+    <div className={styles.App}>
       <AppHeader />
-      <div className={`${appStyles.appWithoutHeader}`}>
+      <div className={`${styles.appWithoutHeader}`}>
         <h1
-          className={`${appStyles.title} text text_type_main-large pl-15 pr-0 pb-5 pt-10`}
+          className={`${styles.title} text text_type_main-large pl-15 pr-0 pb-5 pt-10`}
         >
           Соберите бургер
         </h1>
-        <div className={`${appStyles.displayFlex}`}>
+        <div className={`${styles.displayFlex}`}>
           <DndProvider backend={HTML5Backend}>
             {ingredients && <BurgerIngredients />}
             {ingredients && <BurgerConstructor />}
@@ -45,4 +47,4 @@ const [ingredients, setIngredients] = useState([]);
   );
 }
 
-export default App;
+export default HomePage;
