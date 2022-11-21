@@ -3,6 +3,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
+import { Link } from 'react-router-dom';
 
 
 
@@ -41,7 +42,7 @@ function ForgotPassword() {
           <p className={`${styles.textDownlogin} text text_type_main-default ml-0 mr-2 mb-0 mt-0`}>
           Вспомнили пароль?
           </p>
-          <a className={`${styles.linkDownlogin}`} href={'http://localhost:3000/register'}>Войти!</a>
+          <Link className={`${styles.linkDownlogin}`} to="/register">Войти!</Link>
         </div>
 
       </div>

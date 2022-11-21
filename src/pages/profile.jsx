@@ -1,5 +1,5 @@
 import {
-  Input, Button
+  Input, Button, EmailInput, PasswordInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
@@ -11,9 +11,9 @@ function Profile() {
     <>
       <AppHeader />
       <div className={`${styles.profileGrid} `}>
-        <div>
+        <div className={`${styles.profileLeftBox} ml-0 mr-15 mb-0 mt-0`}>
           <div className={`${styles.profileMenu}`}>
-            <button className={`${styles.profileButton} text text_type_main-medium`}>
+            <button className={`${styles.profileButtonActive} text text_type_main-medium`}>
               Профиль
             </button>
             <button className={`${styles.profileButton} text text_type_main-medium`}>
@@ -34,8 +34,7 @@ function Profile() {
               type={'text'}
               placeholder={'Имя'}
               // onChange={e => setValue(e.target.value)}
-
-              //  value={value}
+              value={"Olga"}
               name={'name'}
               error={false}
               // ref={inputRef}
@@ -43,38 +42,25 @@ function Profile() {
               errorText={'Ошибка'}
               size={'default'}
               extraClass="ml-1"
+              icon={'EditIcon'}
             />
           </div>
           <div className="ml-0 mr-0 mb-0 mt-6">
-            <Input
-              type={'e-mail'}
-              placeholder={'E-mail'}
-              // onChange={e => setValue(e.target.value)}
-
-              //  value={value}
-              name={'name'}
-              error={false}
-              // ref={inputRef}
-              //   onIconClick={onIconClick}
-              errorText={'Ошибка'}
-              size={'default'}
-              extraClass="ml-1"
+            <EmailInput
+              //  onChange={onChange}
+              value={'mail@mail.com'}
+              name={'email'}
+              placeholder="Логин"
+              isIcon={true}
+              extraClass="mb-2"
             />
           </div>
           <div className="ml-0 mr-0 mb-0 mt-6">
-            <Input
-              type={'text'}
-              placeholder={'Пароль'}
-              // onChange={e => setValue(e.target.value)}
-              icon={'ShowIcon'}
-              //  value={value}
-              name={'name'}
-              error={false}
-              // ref={inputRef}
-              //   onIconClick={onIconClick}
-              errorText={'Ошибка'}
-              size={'default'}
-              extraClass="ml-1"
+            <PasswordInput
+              //onChange={onChange}
+              value={'password'}
+              name={'password'}
+              icon="EditIcon"
             />
           </div>
         </div>
