@@ -9,7 +9,7 @@ function LoginPage() {
 
     return (
         <>
-        <AppHeader/>
+            <AppHeader />
 
             <div className={`${styles.main}`}>
                 <p className="text text_type_main-medium">Регистрация</p>
@@ -66,7 +66,10 @@ function LoginPage() {
                         Зарегистрироваться
                     </Button>
                 </div>
-                <div className={`${styles.registredBox} ml-0 mr-0 mb-0 mt-20`}> <p className={`${styles.textDownlogin} text text_type_main-default ml-0 mr-2 mb-0 mt-0`}>Уже зарегистрированы?</p>
+                <div className={`${styles.registredBox} ml-0 mr-0 mb-0 mt-20`}>
+                    <p className={`${styles.textDownlogin} text text_type_main-default ml-0 mr-2 mb-0 mt-0`}>
+                        Уже зарегистрированы?
+                    </p>
                     <a className={`${styles.linkDownlogin}`} href={'http://localhost:3000/register'}>Войти!</a>
                 </div>
 
