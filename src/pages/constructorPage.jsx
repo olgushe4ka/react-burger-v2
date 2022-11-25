@@ -2,7 +2,7 @@
 import AppHeader from "../components/appHeader/appHeader";
 import BurgerConstructor from "../components/burgerConstructor/burgerConstructor";
 import BurgerIngredients from "../components/burgerIngredients/burgerIngredients";
-import styles from "./homePage.module.css";
+import styles from "./constructorPage.module.css";
 
 import { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
@@ -10,7 +10,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { getIngredients } from "../utils/burger-api";
 
 
-function HomePage() {
+function ConstructorPage() {
 const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
@@ -47,4 +47,4 @@ const [ingredients, setIngredients] = useState([]);
   );
 }
 
-export default HomePage;
+export default ConstructorPage;

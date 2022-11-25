@@ -1,4 +1,4 @@
-import { HomePage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients } from "./pages/index";
+import { ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404 } from "./pages/index";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact={true} >
-          <HomePage />
+          <ConstructorPage />
         </Route>
         <Route path="/login" >
           <LoginPage />
@@ -21,14 +21,14 @@ function App() {
         <Route path="/reset-password" >
           <ResetPassword />
         </Route>
-        <Route path="/profile" >
+        <Route path="/profile" exact={true}>
           <Profile />
         </Route>
         <Route path="/ingredients/:id" >
           <Ingredients />
         </Route>
         <Route>
-          <p className="text text_type_main-large ml-25 mr-25 mb-25 mt-25">Ошибка 404</p>
+          <Page404 />
         </Route>
       </Switch>
     </Router>

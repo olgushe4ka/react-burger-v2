@@ -40,6 +40,8 @@
   color: #8585AD;
   border: none;
   text-align: start;
+  display: flex;
+  align-items: center
 }
 
 .profileLeftBox {

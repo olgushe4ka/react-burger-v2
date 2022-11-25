@@ -17,7 +17,7 @@ function RegisterPage() {
 
         <div className="ml-0 mr-0 mb-0 mt-6">
           <Input
-            type={'e-mail'}
+            type={'email'}
             placeholder={'E-mail'}
             // onChange={e => setValue(e.target.value)}
 
@@ -33,7 +33,7 @@ function RegisterPage() {
         </div>
         <div className="ml-0 mr-0 mb-0 mt-6">
           <Input
-            type={'text'}
+            type={'password'}
             placeholder={'Пароль'}
             // onChange={e => setValue(e.target.value)}
             icon={'ShowIcon'}

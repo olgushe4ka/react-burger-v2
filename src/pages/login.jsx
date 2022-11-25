@@ -32,7 +32,7 @@ function LoginPage() {
                 </div>
                 <div className="ml-0 mr-0 mb-0 mt-6">
                     <Input
-                        type={'e-mail'}
+                        type={'email'}
                         placeholder={'E-mail'}
                         // onChange={e => setValue(e.target.value)}
 

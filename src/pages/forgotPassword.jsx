@@ -4,12 +4,28 @@ import {
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
 import { Link } from 'react-router-dom';
+import { passwordResetRequest } from "../services/actions/login";
+import { useState, useEffect, useCallback } from 'react';
+
+import { useDispatch } from "react-redux";
 
 
 
 function ForgotPassword() {
 
-  return (
+  const dispatch = useDispatch();
+  const [inputValue, setinputValue] = useState("");
+
+
+  const resetPassword = (value) => {
+    sendRequest(value)
+      }
+
+    const sendRequest = useCallback((value) => {
+      dispatch(passwordResetRequest({ value }));
+    }, []) 
+
+   return (
     <>
       <AppHeader />
 
@@ -18,11 +34,10 @@ function ForgotPassword() {
 
         <div className="ml-0 mr-0 mb-0 mt-6">
           <Input
-            type={'e-mail'}
+            type={'email'}
             placeholder={'Укажите e-mail'}
-            // onChange={e => setValue(e.target.value)}
-
-            //  value={value}
+            onChange={e => setinputValue(e.target.value)}
+            value={inputValue}
             name={'name'}
             error={false}
             // ref={inputRef}
@@ -34,13 +49,13 @@ function ForgotPassword() {
         </div>
 
         <div className="ml-0 mr-0 mb-0 mt-10">
-          <Button htmlType="button" type="primary" size="medium">
-          Восстановить
+          <Button htmlType="submit" type="primary" size="medium" onClick={() => resetPassword(inputValue)}>
+            Восстановить
           </Button>
         </div>
         <div className={`${styles.registredBox} ml-0 mr-0 mb-0 mt-20`}>
           <p className={`${styles.textDownlogin} text text_type_main-default ml-0 mr-2 mb-0 mt-0`}>
-          Вспомнили пароль?
+            Вспомнили пароль?
           </p>
           <Link className={`${styles.linkDownlogin}`} to="/register">Войти!</Link>
         </div>

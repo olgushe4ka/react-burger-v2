@@ -4,9 +4,48 @@ import {
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
 import { Link } from 'react-router-dom';
+import { passwordReset } from "../services/actions/login";
+import { useState, useEffect, useCallback } from 'react';
+
+import { useDispatch, useSelector } from "react-redux";
+
 
 
 function ResetPassword() {
+
+  const dispatch = useDispatch();
+  const [pinValue, setPinValue] = useState("");
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordTypeValue, setPasswordTypeValue] = useState("password");
+
+  const errorInReset = useSelector((state) => state.login.passwordResetFailed);
+
+
+
+  const inputValue = {
+    "password": emailValue,
+    "token": pinValue
+  }
+
+  const resetPassword = (value) => {
+    sendRequest(value);
+    if (errorInReset === true) {
+      alert("Ошибка в данных");
+    }
+  }
+
+  const sendRequest = useCallback((value) => {
+    dispatch(passwordReset({ value }));
+  }, [])
+
+  const onIconPasswordClick = () => {
+    if (passwordTypeValue === "text") {
+      setPasswordTypeValue("password")
+    }
+    else setPasswordTypeValue("text");
+  }
+
+
   return (
     <>
       <AppHeader />
@@ -16,33 +55,32 @@ function ResetPassword() {
 
 
         <div className="ml-0 mr-0 mb-0 mt-6">
-                    <Input
-                        type={'text'}
-                        placeholder={'Введите новый пароль'}
-                        // onChange={e => setValue(e.target.value)}
-                        icon={'ShowIcon'}
-                        //  value={value}
-                        name={'name'}
-                        error={false}
-                        // ref={inputRef}
-                        //   onIconClick={onIconClick}
-                        errorText={'Ошибка'}
-                        size={'default'}
-                        extraClass="ml-1"
-                    />
-                </div>
-
-        <div className="ml-0 mr-0 mb-0 mt-6">
           <Input
-            type={'e-mail'}
-            placeholder={'Введите код из письма'}
-            // onChange={e => setValue(e.target.value)}
-
-            //  value={value}
+            type={passwordTypeValue}
+            placeholder={'Введите новый пароль'}
+            onChange={e => setPinValue(e.target.value)}
+            icon={'ShowIcon'}
+            value={pinValue}
             name={'name'}
             error={false}
             // ref={inputRef}
-            //   onIconClick={onIconClick}
+            onIconClick={onIconPasswordClick}
+            errorText={'Ошибка'}
+            size={'default'}
+            extraClass="ml-1"
+          />
+        </div>
+
+        <div className="ml-0 mr-0 mb-0 mt-6">
+          <Input
+            type={'text'}
+            placeholder={'Введите код из письма'}
+            onChange={e => setEmailValue(e.target.value)}
+
+            value={emailValue}
+            name={'name'}
+            error={false}
+            // ref={inputRef}
             errorText={'Ошибка'}
             size={'default'}
             extraClass="ml-1"
@@ -50,13 +88,13 @@ function ResetPassword() {
         </div>
 
         <div className="ml-0 mr-0 mb-0 mt-10">
-          <Button htmlType="button" type="primary" size="medium">
-          Восстановить
+          <Button htmlType="button" type="primary" size="medium" onClick={() => resetPassword(inputValue)}>
+            Восстановить
           </Button>
         </div>
         <div className={`${styles.registredBox} ml-0 mr-0 mb-0 mt-20`}>
           <p className={`${styles.textDownlogin} text text_type_main-default ml-0 mr-2 mb-0 mt-0`}>
-          Вспомнили пароль?
+            Вспомнили пароль?
           </p>
           <Link className={`${styles.linkDownlogin}`} to="/login">Войти!</Link>
         </div>

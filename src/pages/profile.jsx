@@ -3,6 +3,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
+import { Link } from 'react-router-dom';
+
 
 
 function Profile() {
@@ -13,12 +15,12 @@ function Profile() {
       <div className={`${styles.profileGrid} `}>
         <div className={`${styles.profileLeftBox} ml-0 mr-15 mb-0 mt-0`}>
           <div className={`${styles.profileMenu}`}>
-            <button className={`${styles.profileButtonActive} text text_type_main-medium`}>
+            <Link to="/profile" className={`${styles.profileButtonActive} text text_type_main-medium`}>
               Профиль
-            </button>
-            <button className={`${styles.profileButton} text text_type_main-medium`}>
+            </Link>
+            <Link to="/profile/orders" className={`${styles.profileButton} text text_type_main-medium`}>
               История заказов
-            </button>
+            </Link>
             <button className={`${styles.profileButton} text text_type_main-medium`}>
               Выход
             </button>
