@@ -1,5 +1,5 @@
 import {
-  Input, Button
+  Input, Button, EmailInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
@@ -7,8 +7,8 @@ import { Link } from 'react-router-dom';
 import { passwordResetRequest } from "../services/actions/login";
 import { useState, useEffect, useCallback } from 'react';
 
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import Spinner from "../components/Spinner/Spinner";
 
 
 function ForgotPassword() {
@@ -16,35 +16,35 @@ function ForgotPassword() {
   const dispatch = useDispatch();
   const [inputValue, setinputValue] = useState("");
 
+  const isLoading = useSelector((state) => state.login.passwordResetRequestIsLoading);
 
   const resetPassword = (value) => {
     sendRequest(value)
-      }
+  }
 
-    const sendRequest = useCallback((value) => {
-      dispatch(passwordResetRequest({ value }));
-    }, []) 
+  const sendRequest = useCallback((email) => {
+    dispatch(passwordResetRequest({ email }));
+  }, [])
 
-   return (
+  return (
     <>
       <AppHeader />
+
+      {isLoading && (
+        <Spinner />)}
 
       <div className={`${styles.main}`}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
 
         <div className="ml-0 mr-0 mb-0 mt-6">
-          <Input
-            type={'email'}
+          <EmailInput
             placeholder={'Укажите e-mail'}
             onChange={e => setinputValue(e.target.value)}
             value={inputValue}
             name={'name'}
-            error={false}
-            // ref={inputRef}
-            //   onIconClick={onIconClick}
-            errorText={'Ошибка'}
-            size={'default'}
-            extraClass="ml-1"
+          // ref={inputRef}
+          //   onIconClick={onIconClick}
+
           />
         </div>
 

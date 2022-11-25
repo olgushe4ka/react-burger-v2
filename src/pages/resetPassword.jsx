@@ -1,5 +1,5 @@
 import {
-  Input, Button
+  Input, Button, PasswordInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
@@ -8,6 +8,7 @@ import { passwordReset } from "../services/actions/login";
 import { useState, useEffect, useCallback } from 'react';
 
 import { useDispatch, useSelector } from "react-redux";
+import Spinner from "../components/Spinner/Spinner";
 
 
 
@@ -20,7 +21,9 @@ function ResetPassword() {
 
   const errorInReset = useSelector((state) => state.login.passwordResetFailed);
 
+  const isLoading = useSelector((state) => state.login.passwordResetIsLoading);
 
+  
 
   const inputValue = {
     "password": emailValue,
@@ -49,26 +52,23 @@ function ResetPassword() {
   return (
     <>
       <AppHeader />
+      {isLoading && (
+      <Spinner />)}
 
       <div className={`${styles.main}`}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
 
 
         <div className="ml-0 mr-0 mb-0 mt-6">
-          <Input
-            type={passwordTypeValue}
-            placeholder={'Введите новый пароль'}
+          <PasswordInput
+             placeholder={'Введите новый пароль'}
             onChange={e => setPinValue(e.target.value)}
             icon={'ShowIcon'}
             value={pinValue}
             name={'name'}
-            error={false}
-            // ref={inputRef}
-            onIconClick={onIconPasswordClick}
-            errorText={'Ошибка'}
-            size={'default'}
-            extraClass="ml-1"
           />
+
+
         </div>
 
         <div className="ml-0 mr-0 mb-0 mt-6">
