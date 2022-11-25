@@ -8,13 +8,12 @@ function checkResponse(res) {
 }
 
 function request(url, options) {
-  return fetch(url, options).then(checkResponse)
+  return fetch(url, options).then(checkResponse);
 }
 
 export function getIngredients() {
   return request(`${baseUrl}/ingredients`);
 }
-
 
 export function saveOrder(data) {
   return request(`${baseUrl}/orders`, {
@@ -25,8 +24,6 @@ export function saveOrder(data) {
     body: JSON.stringify(data),
   });
 }
-
-
 
 export function resetPasswordRequest(data) {
   return request(`${baseUrl}/password-reset`, {
@@ -57,3 +54,27 @@ export function registration(data) {
     body: JSON.stringify(data),
   });
 }
+
+export function authorization(data) {
+  return request(`${baseUrl}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+}
+
+// export function testRegistration() {
+//   return request(`${baseUrl}/auth/register`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({
+//       "email": "ol9ushe4ka@yandex.ru",
+//       "password": "password",
+//       "name": "Olga"
+//     }),
+//   });
+// }

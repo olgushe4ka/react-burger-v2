@@ -8,6 +8,9 @@ import {
   REGISTRATION_REQUEST,
   REGISTRATION_SUCCESS,
   REGISTRATION_FAILED,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
 } from "../actions/login";
 
 const loginInitialState = {
@@ -22,6 +25,10 @@ const loginInitialState = {
   registration: [],
   registrationFailed: false,
   registrationIsLoading: false,
+
+  login: [],
+  loginFailed: false,
+  loginIsLoading: false,
 };
 
 export const loginReducer = (state = loginInitialState, action) => {
@@ -58,7 +65,7 @@ export const loginReducer = (state = loginInitialState, action) => {
       return {
         ...state,
         passwordResetFailed: false,
-        passwordReset: action.items,
+        passwordReset: action.payload,
         passwordResetIsLoading: false,
       };
     }
@@ -80,7 +87,7 @@ export const loginReducer = (state = loginInitialState, action) => {
       return {
         ...state,
         registrationFailed: false,
-        registration: action.items,
+        registration: action.payload,
         registrationIsLoading: false,
       };
     }
@@ -89,6 +96,29 @@ export const loginReducer = (state = loginInitialState, action) => {
         ...state,
         registrationFailed: true,
         registrationIsLoading: false,
+      };
+    }
+
+
+    case LOGIN_REQUEST: {
+      return {
+        ...state,
+        loginIsLoading: true,
+      };
+    }
+    case LOGIN_SUCCESS: {
+      return {
+        ...state,
+        loginFailed: false,
+        login: action.payload,
+        loginIsLoading: false,
+      };
+    }
+    case LOGIN_FAILED: {
+      return {
+        ...state,
+        loginFailed: true,
+        loginIsLoading: false,
       };
     }
 

@@ -1,8 +1,9 @@
 import { ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404 } from "./pages/index";
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { testRegistration } from "./utils/burger-api";
 
 function App() {
-
+  
   return (
     <Router>
       <Switch>

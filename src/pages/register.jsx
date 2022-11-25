@@ -4,9 +4,47 @@ import {
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
 import { Link } from 'react-router-dom';
+import { login } from "../services/actions/login";
+import { useState, useEffect, useCallback } from 'react';
 
+import { useDispatch, useSelector } from "react-redux";
 
+  
 function RegisterPage() {
+
+  const dispatch = useDispatch();
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
+  const [passwordTypeValue, setPasswordTypeValue] = useState("password");
+
+ // const errorInReset = useSelector((state) => state.login.passwordResetFailed);
+
+
+  const inputValue = {
+    "email": emailValue,
+    "password": passwordValue
+  }
+
+  const onButtonClick = (value) => {
+    sendRequest(value);
+    // if (errorInReset === true) {
+    //   alert("Ошибка в данных");
+    // }
+  }
+
+  const sendRequest = useCallback((value) => {
+    dispatch(login(value));
+  }, [])
+
+  const onIconPasswordClick = () => {
+    if (passwordTypeValue === "text") {
+      setPasswordTypeValue("password")
+    }
+    else setPasswordTypeValue("text");
+  }
+
+
 
   return (
     <>
@@ -19,9 +57,9 @@ function RegisterPage() {
           <Input
             type={'email'}
             placeholder={'E-mail'}
-            // onChange={e => setValue(e.target.value)}
+           onChange={e => setEmailValue(e.target.value)}
 
-            //  value={value}
+            value={emailValue}
             name={'name'}
             error={false}
             // ref={inputRef}
@@ -33,22 +71,22 @@ function RegisterPage() {
         </div>
         <div className="ml-0 mr-0 mb-0 mt-6">
           <Input
-            type={'password'}
+            type={passwordTypeValue}
             placeholder={'Пароль'}
-            // onChange={e => setValue(e.target.value)}
+           onChange={e => setPasswordValue(e.target.value)}
             icon={'ShowIcon'}
-            //  value={value}
+           value={passwordValue}
             name={'name'}
             error={false}
             // ref={inputRef}
-            //   onIconClick={onIconClick}
+            onIconClick={onIconPasswordClick}
             errorText={'Ошибка'}
             size={'default'}
             extraClass="ml-1"
           />
         </div>
         <div className="ml-0 mr-0 mb-0 mt-10">
-          <Button htmlType="button" type="primary" size="medium">
+          <Button htmlType="submit" type="primary" size="medium" onClick={() => onButtonClick(inputValue)}>
             Войти
           </Button>
         </div>

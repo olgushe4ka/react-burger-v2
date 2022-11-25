@@ -1,4 +1,9 @@
-import { resetPasswordRequest, resetPassword, registration } from "../../utils/burger-api";
+import {
+  resetPasswordRequest,
+  resetPassword,
+  registration,
+  authorization,
+} from "../../utils/burger-api";
 
 export const PASSWORD_RESET_REQUEST_REQUEST = "PASSWORD_RESET_REQUEST_REQUEST";
 export const PASSWORD_RESET_REQUEST_SUCCESS = "PASSWORD_RESET_REQUEST_SUCCESS";
@@ -9,14 +14,17 @@ export const PASSWORD_RESET_FAILED = "PASSWORD_RESET_FAILED";
 export const REGISTRATION_REQUEST = "REGISTRATION_REQUEST";
 export const REGISTRATION_SUCCESS = "REGISTRATION_SUCCESS";
 export const REGISTRATION_FAILED = "REGISTRATION_FAILED";
-
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILED = "LOGIN_FAILED";
 
 export function passwordResetRequest(email) {
-    return function (dispatch) {
-      dispatch({
-        type: PASSWORD_RESET_REQUEST_REQUEST,
-      });
-      resetPasswordRequest(email).then((res) => {
+  return function (dispatch) {
+    dispatch({
+      type: PASSWORD_RESET_REQUEST_REQUEST,
+    });
+    resetPasswordRequest(email)
+      .then((res) => {
         if (res && res.success) {
           dispatch({
             type: PASSWORD_RESET_REQUEST_SUCCESS,
@@ -30,16 +38,17 @@ export function passwordResetRequest(email) {
       })
       .catch((err) => {
         console.log(err);
-      })  };
-  }
-
-
-  export function passwordReset(data) {
-    return function (dispatch) {
-      dispatch({
-        type: PASSWORD_RESET_REQUEST,
       });
-      resetPassword(data).then((res) => {
+  };
+}
+
+export function passwordReset(data) {
+  return function (dispatch) {
+    dispatch({
+      type: PASSWORD_RESET_REQUEST,
+    });
+    resetPassword(data)
+      .then((res) => {
         if (res && res.success) {
           dispatch({
             type: PASSWORD_RESET_SUCCESS,
@@ -56,17 +65,17 @@ export function passwordResetRequest(email) {
         dispatch({
           type: PASSWORD_RESET_FAILED,
         });
-      })  };
-  }
-
-  
-
-  export function register(data) {
-    return function (dispatch) {
-      dispatch({
-        type: REGISTRATION_REQUEST,
       });
-      registration(data).then((res) => {
+  };
+}
+
+export function register(data) {
+  return function (dispatch) {
+    dispatch({
+      type: REGISTRATION_REQUEST,
+    });
+    registration(data)
+      .then((res) => {
         if (res && res.success) {
           dispatch({
             type: REGISTRATION_SUCCESS,
@@ -83,5 +92,33 @@ export function passwordResetRequest(email) {
         dispatch({
           type: REGISTRATION_FAILED,
         });
-      })  };
-  }
+      });
+  };
+}
+
+export function login(data) {
+  return function (dispatch) {
+    dispatch({
+      type: LOGIN_REQUEST,
+    });
+    authorization(data)
+      .then((res) => {
+        if (res && res.success) {
+          dispatch({
+            type: LOGIN_SUCCESS,
+            payload: res,
+          });
+        } else {
+          dispatch({
+            type: LOGIN_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: LOGIN_FAILED,
+        });
+      });
+  };
+}
