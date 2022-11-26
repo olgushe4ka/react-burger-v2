@@ -4,10 +4,17 @@ import {
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
 import { Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 
 function Profile() {
+
+  const name = useSelector((state) => state.login.login.user.name);
+  const email = useSelector((state) => state.login.login.user.email);
+
+  //console.log(name)
+
 
   return (
     <>
@@ -36,7 +43,7 @@ function Profile() {
               type={'text'}
               placeholder={'Имя'}
               // onChange={e => setValue(e.target.value)}
-              value={"Olga"}
+              value={name} 
               name={'name'}
               error={false}
               // ref={inputRef}
@@ -50,7 +57,7 @@ function Profile() {
           <div className="ml-0 mr-0 mb-0 mt-6">
             <EmailInput
               //  onChange={onChange}
-              value={'mail@mail.com'}
+              value={email}
               name={'email'}
               placeholder="Логин"
               isIcon={true}

@@ -12,27 +12,28 @@ import {
 } from "../../services/actions/ingredients";
 import { useInView } from 'react-intersection-observer';
 
-
-
+import { useHistory } from "react-router-dom";
 
 function BurgerIngredients() {
+
+
   const dispatch = useDispatch();
   const data = useSelector((state) => state.ingredients.ingredients);
 
-  useEffect(() => {
-    dispatch(getItems());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getItems());
+  // }, [dispatch]);
 
   const buns = useMemo(
-    () => data.filter((item) => item.type === "bun"),
+    () => data?.filter((item) => item.type === "bun"),
     [data]
   );
   const mains = useMemo(
-    () => data.filter((item) => item.type === "main"),
+    () => data?.filter((item) => item.type === "main"),
     [data]
   );
   const sauces = useMemo(
-    () => data.filter((item) => item.type === "sauce"),
+    () => data?.filter((item) => item.type === "sauce"),
     [data]
   );
 
@@ -46,8 +47,11 @@ function BurgerIngredients() {
     (state) => state.ingredients.ingredientDetails
   );
 
+  const history = useHistory();
+
   const closeIngredientModal = () => {
     dispatch({ type: RESET_INGREDIENT_MODAL });
+    history.goBack();
   };
 
 
@@ -60,7 +64,7 @@ function BurgerIngredients() {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
- 
+
   const { ref: refBuns, inView: inViewBuns } = useInView({ threshold: 0, });
   const { ref: refSauces, inView: inViewSauces } = useInView({ threshold: 0.8, });
   const { ref: refMains, inView: inViewMains } = useInView({ threshold: 0.5, });

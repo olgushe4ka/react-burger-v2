@@ -22,7 +22,8 @@ const isLoading = useSelector((state) => state.login.loginIsLoading);
   const [passwordTypeValue, setPasswordTypeValue] = useState("password");
 
   // const errorInReset = useSelector((state) => state.login.loginFailed);
-
+  // const name = useSelector((state) => state.login.login.user.name);
+  // console.log(name)
 
   const inputValue = {
     "email": emailValue,

@@ -78,3 +78,23 @@ export function authorization(data) {
 //     }),
 //   });
 // }
+
+export function logoutApi(data) {
+  return request(`${baseUrl}/auth/logout`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+}
+
+export function tokenApi(data) {
+  return request(`${baseUrl}/auth/token`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+}

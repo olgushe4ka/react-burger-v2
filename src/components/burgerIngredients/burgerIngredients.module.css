@@ -6,6 +6,7 @@
   scrollbar-width: thin;
   scrollbar-color: #8585ad black;
   z-index: 0;
+  text-decoration: none;
 }
 
 .headerfixed {
@@ -43,6 +44,7 @@
   max-width: 250px;
   position: relative;
   /* z-index: -1; */
+  text-decoration: none;
 }
 
 .ingredietBox:not(:nth-child(1)):not(:nth-child(2)) {

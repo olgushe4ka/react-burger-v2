@@ -6,9 +6,13 @@ import {
 import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
 import { useSelector } from "react-redux";
+import { Link, useLocation } from 'react-router-dom';
 
 function IngredientConstructor(props) {
   const { id, name, price, image, index, item } = props;
+
+   const location = useLocation()
+
 
   //Drag and drop
   const [{ opacity }, drag] = useDrag({
@@ -38,6 +42,13 @@ function IngredientConstructor(props) {
 
 
   return (
+    <Link style={{ textDecoration: 'none', color: 'white' }}
+    to={{
+      pathname: `/ingredients/${id}`,
+       state: { background: location }
+    }}
+    
+  >
     <div
       className={`${ingredientsStyles.ingredietBox} pl-5 pr-5 pb-0 pt-6`}
       id={id}
@@ -52,6 +63,7 @@ function IngredientConstructor(props) {
       </div>
       <p className="text text_type_main-small mt-2">{name}</p>
     </div>
+    </Link>
   );
 }
 
