@@ -11,6 +11,15 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
+  GET_USER_INFO_REQUEST,
+  GET_USER_INFO_SUCCESS,
+  GET_USER_INFO_FAILED,
+  CHANGE_USER_INFO_REQUEST,
+  CHANGE_USER_INFO_SUCCESS,
+  CHANGE_USER_INFO_FAILED,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILED,
 } from "../actions/login";
 
 const loginInitialState = {
@@ -26,9 +35,28 @@ const loginInitialState = {
   registrationFailed: false,
   registrationIsLoading: false,
 
-  login: [],
+  login: {
+    user: {
+      email: "test",
+      name: "test",
+    },
+  },
   loginFailed: false,
   loginIsLoading: false,
+
+  getUserInfoFailed: false,
+  getUserInfoIsLoading: false,
+
+  isAuthChecked: false,
+  userName: "testing",
+  email: "testing",
+
+  changeUserInfoFailed: false,
+  changeUserInfoIsLoading: false,
+
+  logOutFailed: false,
+  logOutSuccess: false,
+  logOutIsLoading: false,
 };
 
 export const loginReducer = (state = loginInitialState, action) => {
@@ -99,7 +127,6 @@ export const loginReducer = (state = loginInitialState, action) => {
       };
     }
 
-
     case LOGIN_REQUEST: {
       return {
         ...state,
@@ -122,9 +149,84 @@ export const loginReducer = (state = loginInitialState, action) => {
       };
     }
 
+    case GET_USER_INFO_REQUEST: {
+      return {
+        ...state,
+        getUserInfoIsLoading: true,
+      };
+    }
+    case GET_USER_INFO_SUCCESS: {
+
+      return {
+        ...state,
+        getUserInfoFailed: false,
+        isAuthChecked: action.payload.success,
+        userName: action.payload.user.name,
+        email: action.payload.user.email,
+        getUserInfoIsLoading: false,
+      };
+    }
+    case GET_USER_INFO_FAILED: {
+      return {
+        ...state,
+        getUserInfoFailed: true,
+        getUserInfoIsLoading: false,
+      };
+    }
+
+
+
+
+    case CHANGE_USER_INFO_REQUEST: {
+      return {
+        ...state,
+        changeUserInfoIsLoading: true,
+      };
+    }
+    case CHANGE_USER_INFO_SUCCESS: {
+
+      return {
+        ...state,
+        changeUserInfoFailed: false,
+        isAuthChecked: action.payload.success,
+        userName: action.payload.user.name,
+        email: action.payload.user.email,
+        changeUserInfoIsLoading: false,
+      };
+    }
+    case CHANGE_USER_INFO_FAILED: {
+      return {
+        ...state,
+        changeUserInfoFailed: true,
+        changeUserInfoIsLoading: false,
+      };
+    }
+
+    case LOGOUT_REQUEST: {
+      return {
+        ...state,
+        logOutIsLoading: true,
+      };
+    }
+    case LOGOUT_SUCCESS: {
+            return {
+        ...state,
+        logOutFailed: false,
+        logOutSuccess: action.payload.success,
+        logOutIsLoading: false,
+      };
+    }
+    case LOGOUT_FAILED: {
+      return {
+        ...state,
+        logOutFailed: true,
+        logOutIsLoading: false,
+      };
+    }
+
+
     default: {
       return state;
     }
   }
 };
-

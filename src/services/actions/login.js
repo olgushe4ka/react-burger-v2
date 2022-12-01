@@ -3,7 +3,11 @@ import {
   resetPassword,
   registration,
   authorization,
+  getUserInformation,
+  changeUserInformation,
+  logoutApi,
 } from "../../utils/burger-api";
+import { getCookie, setCookie } from "../../utils/cookie";
 
 export const PASSWORD_RESET_REQUEST_REQUEST = "PASSWORD_RESET_REQUEST_REQUEST";
 export const PASSWORD_RESET_REQUEST_SUCCESS = "PASSWORD_RESET_REQUEST_SUCCESS";
@@ -17,6 +21,20 @@ export const REGISTRATION_FAILED = "REGISTRATION_FAILED";
 export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILED = "LOGIN_FAILED";
+
+export const GET_USER_INFO_REQUEST = "GET_USER_INFO_REQUEST";
+export const GET_USER_INFO_SUCCESS = "GET_USER_INFO_SUCCESS";
+export const GET_USER_INFO_FAILED = "GET_USER_INFO_FAILED";
+export const CHANGE_USER_INFO_REQUEST = "CHANGE_USER_INFO_REQUEST";
+export const CHANGE_USER_INFO_SUCCESS = "CHANGE_USER_INFO_SUCCESS";
+export const CHANGE_USER_INFO_FAILED = "CHANGE_USER_INFO_FAILED";
+
+export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGOUT_FAILED = "LOGOUT_FAILED";
+
+
+
 
 export function passwordResetRequest(email) {
   return function (dispatch) {
@@ -81,12 +99,15 @@ export function register(data) {
             type: REGISTRATION_SUCCESS,
             payload: res,
           });
+          localStorage.setItem("refreshToken", res.refreshToken);
+          setCookie("accessToken", res.accessToken);
         } else {
           dispatch({
             type: REGISTRATION_FAILED,
           });
         }
       })
+
       .catch((err) => {
         console.log(err);
         dispatch({
@@ -108,6 +129,10 @@ export function login(data) {
             type: LOGIN_SUCCESS,
             payload: res,
           });
+          const accessToken = res.accessToken.split("Bearer ")[1];
+
+          localStorage.setItem("refreshToken", res.refreshToken);
+          setCookie("accessToken", accessToken);
         } else {
           dispatch({
             type: LOGIN_FAILED,
@@ -119,6 +144,78 @@ export function login(data) {
         dispatch({
           type: LOGIN_FAILED,
         });
+      });
+  };
+}
+
+export function getProfileInfo() {
+  return function (dispatch) {
+    dispatch({
+      type: GET_USER_INFO_REQUEST,
+    });
+    getUserInformation()
+      .then((res) => {
+        if (res && res.success) {
+          dispatch({
+            type: GET_USER_INFO_SUCCESS,
+            payload: res,
+          });
+        } else {
+          dispatch({
+            type: GET_USER_INFO_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
+
+export function changeProfileInfo(data) {
+  return function (dispatch) {
+    dispatch({
+      type: CHANGE_USER_INFO_REQUEST,
+    });
+    changeUserInformation(data)
+      .then((res) => {
+        if (res && res.success) {
+          dispatch({
+            type: CHANGE_USER_INFO_SUCCESS,
+            payload: res,
+          });
+        } else {
+          dispatch({
+            type: CHANGE_USER_INFO_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+}
+
+export function logOut() {
+  return function (dispatch) {
+    dispatch({
+      type: LOGOUT_REQUEST,
+    });
+    logoutApi()
+      .then((res) => {
+        if (res && res.success) {
+          dispatch({
+            type: LOGOUT_SUCCESS,
+            payload: res,
+          });
+        } else {
+          dispatch({
+            type: LOGOUT_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 }

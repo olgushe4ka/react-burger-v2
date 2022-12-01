@@ -41,12 +41,12 @@ function ResetPassword() {
     dispatch(passwordReset({ value }));
   }, [])
 
-  const onIconPasswordClick = () => {
-    if (passwordTypeValue === "text") {
-      setPasswordTypeValue("password")
-    }
-    else setPasswordTypeValue("text");
-  }
+  // const onIconPasswordClick = () => {
+  //   if (passwordTypeValue === "text") {
+  //     setPasswordTypeValue("password")
+  //   }
+  //   else setPasswordTypeValue("text");
+  // }
 
 
   return (

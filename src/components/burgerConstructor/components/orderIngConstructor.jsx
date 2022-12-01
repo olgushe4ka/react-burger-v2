@@ -74,7 +74,7 @@ function OrderIngConstructor(props) {
         <div ref={ref}
             style={{ opacity }}
             data-handler-id={handlerId}
-            className={`${burgerConstructorStyles.listElement}`
+            className={`${burgerConstructorStyles.listElement} ml-0 mr-0 mb-0 mt-2`
             }
         >
             <ConstructorElement

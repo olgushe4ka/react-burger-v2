@@ -6,6 +6,8 @@ import { register } from "../services/actions/login";
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/Spinner/Spinner";
+import { Redirect, useLocation } from "react-router-dom";
+
 
 function LoginPage() {
 
@@ -17,6 +19,9 @@ function LoginPage() {
 
     const registrationFailed = useSelector((state) => state.login.registrationFailed);
     const isLoading = useSelector((state) => state.login.registrationIsLoading);
+    const registrationSuccess = useSelector((state) => state.login.registration.success);
+    const location = useLocation();
+
 
     const inputValue = {
         "email": emailValue,
@@ -29,11 +34,17 @@ function LoginPage() {
         if (registrationFailed === true) {
             alert("Ошибка в данных");
         }
+        if (registrationSuccess === true ) {
+            const { from } = location.state || { from: { pathname: "/" } };
+            return <Redirect to={from} />;
+        }
     }
 
     const sendRequest = useCallback((value) => {
         dispatch(register(value));
     }, [])
+
+
 
     return (
         <>

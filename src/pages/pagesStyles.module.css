@@ -63,3 +63,7 @@
   composes: profileButton;
   color: white;
 }
+
+.profileButtonBox {
+  text-align: end;
+}

@@ -4,6 +4,10 @@ import { testRegistration } from "./utils/burger-api";
 import { useSelector, useDispatch } from "react-redux";
 import { getItems } from "./services/actions/ingredients";
 import { useEffect } from "react";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
+import { getProfileInfo } from "./services/actions/login";
+
+
 
 function App() {
  // const history = useHistory();
@@ -14,6 +18,10 @@ function App() {
     dispatch(getItems());
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(getProfileInfo());
+  }, [dispatch]);
+
   //const data = useSelector((state) => state.ingredients.ingredients);
 
   const background = location.state?.background;
@@ -21,21 +29,21 @@ function App() {
   return (
    
       <Switch location={background || location}>
-        <Route path="/" exact={true} >
+        <Route onlyUnAuth={false} path="/" exact={true} >
           <ConstructorPage />
         </Route>
-        <Route path="/login" >
+        <ProtectedRoute onlyUnAuth={true} path="/login" >
           <LoginPage />
-        </Route>
-        <Route path="/register" >
+        </ProtectedRoute>
+        <Route onlyUnAuth={true} path="/register" >
           <RegisterPage />
         </Route>
-        <Route path="/forgot-password" >
+        <ProtectedRoute onlyUnAuth={true} path="/forgot-password" >
           <ForgotPassword />
-        </Route>
-        <Route path="/reset-password" >
+        </ProtectedRoute>
+        <ProtectedRoute onlyUnAuth={true} path="/reset-password" >
           <ResetPassword />
-        </Route>
+        </ProtectedRoute>
         <Route path="/profile" exact={true}>
           <Profile />
         </Route>

@@ -4,16 +4,66 @@ import {
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
 import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { changeProfileInfo, getProfileInfo, logOut } from "../services/actions/login";
+import { useCallback, useEffect, useState } from "react";
+import { setCookie } from "../utils/cookie";
 
 
 function Profile() {
+  const name = useSelector((state) => state.login.userName);
+  const email = useSelector((state) => state.login.email);
+  const [nameValue, setNameValue] = useState(name);
+  const [emailValue, setEmailValue] = useState(email);
 
-  const name = useSelector((state) => state.login.login.user.name);
-  const email = useSelector((state) => state.login.login.user.email);
 
-  //console.log(name)
+
+  const dispatch = useDispatch();
+
+  const sendRequest = useCallback(() => {
+    dispatch(logOut());
+  }, [])
+
+  // useEffect(() => {
+  //   dispatch(getProfileInfo());
+  // }, [dispatch]);
+
+  const onExitBtnClick = () => {
+    sendRequest();
+    setCookie("accessToken", null)
+    localStorage.removeItem("refreshToken");
+  }
+
+  const valuesCanged = () => {
+    if (name === nameValue && email === emailValue)
+      return false;
+    else return true;
+  }
+
+
+
+//Логика Отмены и Изменения данных пользователя
+
+  const onCancelBtnClick = () => { 
+    setNameValue(name);
+    setEmailValue(email);
+  }
+
+  const changeUserInfoRequest = useCallback((data) => {
+    dispatch(changeProfileInfo(data));
+  }, [])
+
+  const inputValue = {
+      "email": emailValue,
+      "name": nameValue,
+}
+
+console.log(nameValue);
+
+  const onSaveBtnClick = (data) => {
+    changeUserInfoRequest(data);
+  }
+
 
 
   return (
@@ -28,7 +78,7 @@ function Profile() {
             <Link to="/profile/orders" className={`${styles.profileButton} text text_type_main-medium`}>
               История заказов
             </Link>
-            <button className={`${styles.profileButton} text text_type_main-medium`}>
+            <button className={`${styles.profileButton} text text_type_main-medium`} onClick={() => onExitBtnClick()}>
               Выход
             </button>
           </div>
@@ -42,8 +92,8 @@ function Profile() {
             <Input
               type={'text'}
               placeholder={'Имя'}
-              // onChange={e => setValue(e.target.value)}
-              value={name} 
+              onChange={e => setNameValue(e.target.value)}
+              value={nameValue}
               name={'name'}
               error={false}
               // ref={inputRef}
@@ -56,8 +106,8 @@ function Profile() {
           </div>
           <div className="ml-0 mr-0 mb-0 mt-6">
             <EmailInput
-              //  onChange={onChange}
-              value={email}
+              onChange={e => setEmailValue(e.target.value)}
+              value={emailValue}
               name={'email'}
               placeholder="Логин"
               isIcon={true}
@@ -72,6 +122,16 @@ function Profile() {
               icon="EditIcon"
             />
           </div>
+          {valuesCanged() && (
+            <div className={`${styles.profileButtonBox} ml-0 mr-0 mb-0 mt-6`}>
+              <Button htmlType="submit" type="secondary" size="medium" onClick={onCancelBtnClick}>
+                Отмена
+              </Button>
+              <Button htmlType="submit" type="primary" size="medium" onClick={() => onSaveBtnClick(inputValue)}>
+                Сохранить
+              </Button>
+            </div>)
+          }
         </div>
 
 

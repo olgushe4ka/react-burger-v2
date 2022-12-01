@@ -1,3 +1,5 @@
+import { setCookie, getCookie } from "./cookie";
+
 const baseUrl = "https://norma.nomoreparties.space/api";
 
 function checkResponse(res) {
@@ -16,10 +18,11 @@ export function getIngredients() {
 }
 
 export function saveOrder(data) {
-  return request(`${baseUrl}/orders`, {
+  return fetchWithRefresh(`${baseUrl}/orders`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: 'Bearer ' + getCookie('accessToken')
     },
     body: JSON.stringify(data),
   });
@@ -46,7 +49,7 @@ export function resetPassword(data) {
 }
 
 export function registration(data) {
-  return request(`${baseUrl}/auth/register`, {
+  return fetchWithRefresh(`${baseUrl}/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -56,10 +59,11 @@ export function registration(data) {
 }
 
 export function authorization(data) {
-  return request(`${baseUrl}/auth/login`, {
+  return fetchWithRefresh(`${baseUrl}/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: 'Bearer ' + getCookie('accessToken')
     },
     body: JSON.stringify(data),
   });
@@ -79,22 +83,91 @@ export function authorization(data) {
 //   });
 // }
 
-export function logoutApi(data) {
+export function logoutApi() {
   return request(`${baseUrl}/auth/logout`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      token: localStorage.getItem("refreshToken"),
+    }),
   });
 }
 
-export function tokenApi(data) {
-  return request(`${baseUrl}/auth/token`, {
+// export function tokenApi(data) {
+//   return request(`${baseUrl}/auth/token`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(data),
+//   });
+// }
+
+export const refreshToken = () => {
+  return fetch(`${baseUrl}/auth/token`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json;charset=utf-8",
+     // Authorization: 'Bearer ' + getCookie('token')
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify({
+      token: localStorage.getItem("refreshToken"),
+    }),
+  }).then(checkResponse);
+};
+
+const fetchWithRefresh = async (url, options) => {
+  try {
+    const res = await fetch(url, options);
+    return await checkResponse(res);
+  } catch (error) {
+   // if (error.status === 403 ) {
+       if (error.message === "jwt expired" ) {
+      const refreshData = await refreshToken();
+      if (!refreshData.success) {
+        Promise.reject(refreshData);
+      }
+
+      console.log(refreshData)
+      debugger;
+
+      localStorage.setItem("refreshToken", refreshData.refreshToken);
+      setCookie("accessToken", refreshData.accessToken);
+
+      options.headers.authorization = refreshData.accessToken;
+
+      const res = await fetch(url, options);
+      return await checkResponse(res);
+    }
+    {
+      return Promise.reject(error);
+    }
+  }
+};
+
+
+
+export function getUserInformation() {
+  return fetchWithRefresh(`${baseUrl}/auth/user`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: 'Bearer ' + getCookie('accessToken')
+    },
+  //  body: JSON.stringify(),
+  });
+}
+
+
+export function changeUserInformation(data) {
+  return fetchWithRefresh(`${baseUrl}/auth/user`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: 'Bearer ' + getCookie('accessToken')
+    },
+   body: JSON.stringify(data),
   });
 }
