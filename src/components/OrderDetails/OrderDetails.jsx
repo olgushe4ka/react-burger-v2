@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { orderBurger, } from "../../services/actions/ingredients";
 import { TailSpin } from 'react-loader-spinner'
+import { Redirect } from "react-router-dom";
 
 function OrderDetails() {
 
@@ -12,6 +13,8 @@ function OrderDetails() {
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
   const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
   const ingredients = ingredientsAll.map((ingrItem) => { return ingrItem._id; });
+
+  const isAuthChecked = useSelector((state) => state.login.isAuthChecked);
 
   const dispatch = useDispatch();
 
@@ -24,8 +27,12 @@ function OrderDetails() {
 
   const modalData = useSelector((state) => state.ingredients.orderDetails);
 
-
+  if (!isAuthChecked) {
+       return <Redirect to="/register" />;
+  }
+  
   return (
+
     <div className={`${OrderDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
 
       {isLoading && (
