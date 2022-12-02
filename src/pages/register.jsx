@@ -3,16 +3,16 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
-import { Link } from 'react-router-dom';
-import { login } from "../services/actions/login";
+import { Link, Redirect, useLocation } from 'react-router-dom';
+import { login, getProfileInfo } from "../services/actions/login";
 import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/Spinner/Spinner";
 
 function RegisterPage() {
 
-
-const isLoading = useSelector((state) => state.login.loginIsLoading);
+  const location = useLocation();
+  const isLoading = useSelector((state) => state.login.loginIsLoading);
 
 
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const isLoading = useSelector((state) => state.login.loginIsLoading);
 
   const [passwordTypeValue, setPasswordTypeValue] = useState("password");
 
-  // const errorInReset = useSelector((state) => state.login.loginFailed);
+  const errorInReset = useSelector((state) => state.login.loginFailed);
   // const name = useSelector((state) => state.login.login.user.name);
   // console.log(name)
 
@@ -35,11 +35,27 @@ const isLoading = useSelector((state) => state.login.loginIsLoading);
     // if (errorInReset === true) {
     //   alert("Ошибка в данных");
     // }
+
+    //   if (errorInReset === false ) {
+    //     const { from } = location.state || { from: { pathname: "/" } };
+    //     return <Redirect to={from} />;
+    // }
+
+
+    //   location.reload();
+    //window.location.reload();
+    getUserInfo();
+
   }
 
   const sendRequest = useCallback((value) => {
     dispatch(login(value));
   }, [])
+
+  const getUserInfo = useCallback((value) => {
+    dispatch(getProfileInfo(value));
+  }, [])
+
 
 
   return (
@@ -47,7 +63,7 @@ const isLoading = useSelector((state) => state.login.loginIsLoading);
       <AppHeader />
 
       {isLoading && (
-    <Spinner />)}
+        <Spinner />)}
 
       <div className={`${styles.main}`}>
         <p className="text text_type_main-medium">Вход</p>

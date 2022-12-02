@@ -129,11 +129,7 @@ const fetchWithRefresh = async (url, options) => {
       if (!refreshData.success) {
         Promise.reject(refreshData);
       }
-
-      console.log(refreshData)
-      debugger;
-
-      localStorage.setItem("refreshToken", refreshData.refreshToken);
+        localStorage.setItem("refreshToken", refreshData.refreshToken);
       setCookie("accessToken", refreshData.accessToken);
 
       options.headers.authorization = refreshData.accessToken;

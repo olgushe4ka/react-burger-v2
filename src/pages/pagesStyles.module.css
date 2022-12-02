@@ -67,3 +67,7 @@
 .profileButtonBox {
   text-align: end;
 }
+
+.profileButton:hover {
+  cursor: pointer;
+}

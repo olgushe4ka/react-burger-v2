@@ -7,7 +7,9 @@ import Profile from "./profile";
 import RegisterPage from "./register";
 import ResetPassword from "./resetPassword";
 import Page404 from "./page404";
+import ProfileHistoryOrders from "./profileHistoryOrders";
 
-export { ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404
-  //  PersonPage, HomePage, ListPage, NotFound404 
+export {
+  ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404, ProfileHistoryOrders
+    //  PersonPage, HomePage, ListPage, NotFound404 
 };

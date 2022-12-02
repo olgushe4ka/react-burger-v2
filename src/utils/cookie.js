@@ -32,3 +32,7 @@ export function getCookie(name) {
     }
     document.cookie = updatedCookie;
   } 
+
+  export function eraseCookie(name) {   
+    document.cookie = name+'=; Max-Age=-99999999;';  
+}

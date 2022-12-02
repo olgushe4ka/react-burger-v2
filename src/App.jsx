@@ -1,4 +1,4 @@
-import { ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404 } from "./pages/index";
+import { ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404, ProfileHistoryOrders } from "./pages/index";
 import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { testRegistration } from "./utils/burger-api";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,7 +10,7 @@ import { getProfileInfo } from "./services/actions/login";
 
 
 function App() {
- // const history = useHistory();
+  // const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -27,33 +27,36 @@ function App() {
   const background = location.state?.background;
 
   return (
-   
-      <Switch location={background || location}>
-        <Route onlyUnAuth={false} path="/" exact={true} >
-          <ConstructorPage />
-        </Route>
-        <ProtectedRoute onlyUnAuth={true} path="/login" >
-          <LoginPage />
-        </ProtectedRoute>
-        <Route onlyUnAuth={true} path="/register" >
-          <RegisterPage />
-        </Route>
-        <ProtectedRoute onlyUnAuth={true} path="/forgot-password" >
-          <ForgotPassword />
-        </ProtectedRoute>
-        <ProtectedRoute onlyUnAuth={true} path="/reset-password" >
-          <ResetPassword />
-        </ProtectedRoute>
-        <Route path="/profile" exact={true}>
-          <Profile />
-        </Route>
-        <Route path="/ingredients/:id" >
-          <Ingredients />
-        </Route>
-        <Route>
-          <Page404 />
-        </Route>
-      </Switch>
+
+    <Switch location={background || location}>
+      <Route path="/" exact={true} >
+        <ConstructorPage />
+      </Route>
+      <ProtectedRoute onlyUnAuth={true} path="/login" >
+        <LoginPage />
+      </ProtectedRoute>
+      <ProtectedRoute onlyUnAuth={true} path="/register" >
+        <RegisterPage />
+      </ProtectedRoute>
+      <ProtectedRoute onlyUnAuth={true} path="/forgot-password" >
+        <ForgotPassword />
+      </ProtectedRoute>
+      <ProtectedRoute onlyUnAuth={true} path="/reset-password" >
+        <ResetPassword />
+      </ProtectedRoute>
+      <ProtectedRoute onlyUnAuth={false} path="/profile" exact={true}>
+        <Profile />
+      </ProtectedRoute>
+      <ProtectedRoute onlyUnAuth={false} path="/profile/orders" exact={true}>
+        <ProfileHistoryOrders />
+      </ProtectedRoute>
+      <Route path="/ingredients/:id" >
+        <Ingredients />
+      </Route>
+      <Route>
+        <Page404 />
+      </Route>
+    </Switch>
 
   );
 }

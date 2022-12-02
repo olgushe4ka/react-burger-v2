@@ -20,7 +20,8 @@ function LoginPage() {
     const registrationFailed = useSelector((state) => state.login.registrationFailed);
     const isLoading = useSelector((state) => state.login.registrationIsLoading);
     const registrationSuccess = useSelector((state) => state.login.registration.success);
-    const location = useLocation();
+
+    console.log(registrationSuccess)
 
 
     const inputValue = {
@@ -29,14 +30,15 @@ function LoginPage() {
         "name": nameValue
     }
 
+
     const onButtonClick = (value) => {
         sendRequest(value);
         if (registrationFailed === true) {
             alert("Ошибка в данных");
         }
-        if (registrationSuccess === true ) {
-            const { from } = location.state || { from: { pathname: "/" } };
-            return <Redirect to={from} />;
+
+        if (registrationSuccess === true) {
+            return <Redirect to='/register' />;
         }
     }
 
