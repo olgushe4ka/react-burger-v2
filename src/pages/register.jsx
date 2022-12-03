@@ -30,7 +30,8 @@ function RegisterPage() {
     }
 
 
-    const onButtonClick = (value) => {
+    const onButtonClick = (value, event) => {
+        event.preventDefault();
         sendRequest(value);
 
         if (registrationFailed === true) {
@@ -53,8 +54,7 @@ function RegisterPage() {
             {isLoading && (
                 <Spinner />)}
 
-
-            <div className={`${styles.main}`}>
+            <form className={`${styles.main}`} onSubmit={(event) => onButtonClick(inputValue, event)}>
                 <p className="text text_type_main-medium">Регистрация</p>
                 <div className="ml-0 mr-0 mb-0 mt-6">
                     <Input
@@ -91,7 +91,7 @@ function RegisterPage() {
                     />
                 </div>
                 <div className="ml-0 mr-0 mb-0 mt-10">
-                    <Button htmlType="button" type="primary" size="medium" onClick={() => onButtonClick(inputValue)}>
+                    <Button htmlType="submit" type="primary" size="medium">
                         Зарегистрироваться
                     </Button>
                 </div>
@@ -102,7 +102,7 @@ function RegisterPage() {
                     <Link className={`${styles.linkDownlogin}`} to="/login"> Войти!</Link>
                 </div>
 
-            </div>
+            </form>
         </>
     );
 }

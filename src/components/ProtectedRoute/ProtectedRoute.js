@@ -22,7 +22,7 @@ export const ProtectedRoute = ({ onlyUnAuth, children, ...props }) => {
 
 
   if (!onlyUnAuth && !isAuthChecked) {
-    return <Redirect to={{ pathname: "/register", state: { from: location } }} />;
+    return <Redirect to={{ pathname: "/login", state: { from: location } }} />;
   }
 
   return <Route {...props}>{children}</Route>;

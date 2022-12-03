@@ -17,7 +17,8 @@ function ForgotPassword() {
 
   const isLoading = useSelector((state) => state.login.passwordResetRequestIsLoading);
 
-  const resetPassword = (value) => {
+  const resetPassword = (value, event) => {
+    event.preventDefault();
     sendRequest(value)
   }
 
@@ -31,7 +32,7 @@ function ForgotPassword() {
       {isLoading && (
         <Spinner />)}
 
-      <div className={`${styles.main}`}>
+      <form className={`${styles.main}`} onSubmit={(event) => resetPassword(inputValue, event)}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
 
         <div className="ml-0 mr-0 mb-0 mt-6">
@@ -47,7 +48,7 @@ function ForgotPassword() {
         </div>
 
         <div className="ml-0 mr-0 mb-0 mt-10">
-          <Button htmlType="submit" type="primary" size="medium" onClick={() => resetPassword(inputValue)}>
+          <Button htmlType="submit" type="primary" size="medium">
             Восстановить
           </Button>
         </div>
@@ -58,7 +59,7 @@ function ForgotPassword() {
           <Link className={`${styles.linkDownlogin}`} to="/register">Войти!</Link>
         </div>
 
-      </div>
+      </form>
     </>
   );
 }

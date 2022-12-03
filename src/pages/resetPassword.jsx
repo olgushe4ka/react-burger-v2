@@ -22,14 +22,15 @@ function ResetPassword() {
 
   const isLoading = useSelector((state) => state.login.passwordResetIsLoading);
 
-  
+
 
   const inputValue = {
     "password": emailValue,
     "token": pinValue
   }
 
-  const resetPassword = (value) => {
+  const resetPassword = (value, event) => {
+    event.preventDefault();
     sendRequest(value);
     if (errorInReset === true) {
       alert("Ошибка в данных");
@@ -40,33 +41,23 @@ function ResetPassword() {
     dispatch(passwordReset({ value }));
   }, [])
 
-  // const onIconPasswordClick = () => {
-  //   if (passwordTypeValue === "text") {
-  //     setPasswordTypeValue("password")
-  //   }
-  //   else setPasswordTypeValue("text");
-  // }
-
-
   return (
     <>
       {isLoading && (
-      <Spinner />)}
+        <Spinner />)}
 
-      <div className={`${styles.main}`}>
+      <form className={`${styles.main}`} onSubmit={(event) => resetPassword(inputValue, event)}>
         <p className="text text_type_main-medium">Восстановление пароля</p>
 
 
         <div className="ml-0 mr-0 mb-0 mt-6">
           <PasswordInput
-             placeholder={'Введите новый пароль'}
+            placeholder={'Введите новый пароль'}
             onChange={e => setPinValue(e.target.value)}
             icon={'ShowIcon'}
             value={pinValue}
             name={'name'}
           />
-
-
         </div>
 
         <div className="ml-0 mr-0 mb-0 mt-6">
@@ -86,7 +77,7 @@ function ResetPassword() {
         </div>
 
         <div className="ml-0 mr-0 mb-0 mt-10">
-          <Button htmlType="button" type="primary" size="medium" onClick={() => resetPassword(inputValue)}>
+          <Button htmlType="submit" type="primary" size="medium">
             Восстановить
           </Button>
         </div>
@@ -97,7 +88,7 @@ function ResetPassword() {
           <Link className={`${styles.linkDownlogin}`} to="/login">Войти!</Link>
         </div>
 
-      </div>
+      </form>
     </>
   );
 }

@@ -57,7 +57,8 @@ function Profile() {
     "name": nameValue,
   }
 
-  const onSaveBtnClick = (data) => {
+  const onSaveBtnClick = (data, event) => {
+    event.preventDefault()
     changeUserInfoRequest(data);
   }
 
@@ -82,7 +83,8 @@ function Profile() {
             В этом разделе вы можете изменить свои персональные данные
           </p>
         </div>
-        <div className={`${styles.profileInput}`}>
+
+        <form className={`${styles.profileInput}`} onSubmit={(event) => onSaveBtnClick(inputValue, event)} >
           <div className="ml-0 mr-0 mb-0 mt-0">
             <Input
               type={'text'}
@@ -119,7 +121,7 @@ function Profile() {
           </div>
           {valuesChanged() && (
             <div className={`${styles.profileButtonBox} ml-0 mr-0 mb-0 mt-6`}>
-              <Button htmlType="submit" type="secondary" size="medium" onClick={onCancelBtnClick}>
+              <Button htmlType="button" type="secondary" size="medium" onClick={onCancelBtnClick}>
                 Отмена
               </Button>
               <Button htmlType="submit" type="primary" size="medium" onClick={() => onSaveBtnClick(inputValue)}>
@@ -127,7 +129,7 @@ function Profile() {
               </Button>
             </div>)
           }
-        </div>
+        </form>
 
 
       </div>

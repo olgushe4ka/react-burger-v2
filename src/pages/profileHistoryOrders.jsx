@@ -16,7 +16,6 @@ function ProfileHistoryOrders() {
   const [emailValue, setEmailValue] = useState(email);
 
 
-
   const dispatch = useDispatch();
 
   const sendRequest = useCallback(() => {
@@ -33,32 +32,6 @@ function ProfileHistoryOrders() {
     localStorage.removeItem("refreshToken");
   }
 
-  const valuesCanged = () => {
-    if (name === nameValue && email === emailValue)
-      return false;
-    else return true;
-  }
-
-
-
-  //Логика Отмены и Изменения данных пользователя
-  const onCancelBtnClick = () => {
-    setNameValue(name);
-    setEmailValue(email);
-  }
-
-  const changeUserInfoRequest = useCallback((data) => {
-    dispatch(changeProfileInfo(data));
-  }, [])
-
-  const inputValue = {
-    "email": emailValue,
-    "name": nameValue,
-  }
-
-  const onSaveBtnClick = (data) => {
-    changeUserInfoRequest(data);
-  }
 
 
   return (
