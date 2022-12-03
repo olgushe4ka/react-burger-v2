@@ -1,4 +1,4 @@
-import OrderDetailsStyles from "./OrderDetails.module.css";
+import OrderDetailsStyles from "./orderDetails.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -74,3 +74,6 @@ function OrderDetails() {
 
 
 export default OrderDetails;
+
+
+

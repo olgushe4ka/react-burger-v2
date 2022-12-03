@@ -1,14 +1,13 @@
 import {
   Input, Button, EmailInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
 import { Link } from 'react-router-dom';
 import { passwordResetRequest } from "../services/actions/login";
 import { useState, useEffect, useCallback } from 'react';
 
 import { useDispatch, useSelector } from "react-redux";
-import Spinner from "../components/Spinner/Spinner";
+import Spinner from "../components/spinner/spinner";
 
 
 function ForgotPassword() {
@@ -28,7 +27,6 @@ function ForgotPassword() {
 
   return (
     <>
-      <AppHeader />
 
       {isLoading && (
         <Spinner />)}

@@ -26,9 +26,9 @@ function AppHeader() {
           <p className="mr-33 text text_type_main-small ">Лента заказов</p>
         </Link>
       </div>
-      <div className="pl-0 pr-30 pb-0 pt-0">
+      <Link to="/" className="pl-0 pr-30 pb-0 pt-0">
         <Logo className="p-20" />
-      </div>
+      </Link>
       <Link to="/profile" className={`${headerStyles.boxLeft}`}>
         <div className={`${headerStyles.icon} mr-2`}>
           <ProfileIcon type="primary" />

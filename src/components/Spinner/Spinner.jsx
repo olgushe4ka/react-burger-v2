@@ -1,5 +1,5 @@
 import { TailSpin } from 'react-loader-spinner'
-import SpinnerStyles from "./Spinner.module.css";
+import SpinnerStyles from "./spinner.module.css";
 
 function Spinner() {
 

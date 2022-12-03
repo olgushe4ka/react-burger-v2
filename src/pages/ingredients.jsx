@@ -1,6 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import AppHeader from "../components/appHeader/appHeader";
-import IngredientDetails from "../components/IngredientDetails/IngredientDetails";
+import IngredientDetails from "../components/ingredientDetails/ingredientDetails";
 import ingredientDetailsStyles from "./ingredients.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,7 +15,6 @@ function Ingredients() {
 
   return (
     <>
-      <AppHeader />
 
       {/* <IngredientDetails ingredients={ingredient} /> */}
       <div className={`${ingredientDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>

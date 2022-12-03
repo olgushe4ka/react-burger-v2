@@ -1,7 +1,6 @@
 import {
   Input, Button, EmailInput, PasswordInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import AppHeader from "../components/appHeader/appHeader";
 import styles from "./pagesStyles.module.css";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
@@ -65,7 +64,6 @@ function Profile() {
 
   return (
     <>
-      <AppHeader />
       <div className={`${styles.profileGrid} `}>
         <div className={`${styles.profileLeftBox} ml-0 mr-15 mb-0 mt-0`}>
           <div className={`${styles.profileMenu}`}>

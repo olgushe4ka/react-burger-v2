@@ -9,8 +9,10 @@ import { Provider } from "react-redux";
 import { rootReducer } from "./services/reducers";
 import thunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
-import App from "./App";
 import { BrowserRouter as Router } from 'react-router-dom';
+import App from "./components/app/app.jsx";
+
+
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

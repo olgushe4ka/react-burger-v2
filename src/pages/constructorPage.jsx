@@ -1,5 +1,3 @@
-
-import AppHeader from "../components/appHeader/appHeader";
 import BurgerConstructor from "../components/burgerConstructor/burgerConstructor";
 import BurgerIngredients from "../components/burgerIngredients/burgerIngredients";
 import styles from "./constructorPage.module.css";
@@ -29,7 +27,6 @@ const [ingredients, setIngredients] = useState([]);
 
   return (
     <div className={styles.App}>
-      <AppHeader />
       <div className={`${styles.appWithoutHeader}`}>
         <h1
           className={`${styles.title} text text_type_main-large pl-15 pr-0 pb-5 pt-10`}

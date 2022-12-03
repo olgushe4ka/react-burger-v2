@@ -1,8 +1,8 @@
 import ingredientsStyles from "./burgerIngredients.module.css";
 import IngredientConstructor from "./components/ingredientConstructor";
 import { useState, useMemo, useEffect } from "react";
-import Modal from "../Modal/Modal";
-import IngredientDetails from "../IngredientDetails/IngredientDetails";
+import Modal from "../modal/modal";
+import IngredientDetails from "../ingredientDetails/ingredientDetails";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import {

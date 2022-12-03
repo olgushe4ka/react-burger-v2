@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { Route, Redirect, useLocation } from "react-router-dom";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../spinner/spinner";
 
 export const ProtectedRoute = ({ onlyUnAuth, children, ...props }) => {
   const location = useLocation();
@@ -9,12 +9,6 @@ export const ProtectedRoute = ({ onlyUnAuth, children, ...props }) => {
   //const user = useSelector((state) => state.login.login.user);
 
   const isAuthChecked = useSelector((state) => state.login.isAuthChecked);
-  
-  
-  console.log(onlyUnAuth)
-  console.log(isAuthChecked);
-
-  
   
   // if (!isAuthChecked) {
   //   return <Spinner />;
