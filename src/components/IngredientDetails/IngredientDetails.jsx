@@ -1,9 +1,27 @@
 import ingredientDetailsStyles from "./ingredientDetails.module.css";
 import { ingredientPropType } from "../../utils/prop-types";
-
+import { useLocation, useHistory } from 'react-router-dom';
+import { useEffect } from "react";
 
 
 function IngredientDetails({ ingredients }) {
+
+  const location = useLocation()
+  const history = useHistory()
+
+//при перезагрузке , чтобы шло на страницу с ингредиентом
+  useEffect(() => {
+    window.addEventListener("beforeunload", clearHistory);
+    return () => {
+      window.removeEventListener("beforeunload", clearHistory);
+    };
+  }, []);
+
+  const clearHistory = (e) => {
+    e.preventDefault();
+    history.replace({ state: {} })
+  };
+
   return (
     <div
       className={`${ingredientDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}

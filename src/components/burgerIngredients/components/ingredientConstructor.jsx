@@ -45,7 +45,7 @@ function IngredientConstructor(props) {
     <Link style={{ textDecoration: 'none', color: 'white' }}
     to={{
       pathname: `/ingredients/${id}`,
-       state: { background: location }
+      state: { background: location }
     }}
     
   >

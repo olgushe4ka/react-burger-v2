@@ -13,6 +13,7 @@ import {
 import { useInView } from 'react-intersection-observer';
 
 import { useHistory } from "react-router-dom";
+import { BrowserRouter  } from 'react-router-dom';
 
 function BurgerIngredients() {
 
@@ -182,15 +183,16 @@ function BurgerIngredients() {
           })}
         </div>
       </section>
-
-      {ingredientsData && (
-        <Modal
-          closeAllModals={closeIngredientModal}
-          title={"Детали ингридиента"}
-        >
-          <IngredientDetails ingredients={ingredientsData} />
-        </Modal>
-      )}
+     {/* <BrowserRouter path="/ingredients/:id"> */}
+        {ingredientsData && (
+          <Modal
+            closeAllModals={closeIngredientModal}
+            title={"Детали ингридиента"}
+          >
+            <IngredientDetails ingredients={ingredientsData} />
+          </Modal>
+        )}
+ {/* </BrowserRouter> */}
     </>
   );
 }
