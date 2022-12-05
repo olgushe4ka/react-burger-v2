@@ -183,7 +183,6 @@ function BurgerIngredients() {
           })}
         </div>
       </section>
-     {/* <BrowserRouter path="/ingredients/:id"> */}
         {ingredientsData && (
           <Modal
             closeAllModals={closeIngredientModal}
@@ -192,7 +191,6 @@ function BurgerIngredients() {
             <IngredientDetails ingredients={ingredientsData} />
           </Modal>
         )}
- {/* </BrowserRouter> */}
     </>
   );
 }
