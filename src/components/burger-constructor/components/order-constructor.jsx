@@ -1,4 +1,4 @@
-import burgerConstructorStyles from "../burgerConstructor.module.css";
+import burgerConstructorStyles from "../burger-constructor.module.css";
 import {
   DragIcon,
   ConstructorElement,
@@ -7,7 +7,7 @@ import { useMemo, useContext, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
 import { CONSTRUCTOR_DELETE_INGREDIENTS } from "../../../services/actions/ingredients";
-import OrderIngConstructor from "./orderIngConstructor";
+import OrderIngConstructor from "./order-ing-constructor";
 
 
 

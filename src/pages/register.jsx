@@ -1,5 +1,5 @@
 import { Input, Button, PasswordInput, EmailInput } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./pagesStyles.module.css";
+import styles from "./pages-styles.module.css";
 import { Link } from 'react-router-dom';
 import { register } from "../services/actions/login";
 import { useState, useEffect, useCallback } from 'react';

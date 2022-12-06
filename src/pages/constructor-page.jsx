@@ -1,6 +1,6 @@
-import BurgerConstructor from "../components/burgerConstructor/burgerConstructor";
-import BurgerIngredients from "../components/burgerIngredients/burgerIngredients";
-import styles from "./constructorPage.module.css";
+import BurgerConstructor from "../components/burger-constructor/burger-constructor";
+import BurgerIngredients from "../components/burger-ingredients/burger-ingredients";
+import styles from "./constructor-page.module.css";
 
 import { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";

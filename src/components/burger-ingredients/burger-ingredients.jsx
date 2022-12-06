@@ -1,8 +1,8 @@
-import ingredientsStyles from "./burgerIngredients.module.css";
-import IngredientConstructor from "./components/ingredientConstructor";
+import ingredientsStyles from "./burger-ingredients.module.css";
+import IngredientConstructor from "./components/ingredient-constructor";
 import { useState, useMemo, useEffect } from "react";
 import Modal from "../modal/modal";
-import IngredientDetails from "../ingredientDetails/ingredientDetails";
+import IngredientDetails from "../ingredient-details/ingredient-details";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -200,3 +200,6 @@ function BurgerIngredients() {
 // };
 
 export default BurgerIngredients;
+
+
+

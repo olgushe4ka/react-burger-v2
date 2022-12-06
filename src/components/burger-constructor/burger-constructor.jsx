@@ -1,8 +1,8 @@
-import burgerConstructorStyles from "./burgerConstructor.module.css";
+import burgerConstructorStyles from "./burger-constructor.module.css";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
-import OrderConstructor from "./components/orderConstructor";
+import OrderConstructor from "./components/order-constructor";
 import Sum from "./components/sum";
-import OrderDetails from "../orderDetails/orderDetails";
+import OrderDetails from "../order-details/order-details";
 import { useState } from "react";
 import Modal from "../modal/modal";
 import { useDispatch, useSelector } from "react-redux";

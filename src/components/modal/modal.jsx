@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import ModalOverlay from "../modalOverlay/modalOverlay.jsx";
+import ModalOverlay from "../modal-overlay/modal-overlay.jsx";
 import ModStyles from "./modal.module.css";
 import ReactDOM from "react-dom";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";

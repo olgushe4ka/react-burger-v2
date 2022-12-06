@@ -1,4 +1,4 @@
-import ingredientsStyles from "../burgerIngredients.module.css";
+import ingredientsStyles from "../burger-ingredients.module.css";
 import {
   CurrencyIcon,
   Counter,

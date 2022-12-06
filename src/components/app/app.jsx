@@ -4,9 +4,9 @@ import { testRegistration } from "../../utils/burger-api";
 import { useSelector, useDispatch } from "react-redux";
 import { getItems } from "../../services/actions/ingredients";
 import { useEffect } from "react";
-import { ProtectedRoute } from "../protectedRoute/protectedRoute";
+import { ProtectedRoute } from "../protected-route/protected-route";
 import { getProfileInfo } from "../../services/actions/login";
-import AppHeader from "../appHeader/appHeader";
+import AppHeader from "../app-header/app-header";
 
 
 function App() {

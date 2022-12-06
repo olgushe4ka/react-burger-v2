@@ -1,4 +1,4 @@
-import burgerConstructorStyles from "../burgerConstructor.module.css";
+import burgerConstructorStyles from "../burger-constructor.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useContext, useMemo } from "react";
 import BurgerIngredientsContext from "../../../context/burger-ingredients-context";

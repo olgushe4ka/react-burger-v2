@@ -1,4 +1,4 @@
-import ingredientDetailsStyles from "./ingredientDetails.module.css";
+import ingredientDetailsStyles from "./ingredient-details.module.css";
 import { ingredientPropType } from "../../utils/prop-types";
 import { useLocation, useHistory } from 'react-router-dom';
 import { useEffect } from "react";

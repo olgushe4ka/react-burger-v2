@@ -1,8 +1,8 @@
 import {
   Input, Button, EmailInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./pagesStyles.module.css";
-import { Link } from 'react-router-dom';
+import styles from "./pages-styles.module.css";
+import { Link, Redirect } from 'react-router-dom';
 import { passwordResetRequest } from "../services/actions/login";
 import { useState, useEffect, useCallback } from 'react';
 
@@ -20,6 +20,9 @@ function ForgotPassword() {
   const resetPassword = (value, event) => {
     event.preventDefault();
     sendRequest(value)
+debugger
+    return <Redirect to="/reset-password" />
+    debugger
   }
 
   const sendRequest = useCallback((email) => {

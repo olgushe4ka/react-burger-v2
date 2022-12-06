@@ -1,7 +1,7 @@
 import {
   Input, Button, EmailInput, PasswordInput
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./pagesStyles.module.css";
+import styles from "./pages-styles.module.css";
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { changeProfileInfo, getProfileInfo, logOut } from "../services/actions/login";
