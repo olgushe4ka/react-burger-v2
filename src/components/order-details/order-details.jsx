@@ -28,7 +28,7 @@ function OrderDetails() {
   const modalData = useSelector((state) => state.ingredients.orderDetails);
 
   if (!isAuthChecked) {
-       return <Redirect to="/register" />;
+       return <Redirect to="/login" />;
   }
   
   return (

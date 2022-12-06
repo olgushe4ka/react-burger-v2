@@ -17,17 +17,23 @@ function ForgotPassword() {
 
   const isLoading = useSelector((state) => state.login.passwordResetRequestIsLoading);
 
+  const passwordResetRequestSuccess = useSelector((state) => state.login.passwordResetRequest.success);
+
+
   const resetPassword = (value, event) => {
     event.preventDefault();
     sendRequest(value)
-debugger
-    return <Redirect to="/reset-password" />
-    debugger
   }
+
 
   const sendRequest = useCallback((email) => {
     dispatch(passwordResetRequest({ email }));
   }, [])
+
+
+  if (passwordResetRequestSuccess) {
+    return <Redirect to="/reset-password" />;
+  }
 
   return (
     <>
