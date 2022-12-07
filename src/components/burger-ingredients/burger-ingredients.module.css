@@ -1,0 +1,57 @@
+.main {
+  align-items: center;
+  width: 600px;
+  max-height: 700px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  z-index: 0;
+  text-decoration: none;
+}
+
+.headerfixed {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tabs {
+  display: flex;
+  z-index: 3;
+  background-color: #131316;
+  opacity: 1;
+}
+
+.h1text {
+  text-align: start;
+  background-color: #131316;
+  z-index: 5;
+}
+
+.text {
+  text-align: start;
+}
+
+.menuBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ingredietBox {
+  display: block;
+  max-width: 250px;
+  position: relative;
+  /* z-index: -1; */
+  text-decoration: none;
+}
+
+.ingredietBox:not(:nth-child(1)):not(:nth-child(2)) {
+  margin-top: 8px;
+}
+
+.priceBox {
+  display: flex;
+  justify-content: center;
+}

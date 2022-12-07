@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./components/App/App";
 import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
@@ -10,6 +9,10 @@ import { Provider } from "react-redux";
 import { rootReducer } from "./services/reducers";
 import thunk from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from "./components/app/app.jsx";
+
+
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -22,11 +25,15 @@ const store = configureStore({ reducer: rootReducer }, enhancer);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <>
+  {/* <React.StrictMode> */}
+    <Router>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+    </Router>
+  {/* </React.StrictMode> */}
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function

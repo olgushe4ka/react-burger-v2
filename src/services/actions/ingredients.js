@@ -25,26 +25,6 @@ export const CONSTRUCTOR_ADD_BUNS = "CONSTRUCTOR_ADD_BUNS";
 export const CONSTRUCTOR_SORT_INGREDIENTS = "CONSTRUCTOR_SORT_INGREDIENTS";
 export const CONSTRUCTOR_REMOVE_INGREDIENTS = "CONSTRUCTOR_REMOVE_INGREDIENTS"
 
-// export function getItems() {
-//   return function (dispatch) {
-//     dispatch({
-//       type: GET_INGREDIENTS_REQUEST,
-//     });
-//     getIngredients().then((res, err) => {
-//       if (res && res.success) {
-//         dispatch({
-//           type: GET_INGREDIENTS_SUCCESS,
-//           items: res.data,
-//         });
-//       } else {
-//         dispatch({
-//           type: GET_INGREDIENTS_FAILED,
-//           err,
-//         });
-//       }
-//     });
-//   };
-// }
 
 export function getItems() {
   return function (dispatch) {
