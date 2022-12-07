@@ -1,4 +1,5 @@
-import { ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404, ProfileHistoryOrders } from "../../pages/index";
+import { ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, 
+  Ingredients, Page404, ProfileHistoryOrders, Feed } from "../../pages/index";
 import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom';
 import { testRegistration } from "../../utils/burger-api";
 import { useSelector, useDispatch } from "react-redux";
@@ -33,6 +34,9 @@ function App() {
       <Switch location={background || location}>
         <Route path="/" exact={true} >
           <ConstructorPage />
+        </Route>
+        <Route path="/feed" exact={true} >
+          <Feed />
         </Route>
         <ProtectedRoute onlyUnAuth={true} path="/login" >
           <LoginPage />

@@ -10,8 +10,10 @@ import RegisterPage from "./register";
 import ResetPassword from "./reset-password";
 import Page404 from "./page404";
 import ProfileHistoryOrders from "./profile-history-orders";
+import Feed from "./feed";
 
 export {
-  ConstructorPage, LoginPage, RegisterPage, ForgotPassword, ResetPassword, Profile, Ingredients, Page404, ProfileHistoryOrders
-    //  PersonPage, HomePage, ListPage, NotFound404 
+  ConstructorPage, LoginPage, RegisterPage, ForgotPassword, 
+  ResetPassword, Profile, Ingredients, Page404, ProfileHistoryOrders, Feed
+  //  PersonPage, HomePage, ListPage, NotFound404 
 };
