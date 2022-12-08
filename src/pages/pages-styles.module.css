@@ -27,6 +27,11 @@
   margin-top: 120px;
 }
 
+.profileGridHistory{
+  composes: profileGrid;
+  grid-template-columns: 1fr 2fr;
+}
+
 .profileMenu {
   display: flex;
   flex-direction: column;
@@ -47,6 +52,7 @@
 
 .profileLeftBox {
   justify-self: end;
+  margin-left: 50px;
 }
 
 .ptofileTextDown {
@@ -70,4 +76,84 @@
 
 .profileButton:hover {
   cursor: pointer;
+}
+
+
+.profileFeedBurgers {
+  width: 844px;
+  height: 600px;
+  padding-right: 10px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  /* text-decoration: none;
+  align-self: center; */
+
+}
+
+
+
+.feedMain {
+  align-items: center;
+}
+
+.feedContent {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.feedTitle {
+  text-align: start;
+  align-self: flex-start;
+}
+
+.feedIdMain {
+  max-width: 640px;
+  margin: auto;
+  margin-top: 122px;
+  text-align: center;
+}
+
+.feedIdIngredients {
+  height: 366px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+
+}
+
+.feedNumbers {
+  width: 584px;
+  height: 600px;
+  padding-right: 10px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+  align-self: center;
+}
+
+.feedIddownBox {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.feedIdpriceBox {
+  display: flex;
+}
+
+.feddIdStatus {
+  color: #00CCCC;
+  text-align: left;
+}
+
+.feddIdbutgerSostav {
+  text-align: left;
+}
+
+.feddIdbutgerName {
+  text-align: left;
 }

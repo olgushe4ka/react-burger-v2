@@ -2,12 +2,8 @@ import {
   Input, Button, EmailInput, PasswordInput, FormattedDate, CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages-styles.module.css";
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { changeProfileInfo, getProfileInfo, logOut } from "../services/actions/login";
-import { useCallback, useEffect, useState } from "react";
-import { eraseCookie } from "../utils/cookie";
 import FeedBurgers from "../components/feed-burgers/feed-burgers";
+import FeedNumbers from "../components/feed-numbers/feed-numbers";
 
 
 function Feed() {
@@ -25,18 +21,18 @@ function Feed() {
 
 
   return (
-    <>
-      <div className={`${styles.feedMain} pl-2 pr-2 pb-0 pt-0`}>
-        <h2 className={`${styles.feedTitle} text text_type_main-large pl-15 pr-0 pb-5 pt-10`}          >
-          Лента заказов
-        </h2>
-        <div className={`${styles.allBurgers}  pl-15 pr-0 pb-0 pt-0`}>
-
-        <FeedBurgers />
-
+    <div className={`${styles.feedMain} ml-15 mr-0 mb-0 mt-0`}>
+      <h2 className={`${styles.feedTitle} text text_type_main-large ml-0 mr-0 mb-5 mt-10`}          >
+        Лента заказов
+      </h2>
+      <div className={`${styles.feedContent} ml-0 mr-0 mb-0 mt-0`}>
+        <div className={`${styles.feedNumbers}`}>
+          <FeedBurgers />
         </div>
+        <FeedNumbers />
+
       </div>
-    </>
+    </div>
   );
 }
 

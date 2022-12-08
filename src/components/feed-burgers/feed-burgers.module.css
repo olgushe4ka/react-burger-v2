@@ -1,9 +1,15 @@
-.allBurgers{
-  height: 744px;
-}
+/* .allBurgers {
+  height: 600px;
+   overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+align-self: center;
+} */
+
 .burgerBox {
   display: flex;
-  max-width: 584px;
+  max-width: 100%;
   height: 214px;
   flex-direction: column;
   background: #1C1C21;
@@ -12,7 +18,7 @@
 }
 
 .burgerBox:not(:first-child) {
-margin-top: 16px;
+  margin-top: 16px;
 }
 
 
@@ -76,6 +82,6 @@ margin-top: 16px;
   opacity: 0.5;
 }
 
-.priceBox{
+.priceBox {
   display: flex;
 }

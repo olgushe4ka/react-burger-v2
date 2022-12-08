@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { changeProfileInfo, getProfileInfo, logOut } from "../services/actions/login";
 import { useCallback, useEffect, useState } from "react";
 import { eraseCookie } from "../utils/cookie";
-
+import FeedBurgers from "../components/feed-burgers/feed-burgers";
 
 function ProfileHistoryOrders() {
   const name = useSelector((state) => state.login.userName);
@@ -36,7 +36,7 @@ function ProfileHistoryOrders() {
 
   return (
     <>
-      <div className={`${styles.profileGrid} `}>
+      <div className={`${styles.profileGridHistory} `}>
         <div className={`${styles.profileLeftBox} ml-0 mr-15 mb-0 mt-0`}>
           <div className={`${styles.profileMenu}`}>
             <Link to="/profile" className={`${styles.profileButton} text text_type_main-medium`}>
@@ -54,8 +54,8 @@ function ProfileHistoryOrders() {
             В этом разделе вы можете изменить свои персональные данные
           </p>
         </div>
-        <div className={`${styles.profileInput}`}>
-        <p className="text text_type_main-default">Страница в разработке</p>
+        <div className={`${styles.profileFeedBurgers} ml-15 mr-0 mb-0 mt-0`}>
+          <FeedBurgers />
 
         </div>
 
