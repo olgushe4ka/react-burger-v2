@@ -3,8 +3,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./feed-burgers.module.css";
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from "react-redux";
-import { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 
@@ -16,33 +15,24 @@ function FeedBurgers({ order }) {
   const ingredientsIds = order.ingredients;
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
 
-
-  // const ingredients = ingredientsAll.filter((item) => {
-  //   ingredientsIds.map((id) => item._id === id)
-  // })
-
   const ingredients = []
 
   ingredientsAll.forEach((item) => {
     ingredientsIds.forEach((id) => {
-        if (item._id == id) {
-          ingredients.push(item);
-        }
+      if (item._id == id) {
+        ingredients.push(item);
+      }
     });
-});
+  });
 
- const ingredientsOnlyFive = ingredients.slice(0, 5);
-
-  const openOrderInfo = (data) => { }
-
+  const ingredientsOnlyFive = ingredients.slice(0, 5);
 
 
   //сумма
-  
+
   const ingredientsArr = ingredients.map((ingredient) => {
     return ingredient.price;
   });
-
   const initialSum = 0;
 
   const sumIngredWithInitial = ingredientsArr.reduce(
@@ -52,15 +42,19 @@ function FeedBurgers({ order }) {
 
 
   return (
-    <>
-      <div className={`${styles.allBurgers} `} onClick={() => openOrderInfo(ingredients)}>
+    <Link style={{ textDecoration: 'none', color: 'white' }}
+      to={{
+        pathname: `/feed/${order._id}`,
+        //state: { background: location }
+      }}
+
+    >
+      <div className={`${styles.allBurgers} `} >
         <div className={`${styles.burgerBox} pl-6 pr-6 pb-6 pt-6`}>
           <div className={`${styles.numberAndDateBox} `}>
             <p className={`${styles.orderNumber} text text_type_digits-default`}>{order.number}</p>
-
-            {/* <FormattedDate date={()=>
-             order.createdAt
-            } /> */}
+            <FormattedDate date={new Date(order.createdAt)}
+            />
           </div>
 
           <p className={`${styles.butgerName} text text_type_main-medium pl-0 pr-0 pb-8 pt-6`}          >
@@ -93,7 +87,7 @@ function FeedBurgers({ order }) {
 
 
       </div>
-    </>
+    </ Link>
   );
 }
 

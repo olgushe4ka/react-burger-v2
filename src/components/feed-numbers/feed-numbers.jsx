@@ -32,9 +32,7 @@ function FeedNumbers({ numbers }) {
   const readyNumbers = ready?.map((item) => item.number)
   const pendingNumbers = pending?.map((item) => item.number)
 
-  console.log(readyNumbers)
-
-  return (
+   return (
 
     <div className={`${styles.main} `}>
       <div className={`${styles.readyBox} `}>
@@ -43,7 +41,7 @@ function FeedNumbers({ numbers }) {
         </h3>
         {readyNumbers?.map((number) => {
           return (
-            <p className={`${styles.readyNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
+            <p key={number} className={`${styles.readyNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
               {number}
             </p>)
         })}
@@ -57,7 +55,7 @@ function FeedNumbers({ numbers }) {
 
         {pendingNumbers?.map((number) => {
           return (
-            <p className={`${styles.inWorkNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
+            <p key={number} className={`${styles.inWorkNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
               {number}
             </p>)
         })}
