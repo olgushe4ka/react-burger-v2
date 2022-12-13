@@ -88,6 +88,8 @@
   scrollbar-color: #8585ad black;
   /* text-decoration: none;
   align-self: center; */
+  display: flex;
+  flex-direction: column-reverse;
 
 }
 

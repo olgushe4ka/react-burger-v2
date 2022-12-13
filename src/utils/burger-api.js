@@ -2,6 +2,9 @@ import { setCookie, getCookie } from "./cookie";
 
 const baseUrl = "https://norma.nomoreparties.space/api";
 
+export const baseWS = "wss://norma.nomoreparties.space/orders/all";
+export const baseWSUser = "wss://norma.nomoreparties.space/orders";
+
 function checkResponse(res) {
   if (res.ok) {
     return res.json();

@@ -8,7 +8,7 @@ import { useCallback, useEffect, useState } from "react";
 
 
 
-function FeedNumbers() {
+function FeedNumbers({ numbers }) {
   // const name = useSelector((state) => state.login.userName);
   // const [emailValue, setEmailValue] = useState(email);
   // const dispatch = useDispatch();
@@ -19,9 +19,20 @@ function FeedNumbers() {
   //   dispatch(getProfileInfo());
   // }, [dispatch]);
 
+  //const ready = numbers.map((item) => item.status === 'done');
+  //console.log(numbers)
 
+  //const order = numbers.orders
 
+  const orders = useSelector((state) => state.ws.table.orders);
 
+  const ready = orders?.filter((item) => item.status === 'done').slice(0, 5)
+  const pending = orders?.filter((item) => item.status === 'pending').slice(0, 5)
+
+  const readyNumbers = ready?.map((item) => item.number)
+  const pendingNumbers = pending?.map((item) => item.number)
+
+  console.log(readyNumbers)
 
   return (
 
@@ -30,30 +41,26 @@ function FeedNumbers() {
         <h3 className={`${styles.ready} text text_type_main-medium  pl-0 pr-0 pb-4 pt-0`}      >
           Готовы:
         </h3>
-        <p className={`${styles.readyNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
-          0355448
-        </p>
-        <p className={`${styles.readyNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
-          0355449
-        </p>
-        <p className={`${styles.readyNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
-          0355445
-        </p>
+        {readyNumbers?.map((number) => {
+          return (
+            <p className={`${styles.readyNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
+              {number}
+            </p>)
+        })}
+
       </div>
 
       <div className={`${styles.inWorkBox} `}>
         <h3 className={`${styles.inWork} text text_type_main-medium  pl-0 pr-0 pb-4 pt-0`}      >
           В работе:
         </h3>
-        <p className={`${styles.inWorkNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
-          0355555
-        </p>
-        <p className={`${styles.inWorkNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
-          0355556
-        </p>
-        <p className={`${styles.inWorkNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
-          0355557
-        </p>
+
+        {pendingNumbers?.map((number) => {
+          return (
+            <p className={`${styles.inWorkNumber} text text_type_main-medium  pl-0 pr-0 pb-0 pt-2`}      >
+              {number}
+            </p>)
+        })}
       </div>
 
       <div className={`${styles.doneBox} `}>
@@ -61,7 +68,7 @@ function FeedNumbers() {
           Выполнено за всё время:
         </h3>
         <p className={`${styles.numberBig} text text_type_digits-large  pl-0 pr-0 pb-0 pt-0`}      >
-          152152
+          {numbers?.total}
         </p>
       </div>
 
@@ -70,7 +77,7 @@ function FeedNumbers() {
           Выполнено за сегодня:
         </h3>
         <p className={`${styles.numberBig} text text_type_digits-large  pl-0 pr-0 pb-0 pt-0`}      >
-          152
+          {numbers?.totalToday}
         </p>
       </div>
     </div>

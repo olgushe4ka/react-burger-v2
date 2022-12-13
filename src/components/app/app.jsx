@@ -3,13 +3,14 @@ import {
   Ingredients, Page404, ProfileHistoryOrders, Feed, OrderInfo
 } from "../../pages/index";
 import { BrowserRouter as Router, Switch, Route, useLocation, useHistory } from 'react-router-dom';
-import { testRegistration } from "../../utils/burger-api";
+import { baseWS, testRegistration } from "../../utils/burger-api";
 import { useSelector, useDispatch } from "react-redux";
 import { getItems } from "../../services/actions/ingredients";
 import { useEffect } from "react";
 import { ProtectedRoute } from "../protected-route/protected-route";
 import { getProfileInfo } from "../../services/actions/login";
 import AppHeader from "../app-header/app-header";
+import { wsConnect, wsDisconnect } from "../../services/actions/web-soket";
 
 
 function App() {
@@ -26,9 +27,16 @@ function App() {
     dispatch(getProfileInfo());
   }, [dispatch]);
 
-  //const data = useSelector((state) => state.ingredients.ingredients);
-
   const background = location.state?.background;
+
+ 
+
+// //WS
+
+//  useEffect(() => {
+//   dispatch(wsConnect(baseWS));
+// }, [dispatch]);
+
 
   return (
     <>

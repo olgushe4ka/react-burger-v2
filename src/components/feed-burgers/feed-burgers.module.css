@@ -7,6 +7,9 @@
 align-self: center;
 } */
 
+.allBurgers{
+  margin-top: 10px;
+}
 .burgerBox {
   display: flex;
   max-width: 100%;
@@ -27,6 +30,11 @@ align-self: center;
   justify-content: space-between;
 }
 
+.butgerName{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 
 .ingredientsBox {
   display: flex;

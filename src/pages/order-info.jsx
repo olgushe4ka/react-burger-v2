@@ -31,7 +31,7 @@ function OrderInfo() {
         <div className={`${styles.feedIdIngredients} `}>
           {ingredients.map((ingredient) => {
             return (
-              <FeedСonsist props={ingredient} />)
+              <FeedСonsist props={ingredient} key={ingredient._id}/>)
           })}
         </div>
 

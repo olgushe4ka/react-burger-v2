@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { changeProfileInfo, getProfileInfo, logOut } from "../services/actions/login";
 import { useCallback, useEffect, useState } from "react";
-import { eraseCookie } from "../utils/cookie";
+import { eraseCookie, getCookie } from "../utils/cookie";
 import FeedBurgers from "../components/feed-burgers/feed-burgers";
+import { baseWSUser } from "../utils/burger-api";
+import { wsConnect } from "../services/actions/web-soket";
+import { v4 as uuidv4 } from "uuid";
 
 function ProfileHistoryOrders() {
   const name = useSelector((state) => state.login.userName);
@@ -15,6 +18,7 @@ function ProfileHistoryOrders() {
   const [nameValue, setNameValue] = useState(name);
   const [emailValue, setEmailValue] = useState(email);
 
+  const allOrders = useSelector((state) => state.ws.table.orders);
 
   const dispatch = useDispatch();
 
@@ -31,6 +35,15 @@ function ProfileHistoryOrders() {
     eraseCookie("accessToken")
     localStorage.removeItem("refreshToken");
   }
+
+  //WS
+  const token = getCookie('accessToken')
+
+  useEffect(() => {
+    dispatch(wsConnect(`${baseWSUser}?token=${token}`));
+  }, [dispatch]);
+
+
 
 
 
@@ -55,7 +68,11 @@ function ProfileHistoryOrders() {
           </p>
         </div>
         <div className={`${styles.profileFeedBurgers} ml-15 mr-0 mb-0 mt-0`}>
-          <FeedBurgers />
+          {allOrders?.map((order) => {
+            return (
+              <FeedBurgers key={uuidv4()} order={order} />
+            )
+          })}
 
         </div>
 
