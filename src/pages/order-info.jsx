@@ -49,8 +49,6 @@ function OrderInfo() {
     }
   })();
 
-debugger;
-
   //сумма
 
   const ingredientsArr = ingredients.map((ingredient) => {
@@ -68,6 +66,7 @@ debugger;
 
   return (
     <>
+    { props && (
       <div className={`${styles.feedIdMain} `}>
         <p className={`${styles.feddIdOrderNumber} text text_type_digits-default `}># {props?.number}</p>
         <p className={`${styles.feddIdbutgerName} text text_type_main-medium pl-0 pr-0 pb-0 pt-10`}          >
@@ -98,7 +97,7 @@ debugger;
           </div>
         </div>
       </div>
-
+    )}
     </>
   );
 }

@@ -2,7 +2,7 @@ import {
   Input, Button, EmailInput, PasswordInput, FormattedDate, CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./feed-burgers.module.css";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation,useHistory } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
@@ -10,6 +10,12 @@ import { v4 as uuidv4 } from "uuid";
 
 function FeedBurgers({ order }) {
 
+  const history = useHistory();
+
+  console.log(history.location.pathname)
+
+  const pathFeedOrOrder = history.location.pathname;
+  
   const location = useLocation()
 
   const today = new Date();
@@ -46,7 +52,7 @@ function FeedBurgers({ order }) {
   return (
     <Link style={{ textDecoration: 'none', color: 'white' }}
       to={{
-        pathname: `/feed/${order._id}`,
+        pathname: `${pathFeedOrOrder}/${order._id}`,
         state: { background: location }
       }}
 
@@ -65,9 +71,9 @@ function FeedBurgers({ order }) {
 
           <div className={`${styles.ingredientsBox} pl-0 pr-0 pb-0 pt-0`}>
             <ul className={`${styles.ingredientsIcons} pl-0 pr-0 pb-0 pt-0`} >
-              {ingredientsOnlyFive.map((item) => {
+              {ingredientsOnlyFive.map((item, index) => {
                 return (
-                  <li className={`${styles.ingredientIcon}`} key={uuidv4()}>
+                  <li className={`${styles.ingredientIcon}`} key={index}>
                     <img className={`${styles.ingredientIconImage}`} src={item.image} alt="фото ингридиента" />
                   </li>
                 )
