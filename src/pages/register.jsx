@@ -20,7 +20,6 @@ function RegisterPage() {
     const isLoading = useSelector((state) => state.login.registrationIsLoading);
     const registrationSuccess = useSelector((state) => state.login.registration.success);
 
-    console.log(registrationSuccess)
 
 
     const inputValue = {

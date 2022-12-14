@@ -11,6 +11,7 @@ import { ProtectedRoute } from "../protected-route/protected-route";
 import { getProfileInfo } from "../../services/actions/login";
 import AppHeader from "../app-header/app-header";
 import { wsConnect, wsDisconnect } from "../../services/actions/web-soket";
+import { wsActions } from "../../utils/constants";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  
 
   useEffect(() => {
     dispatch(getItems());
@@ -33,9 +35,9 @@ function App() {
 
 // //WS
 
-//  useEffect(() => {
-//   dispatch(wsConnect(baseWS));
-// }, [dispatch]);
+ useEffect(() => {
+  dispatch(wsConnect(baseWS));
+}, [dispatch]);
 
 
   return (

@@ -3,13 +3,12 @@ export const socketMiddleware = (wsActions) => {
     let socket = null;
     let isConnected = false;
     let reconnectTimer = 0;
-    let url = '';
-
-
+    let url = "";
 
     return (next) => (action) => {
       const { dispatch } = store;
-        const {type, payload} = action;
+      const { type, payload } = action;
+ 
       const {
         wsConnect,
         wsDisconnect,
@@ -20,8 +19,7 @@ export const socketMiddleware = (wsActions) => {
         onMessage,
       } = wsActions;
 
-
-      if (type === "LIVE_ORDER_FEED_CONNECT") {
+      if (type === wsConnect.type) {
         url = action.payload;
         socket = new WebSocket(url);
         isConnected = true;
@@ -34,24 +32,23 @@ export const socketMiddleware = (wsActions) => {
         };
 
         socket.onerror = (event) => {
-          console.log('socket.onerror', event);
+          console.log("socket.onerror", event);
         };
 
         socket.onclose = (event) => {
           if (event.code !== 1000) {
-            console.log('socket.onclose', event);
-            dispatch(onError(event.code.toString()))
+            console.log("socket.onclose", event);
+            dispatch(onError(event.code.toString()));
           }
 
           dispatch(onClose(event.code.toString()));
 
-          if(isConnected){
-            dispatch(wsConnecting())
+          if (isConnected) {
+            dispatch(wsConnecting());
             reconnectTimer = window.setTimeout(() => {
-                dispatch(wsConnect(url))
-            }, 3000)
+              dispatch(wsConnect(url));
+            }, 3000);
           }
-
         };
 
         socket.onmessage = (event) => {
@@ -65,8 +62,7 @@ export const socketMiddleware = (wsActions) => {
           clearTimeout(reconnectTimer);
           reconnectTimer = 0;
 
-          socket.close(1000, 'Работа приложения закончена');
-
+          socket.close(1000, "Работа приложения закончена");
         }
       }
 

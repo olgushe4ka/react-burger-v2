@@ -11,6 +11,7 @@ import Spinner from "../components/spinner/spinner";
 function LoginPage() {
 
   const isLoading = useSelector((state) => state.login.loginIsLoading);
+  const loginSuccess = useSelector((state) => state.login.login.success);
 
 
   const dispatch = useDispatch();
@@ -39,7 +40,10 @@ function LoginPage() {
   const getUserInfo = useCallback((value) => {
     dispatch(getProfileInfo(value));
   }, [])
-
+  
+  if (loginSuccess) {
+    window.location.reload()
+  }
 
   return (
     <>

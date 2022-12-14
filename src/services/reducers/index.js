@@ -14,8 +14,7 @@ export const rootReducer = combineReducers({
 });
 
 
-
-const wsActions = {
+export const wsActions = {
     wsConnect,
     wsDisconnect,
     wsConnecting,
