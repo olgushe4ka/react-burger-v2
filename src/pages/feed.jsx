@@ -5,16 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { wsConnect } from "../services/actions/web-soket";
 import { baseWS } from "../utils/burger-api";
 import { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
 import Modal from "../components/modal/modal";
-import { Route, useLocation, useHistory } from 'react-router-dom';
-import OrderInfo from "./order-info";
+import { useLocation, useHistory } from "react-router-dom";
 import OrderInfoModal from "../components/order-info-modal/order-info-modal";
 
-
-
 function Feed() {
-
   const [modalOpen, setModalOpen] = useState(null);
 
   const dispatch = useDispatch();
@@ -23,16 +18,14 @@ function Feed() {
 
   const background = location.state?.background;
 
-
   const allOrders = useSelector((state) => state.ws.table.orders);
 
   const numbers = useSelector((state) => state.ws.table);
 
   const onModalClose = () => {
-    setModalOpen(null)
+    setModalOpen(null);
     history.goBack();
   };
-
 
   //WS
 
@@ -40,15 +33,15 @@ function Feed() {
     dispatch(wsConnect(baseWS));
   }, [dispatch]);
 
-
-
   const openOrderInfo = (data) => {
     setModalOpen(data);
-  }
+  };
   return (
     <>
       <div className={`${styles.feedMain} ml-15 mr-0 mb-0 mt-0`}>
-        <h2 className={`${styles.feedTitle} text text_type_main-large ml-0 mr-0 mb-5 mt-10`}          >
+        <h2
+          className={`${styles.feedTitle} text text_type_main-large ml-0 mr-0 mb-5 mt-10`}
+        >
           Лента заказов
         </h2>
         <div className={`${styles.feedContent} ml-0 mr-0 mb-0 mt-0`}>
@@ -57,24 +50,19 @@ function Feed() {
               return (
                 <div key={order.number} onClick={() => openOrderInfo(order)}>
                   <FeedBurgers order={order} />
-                </div >
-              )
+                </div>
+              );
             })}
           </div>
           <FeedNumbers numbers={numbers} />
         </div>
       </div>
 
-
       {modalOpen && (
-        <Modal
-          closeAllModals={onModalClose}
-        >
+        <Modal closeAllModals={onModalClose}>
           <OrderInfoModal orders={modalOpen} />
         </Modal>
       )}
-
-
     </>
   );
 }

@@ -7,9 +7,8 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { getIngredients } from "../utils/burger-api";
 
-
 function ConstructorPage() {
-const [ingredients, setIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
     const getIngredientsData = async () => {

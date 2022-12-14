@@ -3,13 +3,9 @@ import {
   DragIcon,
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useMemo, useContext, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useDrag, useDrop } from "react-dnd";
 import { CONSTRUCTOR_DELETE_INGREDIENTS } from "../../../services/actions/ingredients";
 import OrderIngConstructor from "./order-ing-constructor";
-
-
 
 function OrderConstructor() {
   const dispatch = useDispatch();
@@ -17,35 +13,33 @@ function OrderConstructor() {
   const ingredients = useSelector((state) => state.ingredients.cartIng);
   const buns = useSelector((state) => state.ingredients.cartBun);
 
-  const bun = buns[buns.length - 1]
-
+  const bun = buns[buns.length - 1];
 
   //Удаление элемента
   const deleteIngredient = (indexOf) => {
-    dispatch
-      ({
-        type: CONSTRUCTOR_DELETE_INGREDIENTS,
-        payload: indexOf,
-      });
-
-  }
-
+    dispatch({
+      type: CONSTRUCTOR_DELETE_INGREDIENTS,
+      payload: indexOf,
+    });
+  };
 
   return (
     <div
       className={`${burgerConstructorStyles.orderConstructor} pl-9 pr-5 pb-0 pt-6`}
     >
-      {buns.length > 0 && (<div className={`pl-8 pr-0 pb-0 pt-0`}>
-        <ConstructorElement
-          type="top"
-          isLocked={true}
-          price={bun?.price}
-          thumbnail={bun?.image}
-          text={bun?.name + " (верх)"}
-          id={bun?._id}
-        />
-      </div>)}
-      <ul className={`${burgerConstructorStyles.list}`} >
+      {buns.length > 0 && (
+        <div className={`pl-8 pr-0 pb-0 pt-0`}>
+          <ConstructorElement
+            type="top"
+            isLocked={true}
+            price={bun?.price}
+            thumbnail={bun?.image}
+            text={bun?.name + " (верх)"}
+            id={bun?._id}
+          />
+        </div>
+      )}
+      <ul className={`${burgerConstructorStyles.list}`}>
         {ingredients.map((ingredientItem, index) => {
           return (
             <li
@@ -70,16 +64,18 @@ function OrderConstructor() {
           );
         })}
       </ul>
-      {buns.length > 0 && (<div className={`pl-8 pr-0 pb-0 pt-0`}>
-        <ConstructorElement
-          type="bottom"
-          isLocked={true}
-          price={bun?.price}
-          thumbnail={bun?.image}
-          text={bun?.name + " (низ)"}
-          id={bun?._id}
-        />
-      </div>)}
+      {buns.length > 0 && (
+        <div className={`pl-8 pr-0 pb-0 pt-0`}>
+          <ConstructorElement
+            type="bottom"
+            isLocked={true}
+            price={bun?.price}
+            thumbnail={bun?.image}
+            text={bun?.name + " (низ)"}
+            id={bun?._id}
+          />
+        </div>
+      )}
     </div>
   );
 }

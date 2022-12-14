@@ -1,4 +1,3 @@
-
 .feedIdMain {
   max-width: 640px;
   margin: auto;
@@ -11,7 +10,6 @@
   scrollbar-width: thin;
   scrollbar-color: #8585ad black;
   text-decoration: none;
-
 }
 
 .feedNumbers {
@@ -36,7 +34,7 @@
 }
 
 .feddIdStatus {
-  color: #00CCCC;
+  color: #00cccc;
   text-align: left;
 }
 

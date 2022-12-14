@@ -13,7 +13,6 @@ import {
   CONSTRUCTOR_REMOVE_INGREDIENTS,
 } from "../actions/ingredients";
 
-
 const initialState = {
   ingredients: [],
   ingredientsIsLoading: false,
@@ -132,7 +131,7 @@ export const ingredientsReducer = (state = initialState, action) => {
       return {
         ...state,
         cartIng: [],
-        cartBun: []
+        cartBun: [],
       };
     }
 

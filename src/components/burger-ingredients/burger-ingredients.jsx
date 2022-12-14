@@ -6,24 +6,18 @@ import IngredientDetails from "../ingredient-details/ingredient-details";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  getItems,
   SET_INGREDIENT_MODAL,
   RESET_INGREDIENT_MODAL,
 } from "../../services/actions/ingredients";
-import { useInView } from 'react-intersection-observer';
-
+import { useInView } from "react-intersection-observer";
 import { useHistory } from "react-router-dom";
-import { BrowserRouter  } from 'react-router-dom';
+
 
 function BurgerIngredients() {
-
-
   const dispatch = useDispatch();
   const data = useSelector((state) => state.ingredients.ingredients);
 
-  // useEffect(() => {
-  //   dispatch(getItems());
-  // }, [dispatch]);
+
 
   const buns = useMemo(
     () => data?.filter((item) => item.type === "bun"),
@@ -55,7 +49,6 @@ function BurgerIngredients() {
     history.goBack();
   };
 
-
   //Tab
   const [currentTab, setCurrentTab] = useState("buns");
 
@@ -65,17 +58,23 @@ function BurgerIngredients() {
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
 
-
-  const { ref: refBuns, inView: inViewBuns } = useInView({ threshold: 0, });
-  const { ref: refSauces, inView: inViewSauces } = useInView({ threshold: 0.8, });
-  const { ref: refMains, inView: inViewMains } = useInView({ threshold: 0.5, });
+  const { ref: refBuns, inView: inViewBuns } = useInView({ threshold: 0 });
+  const { ref: refSauces, inView: inViewSauces } = useInView({
+    threshold: 0.8,
+  });
+  const { ref: refMains, inView: inViewMains } = useInView({ threshold: 0.5 });
 
   useEffect(() => {
-    if (inViewBuns) { setCurrentTab('buns') };
-    if (inViewSauces) { setCurrentTab('sauces') };
-    if (inViewMains) { setCurrentTab('mains') };
-  }, [inViewBuns, inViewSauces, inViewMains])
-
+    if (inViewBuns) {
+      setCurrentTab("buns");
+    }
+    if (inViewSauces) {
+      setCurrentTab("sauces");
+    }
+    if (inViewMains) {
+      setCurrentTab("mains");
+    }
+  }, [inViewBuns, inViewSauces, inViewMains]);
 
   return (
     <>
@@ -112,7 +111,7 @@ function BurgerIngredients() {
         >
           Булки
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} >
+        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
           {buns.map((dataIng) => {
             return (
               <div
@@ -136,11 +135,13 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="sauces"
-
         >
           Соусы
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} ref={refSauces}>
+        <div
+          className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}
+          ref={refSauces}
+        >
           {sauces.map((dataIng) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
@@ -160,11 +161,13 @@ function BurgerIngredients() {
         <p
           className={`${ingredientsStyles.text} text text_type_main-medium ml-0 mr-0 mb-0 mt-10`}
           id="mains"
-
         >
           Начинки
         </p>
-        <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`} ref={refMains}>
+        <div
+          className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}
+          ref={refMains}
+        >
           {mains.map((dataIng) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
@@ -178,19 +181,18 @@ function BurgerIngredients() {
                   index={Math.random().toString(36).slice(2)}
                 />
               </div>
-
             );
           })}
         </div>
       </section>
-        {ingredientsData && (
-          <Modal
-            closeAllModals={closeIngredientModal}
-            title={"Детали ингридиента"}
-          >
-            <IngredientDetails ingredients={ingredientsData} />
-          </Modal>
-        )}
+      {ingredientsData && (
+        <Modal
+          closeAllModals={closeIngredientModal}
+          title={"Детали ингридиента"}
+        >
+          <IngredientDetails ingredients={ingredientsData} />
+        </Modal>
+      )}
     </>
   );
 }
@@ -200,6 +202,3 @@ function BurgerIngredients() {
 // };
 
 export default BurgerIngredients;
-
-
-

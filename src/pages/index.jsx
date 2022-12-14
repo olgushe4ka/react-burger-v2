@@ -1,4 +1,3 @@
-
 import ForgotPassword from "./forgot-password";
 import ConstructorPage from "./constructor-page";
 import Ingredients from "./ingredients";
@@ -13,12 +12,17 @@ import ProfileHistoryOrders from "./profile-history-orders";
 import Feed from "./feed";
 import OrderInfo from "./order-info";
 
-
-
-
-
 export {
-  ConstructorPage, LoginPage, RegisterPage, ForgotPassword, 
-  ResetPassword, Profile, Ingredients, Page404, ProfileHistoryOrders, Feed, OrderInfo
-  //  PersonPage, HomePage, ListPage, NotFound404 
+  ConstructorPage,
+  LoginPage,
+  RegisterPage,
+  ForgotPassword,
+  ResetPassword,
+  Profile,
+  Ingredients,
+  Page404,
+  ProfileHistoryOrders,
+  Feed,
+  OrderInfo,
+  //  PersonPage, HomePage, ListPage, NotFound404
 };

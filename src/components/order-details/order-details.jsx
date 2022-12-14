@@ -2,39 +2,37 @@ import OrderDetailsStyles from "./order-details.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { orderBurger, } from "../../services/actions/ingredients";
-import { TailSpin } from 'react-loader-spinner'
+import { orderBurger } from "../../services/actions/ingredients";
+import { TailSpin } from "react-loader-spinner";
 import { Redirect } from "react-router-dom";
 
 function OrderDetails() {
-
-  const isLoading = useSelector((state) => state.ingredients.orderDetailsIsLoading);
+  const isLoading = useSelector(
+    (state) => state.ingredients.orderDetailsIsLoading
+  );
   const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
-  const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart]
-  const ingredients = ingredientsAll.map((ingrItem) => { return ingrItem._id; });
+  const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart];
+  const ingredients = ingredientsAll.map((ingrItem) => {
+    return ingrItem._id;
+  });
 
   const isAuthChecked = useSelector((state) => state.login.isAuthChecked);
 
   const dispatch = useDispatch();
 
-  useEffect(
-    () => {
-      dispatch(orderBurger({ ingredients }));
-    },
-    [dispatch],
-  );
+  useEffect(() => {
+    dispatch(orderBurger({ ingredients }));
+  }, [dispatch]);
 
   const modalData = useSelector((state) => state.ingredients.orderDetails);
 
   if (!isAuthChecked) {
-       return <Redirect to="/login" />;
+    return <Redirect to="/login" />;
   }
-  
+
   return (
-
     <div className={`${OrderDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
-
       {isLoading && (
         <div className={`${OrderDetailsStyles.loading} `}>
           <TailSpin
@@ -44,7 +42,9 @@ function OrderDetails() {
             animationDuration="0.75"
             width="96"
             visible={true}
-          /> </div>)}
+          />
+        </div>
+      )}
 
       <p
         className={`${OrderDetailsStyles.orderNumber} text text_type_digits-large`}
@@ -72,8 +72,4 @@ function OrderDetails() {
   );
 }
 
-
 export default OrderDetails;
-
-
-

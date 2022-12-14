@@ -12,11 +12,11 @@
 }
 
 .textDownlogin {
-  color: #8585AD;
+  color: #8585ad;
 }
 
 .linkDownlogin {
-  color: #4C4CFF;
+  color: #4c4cff;
   text-decoration: none;
 }
 
@@ -27,7 +27,7 @@
   margin-top: 120px;
 }
 
-.profileGridHistory{
+.profileGridHistory {
   composes: profileGrid;
   grid-template-columns: 1fr 2fr;
 }
@@ -43,11 +43,11 @@
   background-color: transparent;
   font-size: 24px;
   text-decoration: none;
-  color: #8585AD;
+  color: #8585ad;
   border: none;
   text-align: start;
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
 .profileLeftBox {
@@ -57,7 +57,7 @@
 
 .ptofileTextDown {
   max-width: 320px;
-  color: #8585AD;
+  color: #8585ad;
   opacity: 0.4;
 }
 
@@ -78,7 +78,6 @@
   cursor: pointer;
 }
 
-
 .profileFeedBurgers {
   width: 844px;
   height: 600px;
@@ -90,10 +89,7 @@
   align-self: center; */
   display: flex;
   flex-direction: column-reverse;
-
 }
-
-
 
 .feedMain {
   align-items: center;
@@ -102,7 +98,6 @@
 .feedContent {
   display: flex;
   justify-content: space-between;
-
 }
 
 .feedTitle {
@@ -123,7 +118,6 @@
   scrollbar-width: thin;
   scrollbar-color: #8585ad black;
   text-decoration: none;
-
 }
 
 .feedNumbers {
@@ -148,7 +142,7 @@
 }
 
 .feddIdStatus {
-  color: #00CCCC;
+  color: #00cccc;
   text-align: left;
 }
 

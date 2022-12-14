@@ -1,15 +1,11 @@
 import burgerConstructorStyles from "../burger-constructor.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useContext, useMemo } from "react";
-import BurgerIngredientsContext from "../../../context/burger-ingredients-context";
 import { useSelector } from "react-redux";
 
 function Sum() {
-  
   const ingredients = useSelector((state) => state.ingredients.cartIng);
   const buns = useSelector((state) => state.ingredients.cartBun);
 
-  
   const bun = buns[buns.length - 1];
 
   const ingredientsArr = ingredients.map((ingredient) => {
@@ -22,10 +18,11 @@ function Sum() {
     (previousValue, currentValue) => previousValue + currentValue,
     initialSum
   );
- 
-  const sumWithBuns = (sumIngredWithInitial + (bun?.price ?? 0) * 2).toLocaleString(
-    "ru-RU"
-  );
+
+  const sumWithBuns = (
+    sumIngredWithInitial +
+    (bun?.price ?? 0) * 2
+  ).toLocaleString("ru-RU");
 
   return (
     <div
