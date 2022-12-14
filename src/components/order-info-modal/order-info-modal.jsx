@@ -1,40 +1,33 @@
 import {
   FormattedDate, CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import styles from "./pages-styles.module.css";
-import FeedСonsist from "../components/feed-consist/feed-consist";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import styles from "./order-info-modal.module.css";
+import FeedСonsist from "../feed-consist/feed-consist";
+import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { wsConnect } from "../services/actions/web-soket";
-import { baseWS } from "../utils/burger-api";
 import { useEffect } from "react";
 
 
 
+function OrderInfoModal({ orders } ) {
 
-function OrderInfo() {
-  // const dispatch = useDispatch()
-  
-  // //WS
-  // useEffect(() => {
+  const today = new Date();
 
-  //   dispatch(wsConnect(baseWS));
-  // }, [dispatch]);
+ // const { id } = useParams();
 
+ // const orders = useSelector((state) => state.ws.table.orders);
 
+  //const props = orders?.find((order) => order?._id === id);
 
-  const { id } = useParams();
+  const props = orders;
 
-
-  const orders = useSelector((state) => state.ws.table.orders);
-  const props = orders?.find((order) => order?._id === id);
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients = [];
+  const ingredients = []
 
-  ingredientsAll.forEach((item) => {
-    props?.ingredients.forEach((id) => {
+  ingredientsAll?.forEach((item) => {
+    props.ingredients?.forEach((id) => {
       if (item._id == id) {
         ingredients.push(item);
       }
@@ -42,14 +35,14 @@ function OrderInfo() {
   });
 
   const statusOfOrder = (() => {
-    if (props?.status === 'done') {
+    if (props.status === 'done') {
       return `Выполнен`;
     } else {
       return `В работе`;
     }
   })();
 
-debugger;
+
 
   //сумма
 
@@ -65,13 +58,28 @@ debugger;
   );
 
 
+  //при перезагрузке , чтобы шло на страницу с ингредиентом
+const history = useHistory()
+useEffect(() => {
+  window.addEventListener("beforeunload", clearHistory);
+  return () => {
+    window.removeEventListener("beforeunload", clearHistory);
+  };
+}, []);
+
+const clearHistory = (e) => {
+  e.preventDefault();
+  history.replace({ state: {} })
+};
+
+
 
   return (
     <>
       <div className={`${styles.feedIdMain} `}>
-        <p className={`${styles.feddIdOrderNumber} text text_type_digits-default `}># {props?.number}</p>
+        <p className={`${styles.feddIdOrderNumber} text text_type_digits-default `}># {props.number}</p>
         <p className={`${styles.feddIdbutgerName} text text_type_main-medium pl-0 pr-0 pb-0 pt-10`}          >
-          {props?.name}
+          {props.name}
         </p>
         <p className={`${styles.feddIdStatus} text text_type_main-small pl-0 pr-0 pb-15 pt-3`}          >
           {statusOfOrder}
@@ -89,10 +97,10 @@ debugger;
         </div>
 
         <div className={`${styles.feedIddownBox} pl-0 pr-0 pb-0 pt-10`} >
-          <FormattedDate date={new Date(props?.createdAt)}
+          <FormattedDate date={new Date(props.createdAt)}
           />
 
-          <div className={`${styles.feedIdpriceBox} pl-0 pr-0 pb-0 pt-0`} >
+          <div className={`${styles.feedIdpriceBox} pl-0 pr-0 pb-4 pt-0`} >
             <p className="text text_type_digits-default mr-2">{sumIngredWithInitial}</p>
             <CurrencyIcon type="primary" />
           </div>
@@ -103,4 +111,4 @@ debugger;
   );
 }
 
-export default OrderInfo;
+export default OrderInfoModal;

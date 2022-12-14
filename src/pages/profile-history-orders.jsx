@@ -11,8 +11,17 @@ import FeedBurgers from "../components/feed-burgers/feed-burgers";
 import { baseWSUser } from "../utils/burger-api";
 import { wsConnect } from "../services/actions/web-soket";
 import { v4 as uuidv4 } from "uuid";
+import Modal from "../components/modal/modal";
+import OrderInfoModal from "../components/order-info-modal/order-info-modal";
+import { useHistory } from 'react-router-dom';
+
+
 
 function ProfileHistoryOrders() {
+
+  const history = useHistory();
+  const [modalOpen, setModalOpen] = useState(null);
+
   const name = useSelector((state) => state.login.userName);
   const email = useSelector((state) => state.login.email);
   const [nameValue, setNameValue] = useState(name);
@@ -45,7 +54,16 @@ function ProfileHistoryOrders() {
 
 
 
+  const openOrderInfo = (data) => {
+    setModalOpen(data);
+  }
 
+  const onModalClose = () => {
+    setModalOpen(null)
+    history.goBack();
+  };
+
+  console.log(modalOpen)
 
   return (
     <>
@@ -70,7 +88,9 @@ function ProfileHistoryOrders() {
         <div className={`${styles.profileFeedBurgers} ml-15 mr-0 mb-0 mt-0`}>
           {allOrders?.map((order) => {
             return (
-              <FeedBurgers key={uuidv4()} order={order} />
+              <div key={order.number} onClick={() => openOrderInfo(order)}>
+              <FeedBurgers order={order}   />
+              </div>
             )
           })}
 
@@ -78,6 +98,17 @@ function ProfileHistoryOrders() {
 
 
       </div>
+
+      {modalOpen && (
+        <Modal
+          closeAllModals={onModalClose}
+        >
+          <OrderInfoModal orders={modalOpen} />
+        </Modal>
+      )}
+
+
+
     </>
   );
 }

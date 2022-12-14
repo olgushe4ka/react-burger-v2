@@ -2,13 +2,15 @@ import {
   Input, Button, EmailInput, PasswordInput, FormattedDate, CurrencyIcon
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./feed-burgers.module.css";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
 
 
 
 function FeedBurgers({ order }) {
+
+  const location = useLocation()
 
   const today = new Date();
 
@@ -45,7 +47,7 @@ function FeedBurgers({ order }) {
     <Link style={{ textDecoration: 'none', color: 'white' }}
       to={{
         pathname: `/feed/${order._id}`,
-        //state: { background: location }
+        state: { background: location }
       }}
 
     >
@@ -83,9 +85,6 @@ function FeedBurgers({ order }) {
             </div>
           </div>
         </div>
-
-
-
       </div>
     </ Link>
   );
