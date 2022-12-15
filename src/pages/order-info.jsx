@@ -24,6 +24,20 @@ function OrderInfo() {
     });
   });
 
+
+  //Считаем повторение ингридиентов
+  const ingredientsIDs = ingredients.map((item) => {return item._id} );
+
+  const countIngridients = [];
+
+  for (const item of ingredientsIDs) {
+    countIngridients[item] = countIngridients[item] ? countIngridients[item] + 1 : 1;
+  }
+
+  const countIngridientsArr = Object.entries(countIngridients);
+
+
+//Статус
   const statusOfOrder = (() => {
     if (props?.status === "done") {
       return `Выполнен`;
@@ -72,8 +86,8 @@ function OrderInfo() {
           </p>
 
           <div className={`${styles.feedIdIngredients} `}>
-            {ingredients.map((ingredient, index) => {
-              return <FeedСonsist props={ingredient} key={index} />;
+            {countIngridientsArr.map((ingredient, index) => {
+                      return <FeedСonsist props={ingredient} key={index} />;
             })}
           </div>
 

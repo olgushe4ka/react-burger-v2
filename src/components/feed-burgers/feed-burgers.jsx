@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
 function FeedBurgers({ order }) {
   const history = useHistory();
 
-  console.log(history.location.pathname);
-
   const pathFeedOrOrder = history.location.pathname;
 
   const location = useLocation();
