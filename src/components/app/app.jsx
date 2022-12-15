@@ -25,7 +25,7 @@ import { useEffect } from "react";
 import { ProtectedRoute } from "../protected-route/protected-route";
 import { getProfileInfo } from "../../services/actions/login";
 import AppHeader from "../app-header/app-header";
-import { wsConnect } from "../../services/actions/web-soket";
+import { wsConnect, wsDisconnect } from "../../services/actions/web-soket";
 
 function App() {
   const history = useHistory();
@@ -42,10 +42,12 @@ function App() {
 
   const background = location.state?.background;
 
-  //WS
-  useEffect(() => {
-    dispatch(wsConnect(baseWS));
-  }, [dispatch]);
+  // //WS
+  // useEffect(() => {
+  //   dispatch(wsConnect(baseWS));
+  //   dispatch(wsDisconnect())
+  // }, [dispatch]);
+
 
   return (
     <>

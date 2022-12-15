@@ -4,11 +4,41 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages-styles.module.css";
 import FeedСonsist from "../components/feed-consist/feed-consist";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { baseWS, baseWSUser } from "../utils/burger-api";
+import { getCookie } from "../utils/cookie";
+import { useHistory } from "react-router-dom";
+
 
 function OrderInfo() {
+
+  const dispatch = useDispatch()
   const { id } = useParams();
+
+  const history = useHistory();
+  const pathFeedOrOrder = history.location.pathname;
+
+  
+  //WS
+  const token = getCookie("accessToken");
+
+  useEffect(() => {
+    if (pathFeedOrOrder === `/profile/orders/${id}`) {
+      dispatch(wsConnect(`${baseWSUser}?token=${token}`));
+    }
+    else dispatch(wsConnect(baseWS))
+
+
+    return () => {
+      dispatch(wsDisconnect())
+    }
+  }, [dispatch]);
+
+
+
 
   const orders = useSelector((state) => state.ws.table.orders);
   const props = orders?.find((order) => order?._id === id);
@@ -26,7 +56,7 @@ function OrderInfo() {
 
 
   //Считаем повторение ингридиентов
-  const ingredientsIDs = ingredients.map((item) => {return item._id} );
+  const ingredientsIDs = ingredients.map((item) => { return item._id });
 
   const countIngridients = [];
 
@@ -37,7 +67,7 @@ function OrderInfo() {
   const countIngridientsArr = Object.entries(countIngridients);
 
 
-//Статус
+  //Статус
   const statusOfOrder = (() => {
     if (props?.status === "done") {
       return `Выполнен`;
@@ -87,7 +117,7 @@ function OrderInfo() {
 
           <div className={`${styles.feedIdIngredients} `}>
             {countIngridientsArr.map((ingredient, index) => {
-                      return <FeedСonsist props={ingredient} key={index} />;
+              return <FeedСonsist props={ingredient} key={index} />;
             })}
           </div>
 

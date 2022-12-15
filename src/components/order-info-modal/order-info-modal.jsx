@@ -6,7 +6,6 @@ import styles from "./order-info-modal.module.css";
 import FeedСonsist from "../feed-consist/feed-consist";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { useEffect } from "react";
 
 function OrderInfoModal({ orders }) {
@@ -97,8 +96,8 @@ function OrderInfoModal({ orders }) {
         </p>
 
         <div className={`${styles.feedIdIngredients} `}>
-          {countIngridientsArr.map((ingredient) => {
-            return <FeedСonsist props={ingredient} key={uuidv4()} />;
+          {countIngridientsArr.map((ingredient, index) => {
+            return <FeedСonsist props={ingredient} key={index} />;
           })}
         </div>
 

@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { eraseCookie, getCookie } from "../utils/cookie";
 import FeedBurgers from "../components/feed-burgers/feed-burgers";
 import { baseWSUser } from "../utils/burger-api";
-import { wsConnect } from "../services/actions/web-soket";
+import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
 import Modal from "../components/modal/modal";
 import OrderInfoModal from "../components/order-info-modal/order-info-modal";
 import { useHistory } from "react-router-dom";
@@ -39,8 +39,12 @@ function ProfileHistoryOrders() {
 
   useEffect(() => {
     dispatch(wsConnect(`${baseWSUser}?token=${token}`));
+    return () => {
+      dispatch(wsDisconnect())
+    }
   }, [dispatch]);
 
+  
   const openOrderInfo = (data) => {
     setModalOpen(data);
   };

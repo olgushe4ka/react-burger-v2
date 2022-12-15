@@ -2,7 +2,7 @@ import styles from "./pages-styles.module.css";
 import FeedBurgers from "../components/feed-burgers/feed-burgers";
 import FeedNumbers from "../components/feed-numbers/feed-numbers";
 import { useSelector, useDispatch } from "react-redux";
-import { wsConnect } from "../services/actions/web-soket";
+import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
 import { baseWS } from "../utils/burger-api";
 import { useEffect, useState } from "react";
 import Modal from "../components/modal/modal";
@@ -28,10 +28,12 @@ function Feed() {
   };
 
   //WS
-
-  useEffect(() => {
+   useEffect(() => {
     dispatch(wsConnect(baseWS));
-  }, [dispatch]);
+    return () => {
+      dispatch(wsDisconnect())
+    }
+    }, [dispatch]);
 
   const openOrderInfo = (data) => {
     setModalOpen(data);
