@@ -2,11 +2,18 @@ import { setCookie, getCookie } from "./cookie";
 
 const baseUrl = "https://norma.nomoreparties.space/api";
 
+export const baseWS = "wss://norma.nomoreparties.space/orders/all";
+export const baseWSUser = "wss://norma.nomoreparties.space/orders";
+
+// function checkResponse(res) {
+//   if (res.ok) {
+//     return res.json();
+//   }
+//   return Promise.reject(`Ошибка: ${res.status}`);
+// }
+
 function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка: ${res.status}`);
+  return res.ok ? res.json() : res.json().then((res) => Promise.reject(res));
 }
 
 function request(url, options) {
@@ -22,7 +29,7 @@ export function saveOrder(data) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: 'Bearer ' + getCookie('accessToken')
+      Authorization: "Bearer " + getCookie("accessToken"),
     },
     body: JSON.stringify(data),
   });
@@ -63,7 +70,7 @@ export function authorization(data) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: 'Bearer ' + getCookie('accessToken')
+      Authorization: "Bearer " + getCookie("accessToken"),
     },
     body: JSON.stringify(data),
   });
@@ -110,7 +117,7 @@ export const refreshToken = () => {
     method: "POST",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
-     // Authorization: 'Bearer ' + getCookie('token')
+      // Authorization: 'Bearer ' + getCookie('token')
     },
     body: JSON.stringify({
       token: localStorage.getItem("refreshToken"),
@@ -123,13 +130,13 @@ const fetchWithRefresh = async (url, options) => {
     const res = await fetch(url, options);
     return await checkResponse(res);
   } catch (error) {
-   // if (error.status === 403 ) {
-       if (error.message === "jwt expired" ) {
+    // if (error.status === 403 ) {
+    if (error.message === "jwt expired") {
       const refreshData = await refreshToken();
       if (!refreshData.success) {
         Promise.reject(refreshData);
       }
-        localStorage.setItem("refreshToken", refreshData.refreshToken);
+      localStorage.setItem("refreshToken", refreshData.refreshToken);
       setCookie("accessToken", refreshData.accessToken);
 
       options.headers.authorization = refreshData.accessToken;
@@ -143,27 +150,24 @@ const fetchWithRefresh = async (url, options) => {
   }
 };
 
-
-
 export function getUserInformation() {
   return fetchWithRefresh(`${baseUrl}/auth/user`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: 'Bearer ' + getCookie('accessToken')
+      Authorization: "Bearer " + getCookie("accessToken"),
     },
-  //  body: JSON.stringify(),
+    //  body: JSON.stringify(),
   });
 }
-
 
 export function changeUserInformation(data) {
   return fetchWithRefresh(`${baseUrl}/auth/user`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      Authorization: 'Bearer ' + getCookie('accessToken')
+      Authorization: "Bearer " + getCookie("accessToken"),
     },
-   body: JSON.stringify(data),
+    body: JSON.stringify(data),
   });
 }

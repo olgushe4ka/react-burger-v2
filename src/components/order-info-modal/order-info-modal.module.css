@@ -1,0 +1,47 @@
+.feedIdMain {
+  max-width: 640px;
+  margin: auto;
+  text-align: left;
+}
+
+.feedIdIngredients {
+  max-height: 300px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+}
+
+.feedNumbers {
+  width: 584px;
+  height: 600px;
+  padding-right: 10px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+  align-self: center;
+}
+
+.feedIddownBox {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.feedIdpriceBox {
+  display: flex;
+}
+
+.feddIdStatus {
+  color: #00cccc;
+  text-align: left;
+}
+
+.feddIdbutgerSostav {
+  text-align: left;
+}
+
+.feddIdbutgerName {
+  text-align: left;
+}

@@ -1,0 +1,94 @@
+/* .allBurgers {
+  height: 600px;
+   overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+align-self: center;
+} */
+
+.allBurgers {
+  margin-top: 10px;
+}
+.burgerBox {
+  display: flex;
+  max-width: 100%;
+  height: 214px;
+  flex-direction: column;
+  background: #1c1c21;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 0px 2px rgba(0, 0, 0, 0.06),
+    0px 0px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 40px;
+}
+
+.burgerBox:not(:first-child) {
+  margin-top: 16px;
+}
+
+.numberAndDateBox {
+  display: flex;
+  justify-content: space-between;
+}
+
+.butgerName {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ingredientsBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ingredientsIcons {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.ingredientIcon {
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  border: 2px solid #801ab2;
+  /* border-image: linear-gradient(to right top, #4C4CFF, #801AB2);
+  border-image-slice: 1; */
+  border-radius: 50%;
+  list-style-type: none;
+  margin-left: -15px;
+  background-color: black;
+}
+
+.ingredientIconSix {
+  composes: ingredientIcon;
+  background-color: #191919;
+  position: relative;
+}
+
+.ingredientsCounter {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.ingredientIcon:first-child {
+  margin-left: 0;
+}
+
+.ingredientIconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ingredientIconImageSix {
+  composes: ingredientIconImage;
+  opacity: 0.5;
+}
+
+.priceBox {
+  display: flex;
+}

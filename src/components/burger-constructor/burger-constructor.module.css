@@ -84,7 +84,7 @@
   position: relative;
 }
 
-.listElement:first-child{
+.listElement:first-child {
   margin-top: 0;
 }
 

@@ -5,8 +5,7 @@ import {
   ProfileIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import headerStyles from "./app-header.module.css";
-import { Link } from 'react-router-dom';
-
+import { Link } from "react-router-dom";
 
 function AppHeader() {
   return (
@@ -16,10 +15,9 @@ function AppHeader() {
           <div className={`${headerStyles.icon} mr-2 `}>
             <BurgerIcon type="primary" />
           </div>
-          <p className="text text_type_main-small">Конструктор</p>{" "}
+          <p className="text text_type_main-small">Конструктор</p>
         </Link>
         <Link to="/feed" className={`${headerStyles.lentaZakazov}`}>
-        
           <div className={`${headerStyles.icon} ml-8 mr-2 mb-0 mt-0`}>
             <ListIcon type="primary" />
           </div>

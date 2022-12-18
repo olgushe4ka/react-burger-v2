@@ -23,8 +23,7 @@ export const CONSTRUCTOR_ONLY_ONE_BUN_IN_ARRAY =
 export const CONSTRUCTOR_ADD_BUNS = "CONSTRUCTOR_ADD_BUNS";
 
 export const CONSTRUCTOR_SORT_INGREDIENTS = "CONSTRUCTOR_SORT_INGREDIENTS";
-export const CONSTRUCTOR_REMOVE_INGREDIENTS = "CONSTRUCTOR_REMOVE_INGREDIENTS"
-
+export const CONSTRUCTOR_REMOVE_INGREDIENTS = "CONSTRUCTOR_REMOVE_INGREDIENTS";
 
 export function getItems() {
   return function (dispatch) {
@@ -33,20 +32,21 @@ export function getItems() {
     });
     getIngredients()
       .then((res) => {
-      if (res && res.success) {
-        dispatch({
-          type: GET_INGREDIENTS_SUCCESS,
-          items: res.data,
-        });
-      } else {
-        dispatch({
-          type: GET_INGREDIENTS_FAILED,
-        });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })   }
+        if (res && res.success) {
+          dispatch({
+            type: GET_INGREDIENTS_SUCCESS,
+            items: res.data,
+          });
+        } else {
+          dispatch({
+            type: GET_INGREDIENTS_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 }
 
 export function orderBurger(orderData) {
@@ -54,19 +54,21 @@ export function orderBurger(orderData) {
     dispatch({
       type: GET_ORDER_DETAILS_REQUEST,
     });
-    saveOrder(orderData).then((res) => {
-      if (res && res.success) {
-        dispatch({
-          type: GET_ORDER_DETAILS_SUCCESS,
-          items: res,
-        });
-      } else {
-        dispatch({
-          type: GET_ORDER_DETAILS_FAILED,
-        });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })  };
+    saveOrder(orderData)
+      .then((res) => {
+        if (res && res.success) {
+          dispatch({
+            type: GET_ORDER_DETAILS_SUCCESS,
+            items: res,
+          });
+        } else {
+          dispatch({
+            type: GET_ORDER_DETAILS_FAILED,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 }

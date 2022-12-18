@@ -5,25 +5,9 @@ import styles from "./constructor-page.module.css";
 import { useEffect, useState } from "react";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { getIngredients } from "../utils/burger-api";
 
 
 function ConstructorPage() {
-const [ingredients, setIngredients] = useState([]);
-
-  useEffect(() => {
-    const getIngredientsData = async () => {
-      try {
-        const res = await getIngredients();
-
-        setIngredients(res.data);
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
-
-    getIngredientsData();
-  }, []);
 
   return (
     <div className={styles.App}>
@@ -35,8 +19,8 @@ const [ingredients, setIngredients] = useState([]);
         </h1>
         <div className={`${styles.displayFlex}`}>
           <DndProvider backend={HTML5Backend}>
-            {ingredients && <BurgerIngredients />}
-            {ingredients && <BurgerConstructor />}
+             <BurgerIngredients />
+            <BurgerConstructor />
           </DndProvider>
         </div>
       </div>

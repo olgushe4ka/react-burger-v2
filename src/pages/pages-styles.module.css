@@ -12,11 +12,11 @@
 }
 
 .textDownlogin {
-  color: #8585AD;
+  color: #8585ad;
 }
 
 .linkDownlogin {
-  color: #4C4CFF;
+  color: #4c4cff;
   text-decoration: none;
 }
 
@@ -25,6 +25,11 @@
   grid-template-columns: 1fr 1fr 1fr;
   margin: 10px;
   margin-top: 120px;
+}
+
+.profileGridHistory {
+  composes: profileGrid;
+  grid-template-columns: 1fr 2fr;
 }
 
 .profileMenu {
@@ -38,20 +43,21 @@
   background-color: transparent;
   font-size: 24px;
   text-decoration: none;
-  color: #8585AD;
+  color: #8585ad;
   border: none;
   text-align: start;
   display: flex;
-  align-items: center
+  align-items: center;
 }
 
 .profileLeftBox {
   justify-self: end;
+  margin-left: 50px;
 }
 
 .ptofileTextDown {
   max-width: 320px;
-  color: #8585AD;
+  color: #8585ad;
   opacity: 0.4;
 }
 
@@ -70,4 +76,80 @@
 
 .profileButton:hover {
   cursor: pointer;
+}
+
+.profileFeedBurgers {
+  width: 844px;
+  height: 600px;
+  padding-right: 10px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  /* text-decoration: none;
+  align-self: center; */
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.feedMain {
+  align-items: center;
+}
+
+.feedContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feedTitle {
+  text-align: start;
+  align-self: flex-start;
+}
+
+.feedIdMain {
+  max-width: 640px;
+  margin: auto;
+  margin-top: 122px;
+  text-align: center;
+}
+
+.feedIdIngredients {
+  height: 366px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+}
+
+.feedNumbers {
+  width: 584px;
+  height: 600px;
+  padding-right: 10px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black;
+  text-decoration: none;
+  align-self: center;
+}
+
+.feedIddownBox {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.feedIdpriceBox {
+  display: flex;
+}
+
+.feddIdStatus {
+  color: #00cccc;
+  text-align: left;
+}
+
+.feddIdbutgerSostav {
+  text-align: left;
+}
+
+.feddIdbutgerName {
+  text-align: left;
 }

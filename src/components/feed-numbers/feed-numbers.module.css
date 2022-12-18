@@ -1,0 +1,39 @@
+.main {
+  height: 600px;
+  width: 650px;
+  margin: auto;
+  /* overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #8585ad black; */
+  text-decoration: none;
+  align-self: center;
+  padding-left: 56px;
+  display: grid;
+  grid-template-areas: "a b" "c c" "d d";
+}
+
+.readyBox {
+  max-height: 300px;
+  max-width: 280px;
+}
+
+.readyNumber {
+  color: #00cccc;
+}
+
+.doneBox {
+  grid-area: c;
+}
+
+.doneTodayBox {
+  grid-area: d;
+}
+
+.numberBig {
+  color: #f2f2f3;
+
+  /* button/glow */
+
+  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25),
+    0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+}

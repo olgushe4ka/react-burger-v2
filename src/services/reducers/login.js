@@ -156,7 +156,6 @@ export const loginReducer = (state = loginInitialState, action) => {
       };
     }
     case GET_USER_INFO_SUCCESS: {
-
       return {
         ...state,
         getUserInfoFailed: false,
@@ -174,9 +173,6 @@ export const loginReducer = (state = loginInitialState, action) => {
       };
     }
 
-
-
-
     case CHANGE_USER_INFO_REQUEST: {
       return {
         ...state,
@@ -184,7 +180,6 @@ export const loginReducer = (state = loginInitialState, action) => {
       };
     }
     case CHANGE_USER_INFO_SUCCESS: {
-
       return {
         ...state,
         changeUserInfoFailed: false,
@@ -209,7 +204,7 @@ export const loginReducer = (state = loginInitialState, action) => {
       };
     }
     case LOGOUT_SUCCESS: {
-            return {
+      return {
         ...state,
         logOutFailed: false,
         logOutSuccess: action.payload.success,
@@ -223,7 +218,6 @@ export const loginReducer = (state = loginInitialState, action) => {
         logOutIsLoading: false,
       };
     }
-
 
     default: {
       return state;
