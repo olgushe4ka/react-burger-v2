@@ -3,20 +3,20 @@ import {
   CurrencyIcon,
   Counter,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import { useDrag } from "react-dnd";
-import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { TIingredient } from "../../../types/ingredients";
+import { useSelector } from "../../../utils/hooks";
 
-function IngredientConstructor(props) {
-  const { id, name, price, image, index, item } = props;
+
+function IngredientConstructor(props: TIingredient) {
+  const { id, name, price, image, item } = props;
 
   const location = useLocation();
 
   //Drag and drop
   const [{ opacity }, drag] = useDrag({
     type: "ingredient",
-    // item: {item, index},
     item: { item },
 
     collect: (monitor) => ({
@@ -27,17 +27,19 @@ function IngredientConstructor(props) {
   //Counter
   let counter = 0;
 
-  const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
+  const ingredientInTheCart: [] = useSelector(
+    (state) => state.ingredients.cartIng
+  );
 
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
 
-  const allIngInTheCart = [...bunInTheCart, ...ingredientInTheCart];
+  const allIngInTheCart: any[] = [...bunInTheCart, ...ingredientInTheCart];
 
   allIngInTheCart?.forEach(
-    (ingredient) => ingredient.name === name && (counter += 1)
+    (ingredient: TIingredient) => ingredient.name === name && (counter += 1)
   );
 
-  return (
+   return (
     <Link
       style={{ textDecoration: "none", color: "white" }}
       to={{
@@ -64,10 +66,10 @@ function IngredientConstructor(props) {
   );
 }
 
-IngredientConstructor.propTypes = {
-  price: PropTypes.number.isRequired,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-};
+// IngredientConstructor.propTypes = {
+//   price: PropTypes.number.isRequired,
+//   image: PropTypes.string.isRequired,
+//   name: PropTypes.string.isRequired,
+// };
 
 export default IngredientConstructor;

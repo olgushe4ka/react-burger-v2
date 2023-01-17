@@ -20,7 +20,45 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILED,
+  TLoginActions,
 } from "../actions/login";
+
+type TLoginListState = {
+  passwordResetRequest: any;
+  passwordResetRequestFailed: boolean;
+  passwordResetRequestIsLoading: boolean;
+
+  passwordReset: any;
+  passwordResetFailed: boolean;
+  passwordResetIsLoading: boolean;
+
+  registration: any;
+  registrationFailed: boolean;
+  registrationIsLoading: boolean;
+
+  login: {
+    user: {
+      email: string;
+      name: string;
+    };
+  };
+  loginFailed: boolean;
+  loginIsLoading: boolean;
+
+  getUserInfoFailed: boolean;
+  getUserInfoIsLoading: boolean;
+
+  isAuthChecked: boolean;
+  userName: string;
+  email: string;
+
+  changeUserInfoFailed: boolean;
+  changeUserInfoIsLoading: boolean;
+
+  logOutFailed: boolean;
+  logOutSuccess: boolean;
+  logOutIsLoading: boolean;
+};
 
 const loginInitialState = {
   passwordResetRequest: [],
@@ -59,7 +97,10 @@ const loginInitialState = {
   logOutIsLoading: false,
 };
 
-export const loginReducer = (state = loginInitialState, action) => {
+export const loginReducer = (
+  state = loginInitialState,
+  action: TLoginActions
+): TLoginListState => {
   switch (action.type) {
     case PASSWORD_RESET_REQUEST_REQUEST: {
       return {

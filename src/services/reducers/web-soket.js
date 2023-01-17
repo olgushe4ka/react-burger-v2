@@ -6,15 +6,25 @@ import {
   wsError,
   wsMessage,
   wsOpen,
+  TWSActions
 } from "../actions/web-soket";
 
-//import { liveTableUpdate } from './live-table-update';
+
+// type TWSListState = {
+//   status: string,
+//   connectionError: any,
+//   table: [],
+// };
 
 const initialState = {
   status: WebsocketStatus.OFFLINE,
   connectionError: "",
   table: [],
 };
+
+
+//export const ingredientsReducer = (state = initialState, action: TWSActions ): TWSListState => {
+
 
 export const liveOrderFeedReducer = createReducer(initialState, (builder) => {
   builder

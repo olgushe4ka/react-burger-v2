@@ -15,9 +15,11 @@ function OrderConstructor() {
 
   const bun = buns[buns.length - 1];
 
+
+  
   //Удаление элемента
-  const deleteIngredient = (indexOf) => {
-    dispatch({
+  const deleteIngredient = (indexOf)  => {
+    dispatch({ 
       type: CONSTRUCTOR_DELETE_INGREDIENTS,
       payload: indexOf,
     });

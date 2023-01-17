@@ -4,42 +4,44 @@ import { useState, useMemo, useEffect } from "react";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useDispatch, useSelector } from "react-redux";
+//import { useDispatch,  } from "react-redux";
 import {
   SET_INGREDIENT_MODAL,
   RESET_INGREDIENT_MODAL,
 } from "../../services/actions/ingredients";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "react-router-dom";
+import { TIingredient } from "../../types/ingredients";
+import { useSelector, useDispatch } from "../../utils/hooks";
+
+
 
 
 function BurgerIngredients() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.ingredients.ingredients);
 
-
-
   const buns = useMemo(
-    () => data?.filter((item) => item.type === "bun"),
+    () => data?.filter((item:TIingredient) => item.type === "bun"),
     [data]
   );
   const mains = useMemo(
-    () => data?.filter((item) => item.type === "main"),
+    () => data?.filter((item:TIingredient) => item.type === "main"),
     [data]
   );
   const sauces = useMemo(
-    () => data?.filter((item) => item.type === "sauce"),
+    () => data?.filter((item:TIingredient) => item.type === "sauce"),
     [data]
   );
 
   //Модальные окна
 
-  const onIngredientClick = (data) => {
+  const onIngredientClick = (data:TIingredient) => {
     dispatch({ type: SET_INGREDIENT_MODAL, payload: data });
   };
 
   const ingredientsData = useSelector(
-    (state) => state.ingredients.ingredientDetails
+    (state:any) => state.ingredients.ingredientDetails
   );
 
   const history = useHistory();
@@ -52,7 +54,7 @@ function BurgerIngredients() {
   //Tab
   const [currentTab, setCurrentTab] = useState("buns");
 
-  const onTabClick = (tab) => {
+  const onTabClick = (tab:any) => {
     setCurrentTab(tab);
     const element = document.getElementById(tab);
     if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -112,7 +114,7 @@ function BurgerIngredients() {
           Булки
         </p>
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
-          {buns.map((dataIng) => {
+          {buns.map((dataIng:TIingredient) => {
             return (
               <div
                 key={dataIng._id}
@@ -142,7 +144,7 @@ function BurgerIngredients() {
           className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}
           ref={refSauces}
         >
-          {sauces.map((dataIng) => {
+          {sauces.map((dataIng:TIingredient) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
@@ -168,7 +170,7 @@ function BurgerIngredients() {
           className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}
           ref={refMains}
         >
-          {mains.map((dataIng) => {
+          {mains.map((dataIng:TIingredient) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
@@ -202,3 +204,4 @@ function BurgerIngredients() {
 // };
 
 export default BurgerIngredients;
+
