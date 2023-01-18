@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { passwordReset } from "../services/actions/login";
 import { useState, useEffect, useCallback } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../utils/hooks";
 import Spinner from "../components/spinner/spinner";
 
 function ResetPassword() {
@@ -26,7 +26,7 @@ function ResetPassword() {
     token: pinValue,
   };
 
-  const resetPassword = (value, event) => {
+  const resetPassword = (value:{}, event:any) => {
     event.preventDefault();
     sendRequest(value);
     if (errorInReset === true) {
@@ -34,7 +34,7 @@ function ResetPassword() {
     }
   };
 
-  const sendRequest = useCallback((value) => {
+  const sendRequest = useCallback((value:any) => {
     dispatch(passwordReset({ value }));
   }, []);
 

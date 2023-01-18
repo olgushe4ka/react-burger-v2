@@ -8,7 +8,7 @@ import styles from "./pages-styles.module.css";
 import { Link } from "react-router-dom";
 import { register } from "../services/actions/login";
 import { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../utils/hooks";
 import Spinner from "../components/spinner/spinner";
 import { Redirect, useLocation, useHistory } from "react-router-dom";
 
@@ -33,7 +33,7 @@ function RegisterPage() {
     name: nameValue,
   };
 
-  const onButtonClick = (value, event) => {
+  const onButtonClick = (value:{}, event:any) => {
     event.preventDefault();
     sendRequest(value);
 
@@ -46,7 +46,7 @@ function RegisterPage() {
     }
   };
 
-  const sendRequest = useCallback((value) => {
+  const sendRequest = useCallback((value:any) => {
     dispatch(register(value));
   }, []);
 

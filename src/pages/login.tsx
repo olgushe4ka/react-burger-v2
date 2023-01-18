@@ -8,7 +8,7 @@ import styles from "./pages-styles.module.css";
 import { Link } from "react-router-dom";
 import { login, getProfileInfo } from "../services/actions/login";
 import { useState, useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../utils/hooks";
 import Spinner from "../components/spinner/spinner";
 
 function LoginPage() {
@@ -28,17 +28,17 @@ function LoginPage() {
     password: passwordValue,
   };
 
-  const onButtonClick = (value, event) => {
+  const onButtonClick = (value:{}, event: React.SyntheticEvent<EventTarget>) => {
     event.preventDefault();
     sendRequest(value);
     getUserInfo();
   };
 
-  const sendRequest = useCallback((value) => {
+  const sendRequest = useCallback((value:{}) => {
     dispatch(login(value));
   }, []);
 
-  const getUserInfo = useCallback((value) => {
+  const getUserInfo = useCallback((value?:any) => {
     dispatch(getProfileInfo(value));
   }, []);
 

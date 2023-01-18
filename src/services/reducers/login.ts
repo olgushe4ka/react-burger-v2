@@ -37,6 +37,7 @@ type TLoginListState = {
   registrationIsLoading: boolean;
 
   login: {
+    success?: any;
     user: {
       email: string;
       name: string;

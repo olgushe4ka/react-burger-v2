@@ -6,11 +6,8 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages-styles.module.css";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  changeProfileInfo,
-  logOut,
-} from "../services/actions/login";
+import { useSelector, useDispatch } from "../utils/hooks";
+import { changeProfileInfo, logOut } from "../services/actions/login";
 import { useCallback, useState } from "react";
 import { eraseCookie } from "../utils/cookie";
 
@@ -44,7 +41,7 @@ function Profile() {
     setEmailValue(email);
   };
 
-  const changeUserInfoRequest = useCallback((data) => {
+  const changeUserInfoRequest = useCallback((data: any) => {
     dispatch(changeProfileInfo(data));
   }, []);
 
@@ -53,7 +50,7 @@ function Profile() {
     name: nameValue,
   };
 
-  const onSaveBtnClick = (data, event) => {
+  const onSaveBtnClick = (data: {}, event?: any) => {
     event.preventDefault();
     changeUserInfoRequest(data);
   };
@@ -122,7 +119,6 @@ function Profile() {
           </div>
           <div className="ml-0 mr-0 mb-0 mt-6">
             <PasswordInput
-              //onChange={onChange}
               value={"password"}
               name={"password"}
               icon="EditIcon"

@@ -12,11 +12,11 @@ export const baseWSUser = "wss://norma.nomoreparties.space/orders";
 //   return Promise.reject(`Ошибка: ${res.status}`);
 // }
 
-function checkResponse(res) {
-  return res.ok ? res.json() : res.json().then((res) => Promise.reject(res));
+function checkResponse(res: any) {
+  return res.ok ? res.json() : res.json().then((res: any) => Promise.reject(res));
 }
 
-function request(url, options) {
+function request(url: string, options?:any) {
   return fetch(url, options).then(checkResponse);
 }
 
@@ -24,7 +24,7 @@ export function getIngredients() {
   return request(`${baseUrl}/ingredients`);
 }
 
-export function saveOrder(data) {
+export function saveOrder(data: []) {
   return fetchWithRefresh(`${baseUrl}/orders`, {
     method: "POST",
     headers: {
@@ -35,7 +35,7 @@ export function saveOrder(data) {
   });
 }
 
-export function resetPasswordRequest(data) {
+export function resetPasswordRequest(data: any) {
   return request(`${baseUrl}/password-reset`, {
     method: "POST",
     headers: {
@@ -45,7 +45,7 @@ export function resetPasswordRequest(data) {
   });
 }
 
-export function resetPassword(data) {
+export function resetPassword(data: any) {
   return request(`${baseUrl}/password-reset/reset`, {
     method: "POST",
     headers: {
@@ -55,7 +55,7 @@ export function resetPassword(data) {
   });
 }
 
-export function registration(data) {
+export function registration(data: {}) {
   return fetchWithRefresh(`${baseUrl}/auth/register`, {
     method: "POST",
     headers: {
@@ -65,7 +65,7 @@ export function registration(data) {
   });
 }
 
-export function authorization(data) {
+export function authorization(data: {}) {
   return fetchWithRefresh(`${baseUrl}/auth/login`, {
     method: "POST",
     headers: {
@@ -125,11 +125,11 @@ export const refreshToken = () => {
   }).then(checkResponse);
 };
 
-const fetchWithRefresh = async (url, options) => {
+const fetchWithRefresh = async (url: string, options?:any) => {
   try {
     const res = await fetch(url, options);
     return await checkResponse(res);
-  } catch (error) {
+  } catch (error:any) {
     // if (error.status === 403 ) {
     if (error.message === "jwt expired") {
       const refreshData = await refreshToken();
@@ -161,7 +161,7 @@ export function getUserInformation() {
   });
 }
 
-export function changeUserInformation(data) {
+export function changeUserInformation(data: {}) {
   return fetchWithRefresh(`${baseUrl}/auth/user`, {
     method: "PATCH",
     headers: {

@@ -6,11 +6,11 @@ import styles from "./pages-styles.module.css";
 import FeedСonsist from "../components/feed-consist/feed-consist";
 import { useParams } from "react-router-dom";
 import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { baseWS, baseWSUser } from "../utils/burger-api";
 import { getCookie } from "../utils/cookie";
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "../utils/hooks";
 
 
 function OrderInfo() {

@@ -8,8 +8,8 @@ import { Link, Redirect } from "react-router-dom";
 import { passwordResetRequest } from "../services/actions/login";
 import { useState, useCallback } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../components/spinner/spinner";
+import { useSelector, useDispatch } from "../utils/hooks";
 
 function ForgotPassword() {
   const dispatch = useDispatch();
@@ -23,12 +23,12 @@ function ForgotPassword() {
     (state) => state.login.passwordResetRequest.success
   );
 
-  const resetPassword = (value, event) => {
+  const resetPassword = (value:string, event: React.SyntheticEvent<EventTarget>) => {
     event.preventDefault();
     sendRequest(value);
   };
 
-  const sendRequest = useCallback((email) => {
+  const sendRequest = useCallback((email: string) => {
     dispatch(passwordResetRequest({ email }));
   }, []);
 

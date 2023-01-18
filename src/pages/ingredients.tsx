@@ -1,14 +1,17 @@
 import { Link, useParams } from "react-router-dom";
 import IngredientDetails from "../components/ingredient-details/ingredient-details";
 import ingredientDetailsStyles from "./ingredients.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../utils/hooks";
+import { TIingredient } from "../types/ingredients";
 
 function Ingredients() {
   const ingredients = useSelector((state) => state.ingredients.ingredients);
 
-  const { id } = useParams();
+  const { id }: any = useParams();
 
-  const ingredient = ingredients?.find((ingredient) => ingredient._id === id);
+  const ingredient: any = ingredients?.find(
+    (ingredient: TIingredient) => ingredient._id === id
+  );
 
   return (
     <>

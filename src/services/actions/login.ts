@@ -161,7 +161,7 @@ export type TLoginActions =
 
 // Генераторы экшенов
 
-export function passwordResetRequest(email: string) {
+export function passwordResetRequest(email: {}) {
   return function (dispatch: any) {
     dispatch({
       type: PASSWORD_RESET_REQUEST_REQUEST,
@@ -273,7 +273,7 @@ export function login(data: any) {
   };
 }
 
-export function getProfileInfo() {
+export function getProfileInfo(data?: any) {
   return function (dispatch: any) {
     dispatch({
       type: GET_USER_INFO_REQUEST,
