@@ -1,6 +1,8 @@
 import burgerConstructorStyles from "../burger-constructor.module.css";
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../../utils/hooks";
+import { TIingredient } from "../../../types/ingredients";
 
 function Sum() {
   const ingredients = useSelector((state) => state.ingredients.cartIng);
@@ -8,14 +10,14 @@ function Sum() {
 
   const bun = buns[buns.length - 1];
 
-  const ingredientsArr = ingredients.map((ingredient) => {
+  const ingredientsArr = ingredients.map((ingredient:TIingredient) => {
     return ingredient.price;
   });
 
   const initialSum = 0;
 
   const sumIngredWithInitial = ingredientsArr.reduce(
-    (previousValue, currentValue) => previousValue + currentValue,
+    (previousValue: number, currentValue: number) => previousValue + currentValue,
     initialSum
   );
 

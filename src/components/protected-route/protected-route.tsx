@@ -1,8 +1,17 @@
-import { useSelector } from "react-redux";
-import { Route, Redirect, useLocation } from "react-router-dom";
 
-export const ProtectedRoute = ({ onlyUnAuth, children, ...props }) => {
-  const location = useLocation();
+import { Route, Redirect, useLocation } from "react-router-dom";
+import { useSelector } from "../../utils/hooks";
+
+
+type TProtectedRoute =  {
+  onlyUnAuth? : boolean; 
+  children?: JSX.Element;
+  path?: string;
+  exact?: boolean;  
+}
+
+export const ProtectedRoute = ({ onlyUnAuth, children, ...props }: TProtectedRoute) => {
+  const location:any = useLocation();
 
   const isAuthChecked = useSelector((state) => state.login.isAuthChecked);
 

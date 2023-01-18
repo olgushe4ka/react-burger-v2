@@ -11,37 +11,34 @@ import {
 } from "../../services/actions/ingredients";
 import { useInView } from "react-intersection-observer";
 import { useHistory } from "react-router-dom";
-import { TIingredient } from "../../types/ingredients";
+import { TIingredient, TIingredientWithItem } from "../../types/ingredients";
 import { useSelector, useDispatch } from "../../utils/hooks";
-
-
-
 
 function BurgerIngredients() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.ingredients.ingredients);
 
   const buns = useMemo(
-    () => data?.filter((item:TIingredient) => item.type === "bun"),
+    () => data?.filter((item: TIingredientWithItem) => item.type === "bun"),
     [data]
   );
   const mains = useMemo(
-    () => data?.filter((item:TIingredient) => item.type === "main"),
+    () => data?.filter((item: TIingredientWithItem) => item.type === "main"),
     [data]
   );
   const sauces = useMemo(
-    () => data?.filter((item:TIingredient) => item.type === "sauce"),
+    () => data?.filter((item: TIingredientWithItem) => item.type === "sauce"),
     [data]
   );
 
   //Модальные окна
 
-  const onIngredientClick = (data:TIingredient) => {
+  const onIngredientClick = (data: TIingredientWithItem) => {
     dispatch({ type: SET_INGREDIENT_MODAL, payload: data });
   };
 
   const ingredientsData = useSelector(
-    (state:any) => state.ingredients.ingredientDetails
+    (state) => state.ingredients.ingredientDetails
   );
 
   const history = useHistory();
@@ -54,7 +51,8 @@ function BurgerIngredients() {
   //Tab
   const [currentTab, setCurrentTab] = useState("buns");
 
-  const onTabClick = (tab:any) => {
+  const onTabClick = (tab: string) => {
+    console.log(tab);
     setCurrentTab(tab);
     const element = document.getElementById(tab);
     if (element) element.scrollIntoView({ behavior: "smooth" });
@@ -114,7 +112,7 @@ function BurgerIngredients() {
           Булки
         </p>
         <div className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}>
-          {buns.map((dataIng:TIingredient) => {
+          {buns.map((dataIng: TIingredientWithItem) => {
             return (
               <div
                 key={dataIng._id}
@@ -125,10 +123,8 @@ function BurgerIngredients() {
                   item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
-                  type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
-                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
             );
@@ -144,17 +140,15 @@ function BurgerIngredients() {
           className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}
           ref={refSauces}
         >
-          {sauces.map((dataIng:TIingredient) => {
+          {sauces.map((dataIng: TIingredientWithItem) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
                   item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
-                  type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
-                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
             );
@@ -170,17 +164,15 @@ function BurgerIngredients() {
           className={`${ingredientsStyles.menuBox} pl-0 pr-0 pb-0 pt-6`}
           ref={refMains}
         >
-          {mains.map((dataIng:TIingredient) => {
+          {mains.map((dataIng: TIingredientWithItem) => {
             return (
               <div key={dataIng._id} onClick={() => onIngredientClick(dataIng)}>
                 <IngredientConstructor
                   item={dataIng}
                   id={dataIng._id}
                   price={dataIng.price}
-                  type={dataIng.type}
                   image={dataIng.image}
                   name={dataIng.name}
-                  index={Math.random().toString(36).slice(2)}
                 />
               </div>
             );
@@ -204,4 +196,3 @@ function BurgerIngredients() {
 // };
 
 export default BurgerIngredients;
-

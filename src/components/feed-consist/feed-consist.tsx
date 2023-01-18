@@ -2,15 +2,16 @@ import {
     CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./feed-consist.module.css";
+//import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "../../utils/hooks";
+import { TIingredient } from "../../types/ingredients";
 
-import { useSelector, useDispatch } from "react-redux";
 
+function FeedСonsist({ props }:any) {
 
-function FeedСonsist({ props }) {
+  const ingredients: any = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients = useSelector((state) => state.ingredients.ingredients);
-
-  const ingredient = ingredients?.find((item) => item?._id === props[0]);
+  const ingredient: TIingredient = ingredients?.find((item: TIingredient ) => item?._id === props[0]);
 
   
   return (

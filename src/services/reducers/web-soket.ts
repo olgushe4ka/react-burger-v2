@@ -10,9 +10,9 @@ import {
 } from "../actions/web-soket";
 
 
-// type TWSListState = {
+// export type TWSListState = {
 //   status: string,
-//   connectionError: any,
+//   connectionError: string,
 //   table: [],
 // };
 
@@ -21,10 +21,6 @@ const initialState = {
   connectionError: "",
   table: [],
 };
-
-
-//export const ingredientsReducer = (state = initialState, action: TWSActions ): TWSListState => {
-
 
 export const liveOrderFeedReducer = createReducer(initialState, (builder) => {
   builder
@@ -39,10 +35,10 @@ export const liveOrderFeedReducer = createReducer(initialState, (builder) => {
       state.status = WebsocketStatus.OFFLINE;
       state.connectionError = "";
     })
-    .addCase(wsError, (state, action) => {
+    .addCase(wsError, (state:any, action) => {
       state.connectionError = action.payload;
     })
-    .addCase(wsMessage, (state, action) => {
+    .addCase(wsMessage, (state:any, action) => {
       state.table = action.payload;
     });
 });

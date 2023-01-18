@@ -3,9 +3,11 @@ import {
   DragIcon,
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { useSelector, useDispatch } from "react-redux";
+//import { useSelector, useDispatch } from "react-redux";
 import { CONSTRUCTOR_DELETE_INGREDIENTS } from "../../../services/actions/ingredients";
 import OrderIngConstructor from "./order-ing-constructor";
+import { useSelector, useDispatch } from "../../../utils/hooks";
+import { TIingredient } from "../../../types/ingredients";
 
 function OrderConstructor() {
   const dispatch = useDispatch();
@@ -18,7 +20,7 @@ function OrderConstructor() {
 
   
   //Удаление элемента
-  const deleteIngredient = (indexOf)  => {
+  const deleteIngredient = (indexOf:any)  => {
     dispatch({ 
       type: CONSTRUCTOR_DELETE_INGREDIENTS,
       payload: indexOf,
@@ -37,15 +39,15 @@ function OrderConstructor() {
             price={bun?.price}
             thumbnail={bun?.image}
             text={bun?.name + " (верх)"}
-            id={bun?._id}
+           // id={bun?._id}
           />
         </div>
       )}
       <ul className={`${burgerConstructorStyles.list}`}>
-        {ingredients.map((ingredientItem, index) => {
+        {ingredients.map((ingredientItem:TIingredient, index:number) => {
           return (
             <li
-              key={ingredientItem.id}
+              key={ingredientItem._id}
               className={`${burgerConstructorStyles.listElement} pl-0 pr-0 pb-2 pt-2`}
             >
               <div
@@ -74,7 +76,7 @@ function OrderConstructor() {
             price={bun?.price}
             thumbnail={bun?.image}
             text={bun?.name + " (низ)"}
-            id={bun?._id}
+           // id={bun?._id}
           />
         </div>
       )}

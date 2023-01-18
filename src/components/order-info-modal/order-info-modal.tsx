@@ -4,18 +4,20 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./order-info-modal.module.css";
 import FeedСonsist from "../feed-consist/feed-consist";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import { useSelector } from "../../utils/hooks";
+import { TIingredient } from "../../types/ingredients";
 
-function OrderInfoModal({ orders }) {
+
+function OrderInfoModal({ orders }: any) {
 
   const props = orders;
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
-  const ingredients = [];
+  const ingredients: any[] = [];
 
-  ingredientsAll?.forEach((item) => {
-    props.ingredients?.forEach((id) => {
+  ingredientsAll?.forEach((item: TIingredient) => {
+    props.ingredients?.forEach((id: string | number) => {
       if (item._id == id) {
         ingredients.push(item);
       }
@@ -26,7 +28,7 @@ function OrderInfoModal({ orders }) {
   //Считаем повторение ингридиентов
   const ingredientsIDs = ingredients.map((item) => {return item._id} );
 
-  const countIngridients = [];
+  const countIngridients: any[] = [];
 
   for (const item of ingredientsIDs) {
     countIngridients[item] = countIngridients[item] ? countIngridients[item] + 1 : 1;
@@ -65,7 +67,7 @@ function OrderInfoModal({ orders }) {
     };
   }, []);
 
-  const clearHistory = (e) => {
+  const clearHistory = (e:any) => {
     e.preventDefault();
     history.replace({ state: {} });
   };

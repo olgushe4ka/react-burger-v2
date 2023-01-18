@@ -5,11 +5,11 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
-import { TIingredient } from "../../../types/ingredients";
+import { TIingredient, TIingredientConstructor } from "../../../types/ingredients";
 import { useSelector } from "../../../utils/hooks";
 
 
-function IngredientConstructor(props: TIingredient) {
+function IngredientConstructor(props: TIingredientConstructor) {
   const { id, name, price, image, item } = props;
 
   const location = useLocation();
@@ -33,7 +33,7 @@ function IngredientConstructor(props: TIingredient) {
 
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
 
-  const allIngInTheCart: any[] = [...bunInTheCart, ...ingredientInTheCart];
+  const allIngInTheCart: TIingredient[] = [...bunInTheCart, ...ingredientInTheCart];
 
   allIngInTheCart?.forEach(
     (ingredient: TIingredient) => ingredient.name === name && (counter += 1)
@@ -66,10 +66,5 @@ function IngredientConstructor(props: TIingredient) {
   );
 }
 
-// IngredientConstructor.propTypes = {
-//   price: PropTypes.number.isRequired,
-//   image: PropTypes.string.isRequired,
-//   name: PropTypes.string.isRequired,
-// };
 
 export default IngredientConstructor;

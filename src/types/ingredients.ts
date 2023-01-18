@@ -1,22 +1,32 @@
-
 export type TIingredient = {
-    _id?: string,
-    type?: "bun" | "main" | "sauce",
-    name?: string,
-    proteins?: number,
-    fat?: number,
-    carbohydrates?: number,
-    calories?: number,
-    price?: number,
-    image?: string,
-    image_large?: string,
-    image_mobile?: string,
-    __v?: number,
-   
-  
-    id?: any,
-    index?: number | string,
-    item?: TIingredient
-  
-  };
-  
+  readonly _id: string;
+  readonly type: "bun" | "main" | "sauce";
+  readonly name: string;
+  readonly proteins: number;
+  readonly fat: number;
+  readonly carbohydrates: number;
+  readonly calories: number;
+  readonly price: number;
+  readonly image: string;
+  readonly image_large: string;
+  readonly image_mobile: string;
+  readonly __v: number;
+};
+
+export type TIingredientWithItem = TIingredient & {
+  item?: TIingredient;
+  readonly id: string;
+};
+
+export type TIingredientConstructor = Pick<
+  TIingredientWithItem,
+  "name" | "price" | "image" | "item" | "id"
+>;
+
+export type TIingredientOrderConstructor = TIingredientConstructor & {
+  readonly type: "bun" | "main" | "sauce";
+  readonly index: number;
+  handleClose: () => void;
+};
+
+

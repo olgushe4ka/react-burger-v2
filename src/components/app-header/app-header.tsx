@@ -25,7 +25,7 @@ function AppHeader() {
         </Link>
       </div>
       <Link to="/" className="pl-0 pr-30 pb-0 pt-0">
-        <Logo className="p-20" />
+        <Logo />
       </Link>
       <Link to="/profile" className={`${headerStyles.boxLeft}`}>
         <div className={`${headerStyles.icon} mr-2`}>

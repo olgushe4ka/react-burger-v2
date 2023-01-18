@@ -1,5 +1,6 @@
 import styles from "./feed-numbers.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "../../utils/hooks";
+import { TIingredient } from "../../types/ingredients";
 
 
 function FeedNumbers({ numbers }) {

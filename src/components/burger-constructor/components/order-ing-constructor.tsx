@@ -3,18 +3,22 @@ import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-comp
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { CONSTRUCTOR_SORT_INGREDIENTS } from "../../../services/actions/ingredients";
-import { useDispatch } from "react-redux";
+//import { useDispatch } from "react-redux";
 import { useCallback } from "react";
+import { TIingredientOrderConstructor } from "../../../types/ingredients";
+import { useSelector, useDispatch } from "../../../utils/hooks";
 
-function OrderIngConstructor(props) {
+function OrderIngConstructor(props: TIingredientOrderConstructor) {
   const { id, name, price, image, type, index, handleClose } = props;
 
   // DND Sorting
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
 
-  const moveCard = useCallback((dragIndex, hoverIndex) => {
+  type exponentCallback = (dragIndex:number | undefined, hoverIndex?:number | undefined) => void;
+
+  const moveCard = useCallback<exponentCallback>((dragIndex, hoverIndex) => {
     dispatch({
       type: CONSTRUCTOR_SORT_INGREDIENTS,
       payload: dragIndex,
@@ -38,11 +42,11 @@ function OrderIngConstructor(props) {
         handlerId: monitor.getHandlerId(),
       };
     },
-    hover(item, monitor) {
+    hover(item:any, monitor) {
       if (!ref.current) {
         return;
       }
-      const dragIndex = item.index;
+      const dragIndex:number = item.index;
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
@@ -52,7 +56,7 @@ function OrderIngConstructor(props) {
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
+      const clientOffset:any = monitor.getClientOffset();
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
@@ -62,7 +66,7 @@ function OrderIngConstructor(props) {
         return;
       }
 
-      moveCard({ dragIndex, hoverIndex });
+      moveCard(dragIndex, hoverIndex );
 
       item.index = hoverIndex;
     },
@@ -82,10 +86,10 @@ function OrderIngConstructor(props) {
       <ConstructorElement
         isLocked={false}
         price={price}
-        type={type}
+       // type={type}
         thumbnail={image}
         text={name}
-        id={id}
+       // id={id}
         handleClose={handleClose}
       />
     </div>

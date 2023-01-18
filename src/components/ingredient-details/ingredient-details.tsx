@@ -3,7 +3,9 @@ import { ingredientPropType } from "../../utils/prop-types";
 import { useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
-function IngredientDetails({ ingredients }) {
+
+
+function IngredientDetails({ ingredients }:any) {
   const location = useLocation();
   const history = useHistory();
 
@@ -15,7 +17,7 @@ function IngredientDetails({ ingredients }) {
     };
   }, []);
 
-  const clearHistory = (e) => {
+  const clearHistory = (e: any) => {
     e.preventDefault();
     history.replace({ state: {} });
   };

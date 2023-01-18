@@ -5,13 +5,15 @@ import Sum from "./components/sum";
 import OrderDetails from "../order-details/order-details";
 import { useState } from "react";
 import Modal from "../modal/modal";
-import { useDispatch, useSelector } from "react-redux";
+//import { useDispatch, useSelector } from "react-redux";
 import {
   CONSTRUCTOR_ADD_INGREDIENTS,
   CONSTRUCTOR_REMOVE_INGREDIENTS,
 } from "../../services/actions/ingredients";
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
+import { useSelector, useDispatch } from "../../utils/hooks";
+
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
@@ -41,7 +43,7 @@ function BurgerConstructor() {
 
   // DND
 
-  const moveIngredientToConstructor = (item) => {
+  const moveIngredientToConstructor = (item:any) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
       payload: {

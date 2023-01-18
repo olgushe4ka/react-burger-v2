@@ -1,10 +1,11 @@
 import OrderDetailsStyles from "./order-details.module.css";
 import logo from "../../images/OrderDetails_icon.svg";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { orderBurger } from "../../services/actions/ingredients";
 import { TailSpin } from "react-loader-spinner";
 import { Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "../../utils/hooks";
+
 
 function OrderDetails() {
   const isLoading = useSelector(

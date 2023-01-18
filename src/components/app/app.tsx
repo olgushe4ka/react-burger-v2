@@ -19,17 +19,16 @@ import {
   useHistory,
 } from "react-router-dom";
 import { baseWS } from "../../utils/burger-api";
-import { useDispatch } from "react-redux";
 import { getItems } from "../../services/actions/ingredients";
 import { useEffect } from "react";
 import { ProtectedRoute } from "../protected-route/protected-route";
 import { getProfileInfo } from "../../services/actions/login";
 import AppHeader from "../app-header/app-header";
-import { wsConnect, wsDisconnect } from "../../services/actions/web-soket";
+import { useDispatch } from "../../utils/hooks";
 
 function App() {
   const history = useHistory();
-  const location = useLocation();
+  const location:any = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,13 +41,7 @@ function App() {
 
   const background = location.state?.background;
 
-  // //WS
-  // useEffect(() => {
-  //   dispatch(wsConnect(baseWS));
-  //   dispatch(wsDisconnect())
-  // }, [dispatch]);
-
-
+ 
   return (
     <>
       <AppHeader />
