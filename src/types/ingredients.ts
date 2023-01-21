@@ -29,4 +29,12 @@ export type TIingredientOrderConstructor = TIingredientConstructor & {
   handleClose: () => void;
 };
 
-
+export type TOrders = {
+  _id: string;
+  status: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  number: number;
+  ingredients?: any
+};

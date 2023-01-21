@@ -11,12 +11,13 @@ import { baseWS, baseWSUser } from "../utils/burger-api";
 import { getCookie } from "../utils/cookie";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "../utils/hooks";
+import { TIingredient, TOrders } from "../types/ingredients";
 
 
 function OrderInfo() {
 
   const dispatch = useDispatch()
-  const { id } = useParams();
+  const { id }:any = useParams();
 
   const history = useHistory();
   const pathFeedOrOrder = history.location.pathname;
@@ -40,14 +41,14 @@ function OrderInfo() {
 
 
 
-  const orders = useSelector((state) => state.ws.table.orders);
+  const orders:TOrders[] = useSelector((state) => state.ws.table.orders);
   const props = orders?.find((order) => order?._id === id);
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients = [];
+  const ingredients:any[] = [];
 
-  ingredientsAll.forEach((item) => {
-    props?.ingredients.forEach((id) => {
+  ingredientsAll.forEach((item: TIingredient) => {
+    props?.ingredients.forEach((id: string) => {
       if (item._id == id) {
         ingredients.push(item);
       }
@@ -56,9 +57,9 @@ function OrderInfo() {
 
 
   //Считаем повторение ингридиентов
-  const ingredientsIDs = ingredients.map((item) => { return item._id });
+  const ingredientsIDs = ingredients.map((item: TIingredient) => { return item._id });
 
-  const countIngridients = [];
+  const countIngridients:any = [];
 
   for (const item of ingredientsIDs) {
     countIngridients[item] = countIngridients[item] ? countIngridients[item] + 1 : 1;

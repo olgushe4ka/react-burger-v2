@@ -1,6 +1,5 @@
 import styles from "./pages-styles.module.css";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../services/actions/login";
 import { useCallback, useEffect, useState } from "react";
 import { eraseCookie, getCookie } from "../utils/cookie";
@@ -10,15 +9,15 @@ import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
 import Modal from "../components/modal/modal";
 import OrderInfoModal from "../components/order-info-modal/order-info-modal";
 import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "../utils/hooks";
+import { TOrders } from "../types/ingredients";
 
 function ProfileHistoryOrders() {
   const history = useHistory();
-  const [modalOpen, setModalOpen] = useState(null);
+  const [modalOpen, setModalOpen] = useState<null | {}>(null);
 
   const name = useSelector((state) => state.login.userName);
   const email = useSelector((state) => state.login.email);
-  const [nameValue, setNameValue] = useState(name);
-  const [emailValue, setEmailValue] = useState(email);
 
   const allOrders = useSelector((state) => state.ws.table.orders);
 
@@ -45,7 +44,7 @@ function ProfileHistoryOrders() {
   }, [dispatch]);
 
   
-  const openOrderInfo = (data) => {
+  const openOrderInfo = (data: {}) => {
     setModalOpen(data);
   };
 
@@ -88,7 +87,7 @@ function ProfileHistoryOrders() {
           </p>
         </div>
         <div className={`${styles.profileFeedBurgers} ml-15 mr-0 mb-0 mt-0`}>
-          {allOrders?.map((order) => {
+          {allOrders?.map((order: TOrders) => {
             return (
               <div key={order.number} onClick={() => openOrderInfo(order)}>
                 <FeedBurgers order={order} />

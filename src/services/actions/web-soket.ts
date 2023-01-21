@@ -12,6 +12,7 @@ export const wsError = createAction("LIVE_ORDER_FEED_WS_ERROR");
 
 export interface IwsConnectAction {
   readonly type: typeof wsConnect;
+  payload: any;
 }
 export interface IwsDisconnectAction {
   readonly type: typeof wsDisconnect;
