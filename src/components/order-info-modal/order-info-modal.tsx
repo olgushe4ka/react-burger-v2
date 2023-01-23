@@ -67,7 +67,7 @@ function OrderInfoModal({ orders }: any) {
     };
   }, []);
 
-  const clearHistory = (e:any) => {
+  const clearHistory = (e: Event) => {
     e.preventDefault();
     history.replace({ state: {} });
   };

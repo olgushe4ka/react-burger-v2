@@ -3,7 +3,6 @@ import {
   DragIcon,
   ConstructorElement,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-//import { useSelector, useDispatch } from "react-redux";
 import { CONSTRUCTOR_DELETE_INGREDIENTS } from "../../../services/actions/ingredients";
 import OrderIngConstructor from "./order-ing-constructor";
 import { useSelector, useDispatch } from "../../../utils/hooks";

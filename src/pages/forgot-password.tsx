@@ -6,7 +6,7 @@ import {
 import styles from "./pages-styles.module.css";
 import { Link, Redirect } from "react-router-dom";
 import { passwordResetRequest } from "../services/actions/login";
-import { useState, useCallback } from "react";
+import { useState, useCallback, FormEvent } from "react";
 
 import Spinner from "../components/spinner/spinner";
 import { useSelector, useDispatch } from "../utils/hooks";
@@ -23,7 +23,7 @@ function ForgotPassword() {
     (state) => state.login.passwordResetRequest.success
   );
 
-  const resetPassword = (value:string, event: React.SyntheticEvent<EventTarget>) => {
+  const resetPassword = (value:string, event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     sendRequest(value);
   };

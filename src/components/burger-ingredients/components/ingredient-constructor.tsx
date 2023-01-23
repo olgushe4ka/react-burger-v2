@@ -12,7 +12,7 @@ import { useSelector } from "../../../utils/hooks";
 function IngredientConstructor(props: TIingredientConstructor) {
   const { id, name, price, image, item } = props;
 
-  const location = useLocation();
+ const location = useLocation();
 
   //Drag and drop
   const [{ opacity }, drag] = useDrag({

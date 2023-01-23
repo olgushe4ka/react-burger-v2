@@ -14,7 +14,7 @@ export type TWSActions2 = {
   onMessage: any;
 };
 
-export const socketMiddleware = (wsActions: TWSActions2) => {
+export const socketMiddleware = (wsActions: TWSActions2):Middleware<{}, RootState> => {
   return (store: any) => {
     let socket: any = null;
     let isConnected: boolean = false;

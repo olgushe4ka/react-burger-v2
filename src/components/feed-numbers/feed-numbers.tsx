@@ -1,19 +1,19 @@
 import styles from "./feed-numbers.module.css";
 import { useSelector, useDispatch } from "../../utils/hooks";
-import { TIingredient } from "../../types/ingredients";
+import { TIingredient, TOrders } from "../../types/ingredients";
 
 
-function FeedNumbers({ numbers }) {
+function FeedNumbers({ numbers }: any) {
 
   const orders = useSelector((state) => state.ws.table.orders);
 
-  const ready = orders?.filter((item) => item.status === "done").slice(0, 5);
+  const ready = orders?.filter((item:TOrders) => item.status === "done").slice(0, 5);
   const pending = orders
-    ?.filter((item) => item.status === "pending")
+    ?.filter((item:TOrders) => item.status === "pending")
     .slice(0, 5);
 
-  const readyNumbers = ready?.map((item) => item.number);
-  const pendingNumbers = pending?.map((item) => item.number);
+  const readyNumbers = ready?.map((item:TOrders) => item.number);
+  const pendingNumbers = pending?.map((item:TOrders) => item.number);
 
   return (
     <div className={`${styles.main} `}>
@@ -23,7 +23,7 @@ function FeedNumbers({ numbers }) {
         >
           Готовы:
         </h3>
-        {readyNumbers?.map((number) => {
+        {readyNumbers?.map((number: number) => {
           return (
             <p
               key={number}
@@ -42,7 +42,7 @@ function FeedNumbers({ numbers }) {
           В работе:
         </h3>
 
-        {pendingNumbers?.map((number) => {
+        {pendingNumbers?.map((number: number) => {
           return (
             <p
               key={number}

@@ -8,7 +8,7 @@ import styles from "./pages-styles.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "../utils/hooks";
 import { changeProfileInfo, logOut } from "../services/actions/login";
-import { useCallback, useState } from "react";
+import { useCallback, useState, FormEvent } from "react";
 import { eraseCookie } from "../utils/cookie";
 
 function Profile() {
@@ -50,8 +50,8 @@ function Profile() {
     name: nameValue,
   };
 
-  const onSaveBtnClick = (data: {}, event?: any) => {
-    event.preventDefault();
+  const onSaveBtnClick = (data: {}, event?: FormEvent<HTMLFormElement> | undefined) => {
+    event?.preventDefault();
     changeUserInfoRequest(data);
   };
 

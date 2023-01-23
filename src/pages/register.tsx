@@ -7,10 +7,10 @@ import {
 import styles from "./pages-styles.module.css";
 import { Link } from "react-router-dom";
 import { register } from "../services/actions/login";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, FormEvent } from "react";
 import { useSelector, useDispatch } from "../utils/hooks";
 import Spinner from "../components/spinner/spinner";
-import { Redirect, useLocation, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 
 function RegisterPage() {
   const history = useHistory();
@@ -33,7 +33,7 @@ function RegisterPage() {
     name: nameValue,
   };
 
-  const onButtonClick = (value:{}, event:any) => {
+  const onButtonClick = (value:{}, event:FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     sendRequest(value);
 

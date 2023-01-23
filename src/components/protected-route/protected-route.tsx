@@ -1,6 +1,8 @@
 
 import { Route, Redirect, useLocation } from "react-router-dom";
 import { useSelector } from "../../utils/hooks";
+import { Location } from "history";
+
 
 
 type TProtectedRoute =  {
@@ -11,7 +13,8 @@ type TProtectedRoute =  {
 }
 
 export const ProtectedRoute = ({ onlyUnAuth, children, ...props }: TProtectedRoute) => {
-  const location:any = useLocation();
+ // const location= useLocation();
+  const location = useLocation<{ from: Location }>();
 
   const isAuthChecked = useSelector((state) => state.login.isAuthChecked);
 

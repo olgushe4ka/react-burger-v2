@@ -1,22 +1,31 @@
 import styles from "./pages-styles.module.css";
 import FeedBurgers from "../components/feed-burgers/feed-burgers";
 import FeedNumbers from "../components/feed-numbers/feed-numbers";
-import { useSelector, useDispatch } from "react-redux";
 import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
 import { baseWS } from "../utils/burger-api";
 import { useEffect, useState } from "react";
 import Modal from "../components/modal/modal";
 import { useLocation, useHistory } from "react-router-dom";
 import OrderInfoModal from "../components/order-info-modal/order-info-modal";
+import { useSelector, useDispatch } from "../utils/hooks";
+
+import { Location } from "history";
+import { TOrders } from "../types/ingredients";
+
+
+
+
 
 function Feed() {
-  const [modalOpen, setModalOpen] = useState(null);
+  const [modalOpen, setModalOpen] = useState<null | TOrders>(null);
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
+  //const location = useLocation();
+  const location = useLocation<{ background: Location }>();
 
-  const background = location.state?.background;
+  //const background = location.state?.background;
+  const background = location.state && location.state.background;
 
   const allOrders = useSelector((state) => state.ws.table.orders);
 
@@ -35,7 +44,7 @@ function Feed() {
     }
     }, [dispatch]);
 
-  const openOrderInfo = (data) => {
+  const openOrderInfo = (data: TOrders) => {
     setModalOpen(data);
   };
   return (
@@ -48,7 +57,7 @@ function Feed() {
         </h2>
         <div className={`${styles.feedContent} ml-0 mr-0 mb-0 mt-0`}>
           <div className={`${styles.feedNumbers}`}>
-            {allOrders?.map((order) => {
+            {allOrders?.map((order: TOrders) => {
               return (
                 <div key={order.number} onClick={() => openOrderInfo(order)}>
                   <FeedBurgers order={order} />

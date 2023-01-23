@@ -25,10 +25,14 @@ import { ProtectedRoute } from "../protected-route/protected-route";
 import { getProfileInfo } from "../../services/actions/login";
 import AppHeader from "../app-header/app-header";
 import { useDispatch } from "../../utils/hooks";
+import { Location } from "history";
+
+
 
 function App() {
   const history = useHistory();
-  const location:any = useLocation();
+  //const location:any = useLocation();
+  const location = useLocation<{ background: Location }>();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,8 +43,8 @@ function App() {
     dispatch(getProfileInfo());
   }, [dispatch]);
 
-  const background = location.state?.background;
-
+  //const background = location.state?.background;
+  const background = location.state && location.state?.background;
  
   return (
     <>

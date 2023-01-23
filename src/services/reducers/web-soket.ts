@@ -39,15 +39,16 @@ const initialState: TWSListState = {
 //         state.status = WebsocketStatus.OFFLINE;
 //         state.connectionError = "";
 //       },
-//       wsError: (state, action: any) => {
+//       wsError: (state, action: PayloadAction<any>) => {
 //         state.connectionError = action.payload;
 //       },
-//       wsMessage: (state, action: any) => {
+//       wsMessage: (state, action: PayloadAction<any>) => {
 //         state.table = action.payload;
 //       },
 //   },
 // })
 
+// export const { wsMessage, wsError, wsClose, wsOpen, wsConnecting } = liveOrderFeedReducer.actions;
 
 
 export const liveOrderFeedReducer = createReducer(initialState, (builder) => {
