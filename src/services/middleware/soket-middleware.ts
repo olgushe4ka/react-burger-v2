@@ -17,14 +17,14 @@ export type TWSActions2 = {
 export const socketMiddleware = (
   wsActions: TWSActions2
 ): Middleware<{}, RootState> => {
-  return (store: any) => {
+  return (store) => {
     let socket: any = null;
     let isConnected: boolean = false;
     let reconnectTimer: number = 0;
     let url: string = "";
 
-    return (next: any) => (action: any) => {
-      const { dispatch }: any = store;
+    return (next) => (action) => {
+      const { dispatch } = store;
       const { type, payload } = action;
 
       const {
@@ -51,6 +51,7 @@ export const socketMiddleware = (
       }
 
       console.log(isConnected);
+      console.log(socket);
 
       if (socket) {
         socket.onopen = () => {
