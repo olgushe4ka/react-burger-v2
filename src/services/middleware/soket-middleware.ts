@@ -14,7 +14,9 @@ export type TWSActions2 = {
   onMessage: any;
 };
 
-export const socketMiddleware = (wsActions: TWSActions2):Middleware<{}, RootState> => {
+export const socketMiddleware = (
+  wsActions: TWSActions2
+): Middleware<{}, RootState> => {
   return (store: any) => {
     let socket: any = null;
     let isConnected: boolean = false;
@@ -35,16 +37,25 @@ export const socketMiddleware = (wsActions: TWSActions2):Middleware<{}, RootStat
         onMessage,
       } = wsActions;
 
-      if (type === wsConnect.type) {
+      if (type === wsConnect) {
         url = action.payload;
+
+        console.log(url);
+
         socket = new WebSocket(url);
         isConnected = true;
-        dispatch(wsConnecting());
+        // dispatch(wsConnecting());
+        dispatch({
+          type: wsConnecting,
+        });
       }
+
+      console.log(isConnected);
 
       if (socket) {
         socket.onopen = () => {
-          dispatch(onOpen());
+          //dispatch(onOpen());
+          dispatch({ type: onOpen });
         };
 
         socket.onerror = (event: any) => {
@@ -54,24 +65,40 @@ export const socketMiddleware = (wsActions: TWSActions2):Middleware<{}, RootStat
         socket.onclose = (event: any) => {
           if (event.code !== 1000) {
             console.log("socket.onclose", event);
-            dispatch(onError(event.code.toString()));
+            // dispatch(onError(event.code.toString()));
+            dispatch({ type: onError, payload: event.code.toString() });
           }
 
-          dispatch(onClose(event.code.toString()));
+          //dispatch(onClose(event.code.toString()));
+          dispatch({ type: onClose, payload: event.code.toString() });
 
           if (isConnected) {
-            dispatch(wsConnecting());
+            //dispatch(wsConnecting());
+            dispatch({
+              type: wsConnecting,
+            });
             reconnectTimer = window.setTimeout(() => {
-              dispatch(wsConnect(url));
+              //  dispatch(wsConnect(url));
+              dispatch({ type: wsConnect, payload: url });
             }, 3000);
           }
         };
 
+
+
         socket.onmessage = (event: any) => {
           const { data } = event;
+          console.log(event)
           const parsedData = JSON.parse(data);
-          dispatch(onMessage(parsedData));
+
+          //dispatch(onMessage(parsedData));
+          dispatch({
+            type: onMessage,
+            payload: parsedData,
+          });
         };
+
+
 
         if (wsDisconnect.match(action)) {
           isConnected = false;

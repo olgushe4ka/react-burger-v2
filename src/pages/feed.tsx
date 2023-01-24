@@ -1,7 +1,7 @@
 import styles from "./pages-styles.module.css";
 import FeedBurgers from "../components/feed-burgers/feed-burgers";
 import FeedNumbers from "../components/feed-numbers/feed-numbers";
-import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
+import { LIVE_ORDER_FEED_CONNECT, LIVE_ORDER_FEED_DISCONNECT, wsConnect, wsDisconnect} from "../services/actions/web-soket";
 import { baseWS } from "../utils/burger-api";
 import { useEffect, useState } from "react";
 import Modal from "../components/modal/modal";
@@ -11,10 +11,6 @@ import { useSelector, useDispatch } from "../utils/hooks";
 
 import { Location } from "history";
 import { TOrders } from "../types/ingredients";
-
-
-
-
 
 function Feed() {
   const [modalOpen, setModalOpen] = useState<null | TOrders>(null);
@@ -37,12 +33,12 @@ function Feed() {
   };
 
   //WS
-   useEffect(() => {
+  useEffect(() => {
     dispatch(wsConnect(baseWS));
     return () => {
-      dispatch(wsDisconnect())
-    }
-    }, [dispatch]);
+      dispatch(wsDisconnect());
+    };
+  }, [dispatch]);
 
   const openOrderInfo = (data: TOrders) => {
     setModalOpen(data);

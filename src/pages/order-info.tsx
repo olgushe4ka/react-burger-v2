@@ -5,7 +5,7 @@ import {
 import styles from "./pages-styles.module.css";
 import FeedСonsist from "../components/feed-consist/feed-consist";
 import { useParams } from "react-router-dom";
-import { wsConnect, wsDisconnect } from "../services/actions/web-soket";
+import { LIVE_ORDER_FEED_CONNECT, wsConnect, wsDisconnect } from "../services/actions/web-soket";
 import { useEffect } from "react";
 import { baseWS, baseWSUser } from "../utils/burger-api";
 import { getCookie } from "../utils/cookie";
@@ -30,8 +30,9 @@ function OrderInfo() {
     if (pathFeedOrOrder === `/profile/orders/${id}`) {
       dispatch(wsConnect(`${baseWSUser}?token=${token}`));
     }
-    else dispatch(wsConnect(baseWS))
-
+    else 
+    dispatch(wsConnect(baseWS))
+    //dispatch({ type: LIVE_ORDER_FEED_CONNECT, payload: baseWS})
 
     return () => {
       dispatch(wsDisconnect())
