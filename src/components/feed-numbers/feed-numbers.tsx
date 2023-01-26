@@ -2,18 +2,18 @@ import styles from "./feed-numbers.module.css";
 import { useSelector, useDispatch } from "../../utils/hooks";
 import { TIingredient, TOrders } from "../../types/ingredients";
 
-
 function FeedNumbers({ numbers }: any) {
-
   const orders = useSelector((state) => state.ws.table.orders);
 
-  const ready = orders?.filter((item:TOrders) => item.status === "done").slice(0, 5);
+  const ready = orders
+    ?.filter((item: TOrders) => item.status === "done")
+    .slice(0, 5);
   const pending = orders
-    ?.filter((item:TOrders) => item.status === "pending")
+    ?.filter((item: TOrders) => item.status === "pending")
     .slice(0, 5);
 
-  const readyNumbers = ready?.map((item:TOrders) => item.number);
-  const pendingNumbers = pending?.map((item:TOrders) => item.number);
+  const readyNumbers = ready?.map((item: TOrders) => item.number);
+  const pendingNumbers = pending?.map((item: TOrders) => item.number);
 
   return (
     <div className={`${styles.main} `}>

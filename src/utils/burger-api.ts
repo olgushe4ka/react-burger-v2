@@ -13,10 +13,12 @@ export const baseWSUser = "wss://norma.nomoreparties.space/orders";
 // }
 
 function checkResponse(res: any) {
-  return res.ok ? res.json() : res.json().then((res: any) => Promise.reject(res));
+  return res.ok
+    ? res.json()
+    : res.json().then((res: any) => Promise.reject(res));
 }
 
-function request(url: string, options?:any) {
+function request(url: string, options?: any) {
   return fetch(url, options).then(checkResponse);
 }
 
@@ -125,11 +127,11 @@ export const refreshToken = () => {
   }).then(checkResponse);
 };
 
-const fetchWithRefresh = async (url: string, options?:any) => {
+const fetchWithRefresh = async (url: string, options?: any) => {
   try {
     const res = await fetch(url, options);
     return await checkResponse(res);
-  } catch (error:any) {
+  } catch (error: any) {
     // if (error.status === 403 ) {
     if (error.message === "jwt expired") {
       const refreshData = await refreshToken();

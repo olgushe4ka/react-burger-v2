@@ -8,8 +8,7 @@ import { Link, useLocation, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "../../utils/hooks";
 import { TIingredient } from "../../types/ingredients";
 
-
-function FeedBurgers({ order }:any) {
+function FeedBurgers({ order }: any) {
   const history = useHistory();
 
   const pathFeedOrOrder = history.location.pathname;
@@ -21,10 +20,10 @@ function FeedBurgers({ order }:any) {
   const ingredientsIds = order.ingredients;
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients:any = [];
+  const ingredients: any = [];
 
-  ingredientsAll.forEach((item:TIingredient) => {
-    ingredientsIds.forEach((id:string) => {
+  ingredientsAll.forEach((item: TIingredient) => {
+    ingredientsIds.forEach((id: string) => {
       if (item._id == id) {
         ingredients.push(item);
       }
@@ -35,13 +34,14 @@ function FeedBurgers({ order }:any) {
 
   //сумма
 
-  const ingredientsArr = ingredients.map((ingredient:TIingredient) => {
+  const ingredientsArr = ingredients.map((ingredient: TIingredient) => {
     return ingredient.price;
   });
   const initialSum = 0;
 
   const sumIngredWithInitial = ingredientsArr.reduce(
-    (previousValue:number, currentValue:number) => previousValue + currentValue,
+    (previousValue: number, currentValue: number) =>
+      previousValue + currentValue,
     initialSum
   );
 
@@ -72,7 +72,7 @@ function FeedBurgers({ order }:any) {
 
           <div className={`${styles.ingredientsBox} pl-0 pr-0 pb-0 pt-0`}>
             <ul className={`${styles.ingredientsIcons} pl-0 pr-0 pb-0 pt-0`}>
-              {ingredientsOnlyFive.map((item:TIingredient, index:number) => {
+              {ingredientsOnlyFive.map((item: TIingredient, index: number) => {
                 return (
                   <li className={`${styles.ingredientIcon}`} key={index}>
                     <img

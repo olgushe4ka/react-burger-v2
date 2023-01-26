@@ -60,7 +60,7 @@ export interface IPasswordResetRequestRequestAction {
 export interface IPasswordResetRequestSuccessAction {
   payload: any;
   readonly type: typeof PASSWORD_RESET_REQUEST_SUCCESS;
-  }
+}
 export interface IPasswordResetRequestFailedAction {
   readonly type: typeof PASSWORD_RESET_REQUEST_FAILED;
 }
@@ -71,7 +71,7 @@ export interface IPasswordResetRequestAction {
 export interface IPasswordResetSuccessAction {
   payload: any;
   readonly type: typeof PASSWORD_RESET_SUCCESS;
- }
+}
 export interface IPasswordResetFailedAction {
   readonly type: typeof PASSWORD_RESET_FAILED;
 }
@@ -82,7 +82,6 @@ export interface IRegustrationRequestAction {
 export interface IRegustrationSuccessAction {
   payload: any;
   readonly type: typeof REGISTRATION_SUCCESS;
-  
 }
 export interface IRegustrationFailedAction {
   readonly type: typeof REGISTRATION_FAILED;
@@ -92,9 +91,8 @@ export interface ILoginRequestAction {
   readonly type: typeof LOGIN_REQUEST;
 }
 export interface ILoginSuccessAction {
-  payload: { user: { email: string; name: string; }; };
+  payload: { user: { email: string; name: string } };
   readonly type: typeof LOGIN_SUCCESS;
- 
 }
 export interface ILoginFailedAction {
   readonly type: typeof LOGIN_FAILED;
@@ -106,7 +104,6 @@ export interface IGetUserInfoRequestAction {
 export interface IGetUserInfoSuccessAction {
   payload: any;
   readonly type: typeof GET_USER_INFO_SUCCESS;
-
 }
 export interface IGetUserInfoFailedAction {
   readonly type: typeof GET_USER_INFO_FAILED;
@@ -118,7 +115,6 @@ export interface IChangeUserInfoRequestAction {
 export interface IChangeUserInfoSuccessAction {
   payload: any;
   readonly type: typeof CHANGE_USER_INFO_SUCCESS;
-
 }
 export interface IChangeUserInfoFailedAction {
   readonly type: typeof CHANGE_USER_INFO_FAILED;
@@ -130,7 +126,6 @@ export interface ILogautRequestAction {
 export interface ILogautSuccessAction {
   payload: any;
   readonly type: typeof LOGOUT_SUCCESS;
-
 }
 export interface ILogautInfoFailedAction {
   readonly type: typeof LOGOUT_FAILED;

@@ -16,7 +16,10 @@ function OrderIngConstructor(props: TIingredientOrderConstructor) {
 
   const dispatch = useDispatch();
 
-  type exponentCallback = (dragIndex:number | undefined, hoverIndex?:number | undefined) => void;
+  type exponentCallback = (
+    dragIndex: number | undefined,
+    hoverIndex?: number | undefined
+  ) => void;
 
   const moveCard = useCallback<exponentCallback>((dragIndex, hoverIndex) => {
     dispatch({
@@ -42,11 +45,11 @@ function OrderIngConstructor(props: TIingredientOrderConstructor) {
         handlerId: monitor.getHandlerId(),
       };
     },
-    hover(item:any, monitor) {
+    hover(item: any, monitor) {
       if (!ref.current) {
         return;
       }
-      const dragIndex:number = item.index;
+      const dragIndex: number = item.index;
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
@@ -56,7 +59,7 @@ function OrderIngConstructor(props: TIingredientOrderConstructor) {
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY =
         (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset:any = monitor.getClientOffset();
+      const clientOffset: any = monitor.getClientOffset();
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
@@ -66,7 +69,7 @@ function OrderIngConstructor(props: TIingredientOrderConstructor) {
         return;
       }
 
-      moveCard(dragIndex, hoverIndex );
+      moveCard(dragIndex, hoverIndex);
 
       item.index = hoverIndex;
     },
@@ -86,10 +89,10 @@ function OrderIngConstructor(props: TIingredientOrderConstructor) {
       <ConstructorElement
         isLocked={false}
         price={price}
-       // type={type}
+        // type={type}
         thumbnail={image}
         text={name}
-       // id={id}
+        // id={id}
         handleClose={handleClose}
       />
     </div>

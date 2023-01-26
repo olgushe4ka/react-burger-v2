@@ -2,39 +2,33 @@ import {
   GET_ORDER_DETAILS_FAILED,
   GET_ORDER_DETAILS_REQUEST,
   GET_ORDER_DETAILS_SUCCESS,
-
   GET_INGREDIENTS_FAILED,
   GET_INGREDIENTS_REQUEST,
   GET_INGREDIENTS_SUCCESS,
-
   CONSTRUCTOR_ADD_INGREDIENTS,
   CONSTRUCTOR_DELETE_INGREDIENTS,
-
   RESET_INGREDIENT_MODAL,
   SET_INGREDIENT_MODAL,
-
   CONSTRUCTOR_SORT_INGREDIENTS,
   CONSTRUCTOR_REMOVE_INGREDIENTS,
   TIngredientsActions,
 } from "../actions/ingredients";
 
-
 type TIngredientsListState = {
-  ingredients: [],
-  ingredientsIsLoading: boolean,
-  ingredientsFailed: boolean,
+  ingredients: [];
+  ingredientsIsLoading: boolean;
+  ingredientsFailed: boolean;
 
-  cartBun: any,
+  cartBun: any;
 
-  cartIng: any,
+  cartIng: any;
 
-  ingredientDetails: any,
+  ingredientDetails: any;
 
-  orderDetails: any,
-  orderDetailsIsLoading: boolean,
-  orderDetailsFailed: boolean,
-}
-
+  orderDetails: any;
+  orderDetailsIsLoading: boolean;
+  orderDetailsFailed: boolean;
+};
 
 const initialState: TIngredientsListState = {
   ingredients: [],
@@ -52,8 +46,10 @@ const initialState: TIngredientsListState = {
   orderDetailsFailed: false,
 };
 
-
-export const ingredientsReducer = (state = initialState, action: TIngredientsActions ): TIngredientsListState => {
+export const ingredientsReducer = (
+  state = initialState,
+  action: TIngredientsActions
+): TIngredientsListState => {
   switch (action.type) {
     case GET_ORDER_DETAILS_REQUEST: {
       return {

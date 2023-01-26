@@ -2,9 +2,7 @@ import ingredientDetailsStyles from "./ingredient-details.module.css";
 import { useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 
-
-
-function IngredientDetails({ ingredients }:any) {
+function IngredientDetails({ ingredients }: any) {
   const location = useLocation();
   const history = useHistory();
 
@@ -94,6 +92,5 @@ function IngredientDetails({ ingredients }:any) {
     </div>
   );
 }
-
 
 export default IngredientDetails;

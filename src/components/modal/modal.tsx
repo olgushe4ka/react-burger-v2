@@ -13,7 +13,7 @@ type TModal = {
 };
 
 const Modal = ({ title, closeAllModals, children }: TModal) => {
-  const handleEscKeydown = (e: KeyboardEvent ) => {
+  const handleEscKeydown = (e: KeyboardEvent) => {
     e.key === "Escape" && closeAllModals();
   };
 
@@ -44,7 +44,5 @@ const Modal = ({ title, closeAllModals, children }: TModal) => {
     modalsContainer
   );
 };
-
-
 
 export default Modal;

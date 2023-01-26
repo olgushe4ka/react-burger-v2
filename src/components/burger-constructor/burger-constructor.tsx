@@ -15,7 +15,6 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "../../utils/hooks";
 import { TIingredient } from "../../types/ingredients";
 
-
 function BurgerConstructor() {
   const dispatch = useDispatch();
 
@@ -44,7 +43,7 @@ function BurgerConstructor() {
 
   // DND
 
-  const moveIngredientToConstructor = (item:TIingredient) => {
+  const moveIngredientToConstructor = (item: TIingredient) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
       payload: {

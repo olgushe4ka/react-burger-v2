@@ -16,11 +16,9 @@ function OrderConstructor() {
 
   const bun = buns[buns.length - 1];
 
-
-  
   //Удаление элемента
-  const deleteIngredient = (indexOf:any)  => {
-    dispatch({ 
+  const deleteIngredient = (indexOf: any) => {
+    dispatch({
       type: CONSTRUCTOR_DELETE_INGREDIENTS,
       payload: indexOf,
     });
@@ -38,12 +36,12 @@ function OrderConstructor() {
             price={bun?.price}
             thumbnail={bun?.image}
             text={bun?.name + " (верх)"}
-           // id={bun?._id}
+            // id={bun?._id}
           />
         </div>
       )}
       <ul className={`${burgerConstructorStyles.list}`}>
-        {ingredients.map((ingredientItem:TIingredient, index:number) => {
+        {ingredients.map((ingredientItem: TIingredient, index: number) => {
           return (
             <li
               key={ingredientItem._id}
@@ -75,7 +73,7 @@ function OrderConstructor() {
             price={bun?.price}
             thumbnail={bun?.image}
             text={bun?.name + " (низ)"}
-           // id={bun?._id}
+            // id={bun?._id}
           />
         </div>
       )}

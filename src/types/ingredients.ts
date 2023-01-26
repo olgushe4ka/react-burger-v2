@@ -36,5 +36,5 @@ export type TOrders = {
   createdAt: string;
   updatedAt: string;
   number: number;
-  ingredients?: any
+  ingredients?: any;
 };

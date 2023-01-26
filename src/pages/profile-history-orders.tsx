@@ -39,11 +39,10 @@ function ProfileHistoryOrders() {
   useEffect(() => {
     dispatch(wsConnect(`${baseWSUser}?token=${token}`));
     return () => {
-      dispatch(wsDisconnect())
-    }
+      dispatch(wsDisconnect());
+    };
   }, [dispatch]);
 
-  
   const openOrderInfo = (data: {}) => {
     setModalOpen(data);
   };

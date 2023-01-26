@@ -85,10 +85,9 @@ export const socketMiddleware = (
           }
         };
 
-
         socket.onmessage = (event: any) => {
           const { data } = event;
-          console.log(event)
+          console.log(event);
           const parsedData = JSON.parse(data);
 
           //dispatch(onMessage(parsedData));
@@ -97,8 +96,6 @@ export const socketMiddleware = (
             payload: parsedData,
           });
         };
-
-
 
         if (type === wsDisconnect) {
           isConnected = false;

@@ -24,4 +24,3 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 
 export type AppDispatch = ThunkDispatch<RootState, never, TApplicationActions>;
-

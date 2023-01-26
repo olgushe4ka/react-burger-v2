@@ -66,7 +66,6 @@ export interface IConsrtuctorDeleteIngredientAction {
 export interface IConsrtuctorSortIngredientAction {
   readonly type: typeof CONSTRUCTOR_SORT_INGREDIENTS;
   readonly payload: any;
-  
 }
 
 export interface IConsrtuctorRemoveIngredientAction {
@@ -96,7 +95,6 @@ export type TIngredientsActions =
   | IConsrtuctorRemoveIngredientAction
   | IResetIngredientModalAction
   | ISetIngredientModalAction;
-
 
 // Генераторы экшенов
 

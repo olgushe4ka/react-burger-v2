@@ -23,7 +23,7 @@ function ForgotPassword() {
     (state) => state.login.passwordResetRequest.success
   );
 
-  const resetPassword = (value:string, event: FormEvent<HTMLFormElement>) => {
+  const resetPassword = (value: string, event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     sendRequest(value);
   };

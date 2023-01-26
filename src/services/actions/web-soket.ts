@@ -8,32 +8,26 @@
 // export const wsMessage = createAction("LIVE_ORDER_FEED_WS_MESSAGE");
 // export const wsError = createAction("LIVE_ORDER_FEED_WS_ERROR");
 
-
 export const LIVE_ORDER_FEED_CONNECT: "LIVE_ORDER_FEED_CONNECT" =
   "LIVE_ORDER_FEED_CONNECT";
 
-  export const LIVE_ORDER_FEED_DISCONNECT: "LIVE_ORDER_FEED_DISCONNECT" =
+export const LIVE_ORDER_FEED_DISCONNECT: "LIVE_ORDER_FEED_DISCONNECT" =
   "LIVE_ORDER_FEED_DISCONNECT";
 
-  export const LIVE_ORDER_FEED_WS_CONNECTING: "LIVE_ORDER_FEED_WS_CONNECTING" =
+export const LIVE_ORDER_FEED_WS_CONNECTING: "LIVE_ORDER_FEED_WS_CONNECTING" =
   "LIVE_ORDER_FEED_WS_CONNECTING";
 
-  export const LIVE_ORDER_FEED_WS_OPEN: "LIVE_ORDER_FEED_WS_OPEN" =
+export const LIVE_ORDER_FEED_WS_OPEN: "LIVE_ORDER_FEED_WS_OPEN" =
   "LIVE_ORDER_FEED_WS_OPEN";
 
-  export const LIVE_ORDER_FEED_WS_CLOSE: "LIVE_ORDER_FEED_WS_CLOSE" =
+export const LIVE_ORDER_FEED_WS_CLOSE: "LIVE_ORDER_FEED_WS_CLOSE" =
   "LIVE_ORDER_FEED_WS_CLOSE";
 
-  export const LIVE_ORDER_FEED_WS_MESSAGE: "LIVE_ORDER_FEED_WS_MESSAGE" =
+export const LIVE_ORDER_FEED_WS_MESSAGE: "LIVE_ORDER_FEED_WS_MESSAGE" =
   "LIVE_ORDER_FEED_WS_MESSAGE";
 
-  export const LIVE_ORDER_FEED_WS_ERROR: "LIVE_ORDER_FEED_WS_ERROR" =
+export const LIVE_ORDER_FEED_WS_ERROR: "LIVE_ORDER_FEED_WS_ERROR" =
   "LIVE_ORDER_FEED_WS_ERROR";
-
-
-
-
-
 
 // Типизация экшенов
 
@@ -74,14 +68,16 @@ export type TWSActions =
   | IwsMessageAction
   | IwsErrorAction;
 
+// Генераторы экшенов
 
-  // Генераторы экшенов
-
-export const wsConnect = (payload:any) => ({ type: LIVE_ORDER_FEED_CONNECT, payload: payload })
-export const wsDisconnect = () => ({ type: LIVE_ORDER_FEED_DISCONNECT })
+export const wsConnect = (payload: any) => ({
+  type: LIVE_ORDER_FEED_CONNECT,
+  payload: payload,
+});
+export const wsDisconnect = () => ({ type: LIVE_ORDER_FEED_DISCONNECT });
 
 // export const wsConnect = (indexOf:any)  => {
-//   dispatch({ 
+//   dispatch({
 //     type: LIVE_ORDER_FEED_CONNECT,
 //     payload: indexOf,
 //   });

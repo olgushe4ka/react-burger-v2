@@ -5,7 +5,11 @@ import {
 import styles from "./pages-styles.module.css";
 import FeedСonsist from "../components/feed-consist/feed-consist";
 import { useParams } from "react-router-dom";
-import { LIVE_ORDER_FEED_CONNECT, wsConnect, wsDisconnect } from "../services/actions/web-soket";
+import {
+  LIVE_ORDER_FEED_CONNECT,
+  wsConnect,
+  wsDisconnect,
+} from "../services/actions/web-soket";
 import { useEffect } from "react";
 import { baseWS, baseWSUser } from "../utils/burger-api";
 import { getCookie } from "../utils/cookie";
@@ -13,40 +17,32 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "../utils/hooks";
 import { TIingredient, TOrders } from "../types/ingredients";
 
-
 function OrderInfo() {
-
-  const dispatch = useDispatch()
-  const { id }:any = useParams();
+  const dispatch = useDispatch();
+  const { id }: any = useParams();
 
   const history = useHistory();
   const pathFeedOrOrder = history.location.pathname;
 
-  
   //WS
   const token = getCookie("accessToken");
 
   useEffect(() => {
     if (pathFeedOrOrder === `/profile/orders/${id}`) {
       dispatch(wsConnect(`${baseWSUser}?token=${token}`));
-    }
-    else 
-   dispatch(wsConnect(baseWS))
+    } else dispatch(wsConnect(baseWS));
     //dispatch({ type: LIVE_ORDER_FEED_CONNECT, payload: baseWS})
 
     return () => {
-      dispatch(wsDisconnect())
-    }
+      dispatch(wsDisconnect());
+    };
   }, [dispatch]);
 
-
-
-
-  const orders:TOrders[] = useSelector((state) => state.ws.table.orders);
+  const orders: TOrders[] = useSelector((state) => state.ws.table.orders);
   const props = orders?.find((order) => order?._id === id);
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients:any[] = [];
+  const ingredients: any[] = [];
 
   ingredientsAll.forEach((item: TIingredient) => {
     props?.ingredients.forEach((id: string) => {
@@ -56,18 +52,20 @@ function OrderInfo() {
     });
   });
 
-
   //Считаем повторение ингридиентов
-  const ingredientsIDs = ingredients.map((item: TIingredient) => { return item._id });
+  const ingredientsIDs = ingredients.map((item: TIingredient) => {
+    return item._id;
+  });
 
-  const countIngridients:any = [];
+  const countIngridients: any = [];
 
   for (const item of ingredientsIDs) {
-    countIngridients[item] = countIngridients[item] ? countIngridients[item] + 1 : 1;
+    countIngridients[item] = countIngridients[item]
+      ? countIngridients[item] + 1
+      : 1;
   }
 
   const countIngridientsArr = Object.entries(countIngridients);
-
 
   //Статус
   const statusOfOrder = (() => {

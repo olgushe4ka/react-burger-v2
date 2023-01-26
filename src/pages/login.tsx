@@ -28,17 +28,17 @@ function LoginPage() {
     password: passwordValue,
   };
 
-  const onButtonClick = (value:{}, event: FormEvent<HTMLFormElement>) => {
+  const onButtonClick = (value: {}, event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     sendRequest(value);
     getUserInfo();
   };
 
-  const sendRequest = useCallback((value:{}) => {
+  const sendRequest = useCallback((value: {}) => {
     dispatch(login(value));
   }, []);
 
-  const getUserInfo = useCallback((value?:any) => {
+  const getUserInfo = useCallback((value?: any) => {
     dispatch(getProfileInfo(value));
   }, []);
 

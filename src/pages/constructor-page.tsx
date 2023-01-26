@@ -5,8 +5,7 @@ import styles from "./constructor-page.module.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-
-function ConstructorPage () {
+function ConstructorPage() {
   return (
     <div className={styles.App}>
       <div className={`${styles.appWithoutHeader}`}>
@@ -17,7 +16,7 @@ function ConstructorPage () {
         </h1>
         <div className={`${styles.displayFlex}`}>
           <DndProvider backend={HTML5Backend}>
-             <BurgerIngredients />
+            <BurgerIngredients />
             <BurgerConstructor />
           </DndProvider>
         </div>

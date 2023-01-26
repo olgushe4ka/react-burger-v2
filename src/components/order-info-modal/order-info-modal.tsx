@@ -9,9 +9,7 @@ import { useEffect } from "react";
 import { useSelector } from "../../utils/hooks";
 import { TIingredient } from "../../types/ingredients";
 
-
 function OrderInfoModal({ orders }: any) {
-
   const props = orders;
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
   const ingredients: any[] = [];
@@ -24,19 +22,22 @@ function OrderInfoModal({ orders }: any) {
     });
   });
 
-  
   //Считаем повторение ингридиентов
-  const ingredientsIDs = ingredients.map((item) => {return item._id} );
+  const ingredientsIDs = ingredients.map((item) => {
+    return item._id;
+  });
 
   const countIngridients: any[] = [];
 
   for (const item of ingredientsIDs) {
-    countIngridients[item] = countIngridients[item] ? countIngridients[item] + 1 : 1;
+    countIngridients[item] = countIngridients[item]
+      ? countIngridients[item] + 1
+      : 1;
   }
 
   const countIngridientsArr = Object.entries(countIngridients);
 
-//Статус
+  //Статус
   const statusOfOrder = (() => {
     if (props.status === "done") {
       return `Выполнен`;

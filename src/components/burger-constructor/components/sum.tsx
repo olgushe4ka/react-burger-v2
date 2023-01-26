@@ -10,14 +10,15 @@ function Sum() {
 
   const bun = buns[buns.length - 1];
 
-  const ingredientsArr = ingredients.map((ingredient:TIingredient) => {
+  const ingredientsArr = ingredients.map((ingredient: TIingredient) => {
     return ingredient.price;
   });
 
   const initialSum = 0;
 
   const sumIngredWithInitial = ingredientsArr.reduce(
-    (previousValue: number, currentValue: number) => previousValue + currentValue,
+    (previousValue: number, currentValue: number) =>
+      previousValue + currentValue,
     initialSum
   );
 

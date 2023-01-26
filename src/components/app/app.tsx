@@ -27,8 +27,6 @@ import AppHeader from "../app-header/app-header";
 import { useDispatch } from "../../utils/hooks";
 import { Location } from "history";
 
-
-
 function App() {
   const history = useHistory();
   //const location:any = useLocation();
@@ -45,7 +43,7 @@ function App() {
 
   //const background = location.state?.background;
   const background = location.state && location.state?.background;
- 
+
   return (
     <>
       <AppHeader />

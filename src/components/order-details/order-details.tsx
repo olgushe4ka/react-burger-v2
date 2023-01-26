@@ -6,7 +6,6 @@ import { TailSpin } from "react-loader-spinner";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "../../utils/hooks";
 
-
 function OrderDetails() {
   const isLoading = useSelector(
     (state) => state.ingredients.orderDetailsIsLoading

@@ -5,14 +5,16 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { useDrag } from "react-dnd";
 import { Link, useLocation } from "react-router-dom";
-import { TIingredient, TIingredientConstructor } from "../../../types/ingredients";
+import {
+  TIingredient,
+  TIingredientConstructor,
+} from "../../../types/ingredients";
 import { useSelector } from "../../../utils/hooks";
-
 
 function IngredientConstructor(props: TIingredientConstructor) {
   const { id, name, price, image, item } = props;
 
- const location = useLocation();
+  const location = useLocation();
 
   //Drag and drop
   const [{ opacity }, drag] = useDrag({
@@ -33,13 +35,16 @@ function IngredientConstructor(props: TIingredientConstructor) {
 
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
 
-  const allIngInTheCart: TIingredient[] = [...bunInTheCart, ...ingredientInTheCart];
+  const allIngInTheCart: TIingredient[] = [
+    ...bunInTheCart,
+    ...ingredientInTheCart,
+  ];
 
   allIngInTheCart?.forEach(
     (ingredient: TIingredient) => ingredient.name === name && (counter += 1)
   );
 
-   return (
+  return (
     <Link
       style={{ textDecoration: "none", color: "white" }}
       to={{
@@ -65,6 +70,5 @@ function IngredientConstructor(props: TIingredientConstructor) {
     </Link>
   );
 }
-
 
 export default IngredientConstructor;

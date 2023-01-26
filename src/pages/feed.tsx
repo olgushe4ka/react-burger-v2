@@ -1,7 +1,12 @@
 import styles from "./pages-styles.module.css";
 import FeedBurgers from "../components/feed-burgers/feed-burgers";
 import FeedNumbers from "../components/feed-numbers/feed-numbers";
-import { LIVE_ORDER_FEED_CONNECT, LIVE_ORDER_FEED_DISCONNECT, wsConnect, wsDisconnect} from "../services/actions/web-soket";
+import {
+  LIVE_ORDER_FEED_CONNECT,
+  LIVE_ORDER_FEED_DISCONNECT,
+  wsConnect,
+  wsDisconnect,
+} from "../services/actions/web-soket";
 import { baseWS } from "../utils/burger-api";
 import { useEffect, useState } from "react";
 import Modal from "../components/modal/modal";

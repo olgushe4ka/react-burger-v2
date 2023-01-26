@@ -26,7 +26,7 @@ function ResetPassword() {
     token: pinValue,
   };
 
-  const resetPassword = (value:{}, event:FormEvent<HTMLFormElement> ) => {
+  const resetPassword = (value: {}, event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     sendRequest(value);
     if (errorInReset === true) {
@@ -34,7 +34,7 @@ function ResetPassword() {
     }
   };
 
-  const sendRequest = useCallback((value:any) => {
+  const sendRequest = useCallback((value: any) => {
     dispatch(passwordReset({ value }));
   }, []);
 

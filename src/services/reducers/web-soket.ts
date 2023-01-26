@@ -1,4 +1,9 @@
-import { AnyListenerPredicate, createReducer, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  AnyListenerPredicate,
+  createReducer,
+  createSlice,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 import { WebsocketStatus } from "../../utils/constants";
 import {
   // wsClose,
@@ -7,21 +12,19 @@ import {
   // wsMessage,
   // wsOpen,
   TWSActions,
-
   LIVE_ORDER_FEED_CONNECT,
   LIVE_ORDER_FEED_DISCONNECT,
-   LIVE_ORDER_FEED_WS_CONNECTING,
-   LIVE_ORDER_FEED_WS_OPEN,
-   LIVE_ORDER_FEED_WS_CLOSE,
-   LIVE_ORDER_FEED_WS_MESSAGE,
-   LIVE_ORDER_FEED_WS_ERROR
+  LIVE_ORDER_FEED_WS_CONNECTING,
+  LIVE_ORDER_FEED_WS_OPEN,
+  LIVE_ORDER_FEED_WS_CLOSE,
+  LIVE_ORDER_FEED_WS_MESSAGE,
+  LIVE_ORDER_FEED_WS_ERROR,
 } from "../actions/web-soket";
 
-
 export type TWSListState = {
-  status: string,
-  connectionError: string,
-  table: any,
+  status: string;
+  connectionError: string;
+  table: any;
 };
 
 const initialState: TWSListState = {
@@ -29,11 +32,6 @@ const initialState: TWSListState = {
   connectionError: "",
   table: [],
 };
-
-
-
-   
-
 
 // export const liveOrderFeedReducer = createSlice({
 //   name: 'ws',
@@ -61,7 +59,6 @@ const initialState: TWSListState = {
 
 // export const { wsMessage, wsError, wsClose, wsOpen, wsConnecting } = liveOrderFeedReducer.actions;
 
-
 // export const liveOrderFeedReducer = createReducer(initialState, (builder) => {
 //   builder
 //     .addCase(LIVE_ORDER_FEED_WS_CONNECTING, (state) => {
@@ -83,10 +80,6 @@ const initialState: TWSListState = {
 //     });
 // });
 
-
-
-
-
 export const liveOrderFeedReducer = (
   state = initialState,
   action: TWSActions
@@ -95,35 +88,35 @@ export const liveOrderFeedReducer = (
     case LIVE_ORDER_FEED_WS_CONNECTING: {
       return {
         ...state,
-        status: WebsocketStatus.CONNECTING
+        status: WebsocketStatus.CONNECTING,
       };
     }
     case LIVE_ORDER_FEED_WS_OPEN: {
       return {
         ...state,
         status: WebsocketStatus.ONLINE,
-        connectionError: ""
+        connectionError: "",
       };
     }
     case LIVE_ORDER_FEED_WS_CLOSE: {
       return {
         ...state,
         status: WebsocketStatus.OFFLINE,
-       connectionError: ""
+        connectionError: "",
       };
     }
 
     case LIVE_ORDER_FEED_WS_ERROR: {
       return {
         ...state,
-      connectionError: action.payload
+        connectionError: action.payload,
       };
     }
 
     case LIVE_ORDER_FEED_WS_MESSAGE: {
       return {
         ...state,
-        table: action.payload
+        table: action.payload,
       };
     }
 
