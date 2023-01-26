@@ -1,3 +1,4 @@
+import { AppDispatch } from "../../types";
 import {
   resetPasswordRequest,
   resetPassword,
@@ -162,7 +163,7 @@ export type TLoginActions =
 // Генераторы экшенов
 
 export function passwordResetRequest(email: {}) {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: PASSWORD_RESET_REQUEST_REQUEST,
     });
@@ -185,8 +186,8 @@ export function passwordResetRequest(email: {}) {
   };
 }
 
-export function passwordReset(data: any) {
-  return function (dispatch: any) {
+export function passwordReset(data: {}) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: PASSWORD_RESET_REQUEST,
     });
@@ -212,8 +213,8 @@ export function passwordReset(data: any) {
   };
 }
 
-export function register(data: any) {
-  return function (dispatch: any) {
+export function register(data: {}) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: REGISTRATION_REQUEST,
     });
@@ -242,8 +243,8 @@ export function register(data: any) {
   };
 }
 
-export function login(data: any) {
-  return function (dispatch: any) {
+export function login(data: {}) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGIN_REQUEST,
     });
@@ -273,8 +274,8 @@ export function login(data: any) {
   };
 }
 
-export function getProfileInfo(data?: any) {
-  return function (dispatch: any) {
+export function getProfileInfo(data?: {}) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_USER_INFO_REQUEST,
     });
@@ -297,8 +298,8 @@ export function getProfileInfo(data?: any) {
   };
 }
 
-export function changeProfileInfo(data: any) {
-  return function (dispatch: any) {
+export function changeProfileInfo(data: {}) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: CHANGE_USER_INFO_REQUEST,
     });
@@ -322,7 +323,7 @@ export function changeProfileInfo(data: any) {
 }
 
 export function logOut() {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: LOGOUT_REQUEST,
     });

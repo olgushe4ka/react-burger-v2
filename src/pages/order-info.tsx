@@ -31,7 +31,7 @@ function OrderInfo() {
       dispatch(wsConnect(`${baseWSUser}?token=${token}`));
     }
     else 
-    dispatch(wsConnect(baseWS))
+   dispatch(wsConnect(baseWS))
     //dispatch({ type: LIVE_ORDER_FEED_CONNECT, payload: baseWS})
 
     return () => {

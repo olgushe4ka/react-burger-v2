@@ -13,6 +13,7 @@ import {
 import { useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { useSelector, useDispatch } from "../../utils/hooks";
+import { TIingredient } from "../../types/ingredients";
 
 
 function BurgerConstructor() {
@@ -43,7 +44,7 @@ function BurgerConstructor() {
 
   // DND
 
-  const moveIngredientToConstructor = (item:any) => {
+  const moveIngredientToConstructor = (item:TIingredient) => {
     dispatch({
       type: CONSTRUCTOR_ADD_INGREDIENTS,
       payload: {
@@ -59,7 +60,7 @@ function BurgerConstructor() {
     collect: (monitor) => ({
       isHover: monitor.isOver(),
     }),
-    drop(ing) {
+    drop(ing: any) {
       moveIngredientToConstructor(ing);
     },
   });

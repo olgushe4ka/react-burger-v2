@@ -1,3 +1,5 @@
+import { AppDispatch } from "../../types";
+import { TOrders } from "../../types/ingredients";
 import { getIngredients, saveOrder } from "../../utils/burger-api";
 
 export const GET_ORDER_DETAILS_FAILED: "GET_ORDER_DETAILS_FAILED" =
@@ -99,7 +101,7 @@ export type TIngredientsActions =
 // Генераторы экшенов
 
 export function getItems() {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_INGREDIENTS_REQUEST,
     });
@@ -123,7 +125,7 @@ export function getItems() {
 }
 
 export function orderBurger(orderData: any) {
-  return function (dispatch: any) {
+  return function (dispatch: AppDispatch) {
     dispatch({
       type: GET_ORDER_DETAILS_REQUEST,
     });

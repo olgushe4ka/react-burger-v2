@@ -50,7 +50,10 @@ function Profile() {
     name: nameValue,
   };
 
-  const onSaveBtnClick = (data: {}, event?: FormEvent<HTMLFormElement> | undefined) => {
+  const onSaveBtnClick = (
+    data: {},
+    event?: FormEvent<HTMLFormElement> | undefined
+  ) => {
     event?.preventDefault();
     changeUserInfoRequest(data);
   };
@@ -119,6 +122,7 @@ function Profile() {
           </div>
           <div className="ml-0 mr-0 mb-0 mt-6">
             <PasswordInput
+              onChange={() => {}}
               value={"password"}
               name={"password"}
               icon="EditIcon"

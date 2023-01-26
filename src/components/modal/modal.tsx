@@ -13,7 +13,7 @@ type TModal = {
 };
 
 const Modal = ({ title, closeAllModals, children }: TModal) => {
-  const handleEscKeydown = (e: any) => {
+  const handleEscKeydown = (e: KeyboardEvent ) => {
     e.key === "Escape" && closeAllModals();
   };
 

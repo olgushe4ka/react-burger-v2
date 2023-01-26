@@ -1,21 +1,21 @@
 import { Middleware } from "redux";
 import { RootState } from "../../types";
-import { TWSActions } from "../actions/web-soket";
+//import { TWSActions } from "../actions/web-soket";
 
 import { TWSListState } from "../reducers/web-soket";
 
-export type TWSActions2 = {
-  wsConnect: any;
-  wsDisconnect: any;
-  wsConnecting: any;
-  onOpen: any;
-  onClose: any;
-  onError: any;
-  onMessage: any;
+export type TWSActions = {
+  wsConnect: string;
+  wsDisconnect: string;
+  wsConnecting: string;
+  onOpen: string;
+  onClose: string;
+  onError: string;
+  onMessage: string;
 };
 
 export const socketMiddleware = (
-  wsActions: TWSActions2
+  wsActions: TWSActions
 ): Middleware<{}, RootState> => {
   return (store) => {
     let socket: any = null;
@@ -86,7 +86,6 @@ export const socketMiddleware = (
         };
 
 
-
         socket.onmessage = (event: any) => {
           const { data } = event;
           console.log(event)
@@ -101,7 +100,7 @@ export const socketMiddleware = (
 
 
 
-        if (wsDisconnect.match(action)) {
+        if (type === wsDisconnect) {
           isConnected = false;
           clearTimeout(reconnectTimer);
           reconnectTimer = 0;
