@@ -5,18 +5,22 @@ import { useSelector, useDispatch } from "../utils/hooks";
 import { TIingredient } from "../types/ingredients";
 
 function Ingredients() {
-  const ingredients = useSelector((state) => state.ingredients.ingredients);
+  const ingredients: TIingredient[] = useSelector((state) => state.ingredients.ingredients);
 
-  const { id }: any = useParams();
+  const { id }: { id: string } = useParams();
 
-  const ingredient: any = ingredients?.find(
+
+  const ingredient = ingredients?.find(
     (ingredient: TIingredient) => ingredient._id === id
   );
 
   return (
     <>
+
       {/* <IngredientDetails ingredients={ingredient} /> */}
+      {ingredient !== undefined && (
       <div className={`${ingredientDetailsStyles.main} pl-0 pr-0 pb-0 pt-0`}>
+
         <div className={ingredientDetailsStyles.image}>
           <img src={ingredient?.image} alt="logo" />
         </div>
@@ -84,8 +88,9 @@ function Ingredients() {
               {ingredient?.carbohydrates}
             </p>
           </div>
-        </div>
+        </div> 
       </div>
+      )}
     </>
   );
 }

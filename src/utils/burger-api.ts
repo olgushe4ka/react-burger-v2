@@ -12,13 +12,13 @@ export const baseWSUser = "wss://norma.nomoreparties.space/orders";
 //   return Promise.reject(`Ошибка: ${res.status}`);
 // }
 
-function checkResponse(res: any) {
+function checkResponse(res: Response) {
   return res.ok
     ? res.json()
-    : res.json().then((res: any) => Promise.reject(res));
+    : res.json().then((res) => Promise.reject(res));
 }
 
-function request(url: string, options?: any) {
+function request(url: string, options?: RequestInit) {
   return fetch(url, options).then(checkResponse);
 }
 

@@ -7,12 +7,15 @@ import FeedСonsist from "../feed-consist/feed-consist";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "../../utils/hooks";
-import { TIingredient } from "../../types/ingredients";
+import { TIingredient, TOrders } from "../../types/ingredients";
 
-function OrderInfoModal({ orders }: any) {
+function OrderInfoModal({ orders }: {orders: TOrders}) {
   const props = orders;
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
   const ingredients: any[] = [];
+
+
+
 
   ingredientsAll?.forEach((item: TIingredient) => {
     props.ingredients?.forEach((id: string | number) => {

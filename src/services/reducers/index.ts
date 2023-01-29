@@ -30,13 +30,13 @@ export const rootReducer = combineReducers({
 });
 
 export const wsActions = {
-  wsConnect: "LIVE_ORDER_FEED_CONNECT",
-  wsDisconnect: "LIVE_ORDER_FEED_DISCONNECT",
-  wsConnecting: "LIVE_ORDER_FEED_WS_CONNECTING",
-  onOpen: "LIVE_ORDER_FEED_WS_OPEN",
-  onClose: "LIVE_ORDER_FEED_WS_CLOSE",
-  onError: "LIVE_ORDER_FEED_WS_ERROR",
-  onMessage: "LIVE_ORDER_FEED_WS_MESSAGE",
+  wsConnect: LIVE_ORDER_FEED_CONNECT,
+  wsDisconnect: LIVE_ORDER_FEED_DISCONNECT,
+  wsConnecting: LIVE_ORDER_FEED_WS_CONNECTING,
+  onOpen: LIVE_ORDER_FEED_WS_OPEN,
+  onClose: LIVE_ORDER_FEED_WS_CLOSE,
+  onError: LIVE_ORDER_FEED_WS_ERROR,
+  onMessage: LIVE_ORDER_FEED_WS_MESSAGE,
 };
 
 export const burgersMiddleware = socketMiddleware(wsActions);

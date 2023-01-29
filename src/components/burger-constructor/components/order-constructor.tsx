@@ -6,7 +6,7 @@ import {
 import { CONSTRUCTOR_DELETE_INGREDIENTS } from "../../../services/actions/ingredients";
 import OrderIngConstructor from "./order-ing-constructor";
 import { useSelector, useDispatch } from "../../../utils/hooks";
-import { TIingredient } from "../../../types/ingredients";
+import { TIingredient, TIingredientWithItem } from "../../../types/ingredients";
 
 function OrderConstructor() {
   const dispatch = useDispatch();
@@ -41,10 +41,10 @@ function OrderConstructor() {
         </div>
       )}
       <ul className={`${burgerConstructorStyles.list}`}>
-        {ingredients.map((ingredientItem: TIingredient, index: number) => {
+        {ingredients.map((ingredientItem: TIingredientWithItem, index: number) => {
           return (
             <li
-              key={ingredientItem._id}
+              key={ingredientItem.id}
               className={`${burgerConstructorStyles.listElement} pl-0 pr-0 pb-2 pt-2`}
             >
               <div
