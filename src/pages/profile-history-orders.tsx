@@ -14,7 +14,7 @@ import { TOrders } from "../types/ingredients";
 
 function ProfileHistoryOrders() {
   const history = useHistory();
-  const [modalOpen, setModalOpen] = useState<null | {}>(null);
+  const [modalOpen, setModalOpen] = useState<null | TOrders>(null);
 
   const name = useSelector((state) => state.login.userName);
   const email = useSelector((state) => state.login.email);
@@ -43,7 +43,7 @@ function ProfileHistoryOrders() {
     };
   }, [dispatch]);
 
-  const openOrderInfo = (data: {}) => {
+  const openOrderInfo = (data: TOrders) => {
     setModalOpen(data);
   };
 

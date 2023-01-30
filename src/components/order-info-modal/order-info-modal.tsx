@@ -14,7 +14,7 @@ function OrderInfoModal({ orders }: {orders: TOrders}) {
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
   const ingredients: any[] = [];
 
-
+console.log(orders)
 
 
   ingredientsAll?.forEach((item: TIingredient) => {

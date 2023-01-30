@@ -122,8 +122,9 @@ export function getItems() {
   };
 }
 
-export function orderBurger(orderData: any) {
+export function orderBurger(orderData: {}) {
   return function (dispatch: AppDispatch) {
+    console.log(orderData);
     dispatch({
       type: GET_ORDER_DETAILS_REQUEST,
     });

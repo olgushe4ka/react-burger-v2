@@ -13,9 +13,7 @@ export const baseWSUser = "wss://norma.nomoreparties.space/orders";
 // }
 
 function checkResponse(res: Response) {
-  return res.ok
-    ? res.json()
-    : res.json().then((res) => Promise.reject(res));
+  return res.ok ? res.json() : res.json().then((res) => Promise.reject(res));
 }
 
 function request(url: string, options?: RequestInit) {
@@ -26,7 +24,7 @@ export function getIngredients() {
   return request(`${baseUrl}/ingredients`);
 }
 
-export function saveOrder(data: []) {
+export function saveOrder(data: {}) {
   return fetchWithRefresh(`${baseUrl}/orders`, {
     method: "POST",
     headers: {

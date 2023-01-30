@@ -40,7 +40,6 @@ export const socketMiddleware = (
       if (type === wsConnect) {
         url = action.payload;
 
-        console.log(url);
 
         socket = new WebSocket(url);
         isConnected = true;
@@ -65,7 +64,6 @@ export const socketMiddleware = (
 
         socket.onclose = (event: any) => {
           if (event.code !== 1000) {
-            console.log("socket.onclose", event);
             // dispatch(onError(event.code.toString()));
             dispatch({ type: onError, payload: event.code.toString() });
           }
@@ -87,7 +85,7 @@ export const socketMiddleware = (
 
         socket.onmessage = (event: any) => {
           const { data } = event;
-          console.log(event);
+
           const parsedData = JSON.parse(data);
 
           //dispatch(onMessage(parsedData));

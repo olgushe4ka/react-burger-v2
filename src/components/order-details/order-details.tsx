@@ -13,7 +13,7 @@ function OrderDetails() {
   const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
   const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart];
-  const ingredients = ingredientsAll.map((ingrItem) => {
+  const ingredients= ingredientsAll.map((ingrItem) => {
     return ingrItem._id;
   });
 
@@ -22,7 +22,7 @@ function OrderDetails() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(orderBurger({ ingredients }));
+    dispatch(orderBurger({ingredients}));
   }, [dispatch]);
 
   const modalData = useSelector((state) => state.ingredients.orderDetails);
