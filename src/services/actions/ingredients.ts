@@ -38,7 +38,7 @@ export interface IGetOrderDetailsAction {
 }
 export interface IGetOrderDetailsSuccessAction {
   readonly type: typeof GET_ORDER_DETAILS_SUCCESS;
-  readonly items: [];
+  readonly items: any;
 }
 export interface IGetOrderDetailsFailedAction {
   readonly type: typeof GET_ORDER_DETAILS_FAILED;
@@ -49,7 +49,7 @@ export interface IGetIngredientsAction {
 }
 export interface IGetIngredientsSuccessAction {
   readonly type: typeof GET_INGREDIENTS_SUCCESS;
-  readonly items: [];
+  readonly items: any;
 }
 export interface IGetIngredientsFailedAction {
   readonly type: typeof GET_INGREDIENTS_FAILED;

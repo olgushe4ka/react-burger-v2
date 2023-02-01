@@ -49,8 +49,6 @@ export const socketMiddleware = (
         });
       }
 
-      console.log(isConnected);
-      console.log(socket);
 
       if (socket) {
         socket.onopen = () => {

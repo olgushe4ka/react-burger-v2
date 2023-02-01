@@ -1,8 +1,9 @@
 import ingredientDetailsStyles from "./ingredient-details.module.css";
 import { useLocation, useHistory } from "react-router-dom";
 import { useEffect } from "react";
+import { TIingredient } from "../../types/ingredients";
 
-function IngredientDetails({ ingredients }: any) {
+function IngredientDetails({ ingredients }: {ingredients: TIingredient}) {
   const location = useLocation();
   const history = useHistory();
 

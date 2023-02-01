@@ -1,3 +1,4 @@
+import { TIingredient } from "../../types/ingredients";
 import {
   GET_ORDER_DETAILS_FAILED,
   GET_ORDER_DETAILS_REQUEST,
@@ -14,18 +15,34 @@ import {
   TIngredientsActions,
 } from "../actions/ingredients";
 
+type TOrderDetails = {
+  success: boolean;
+  name: string;
+  _id: string;
+  order: {
+    ingredients: [];
+    owner: {};
+    status: string;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    number: number;
+    price: number;
+  };
+};
+
 type TIngredientsListState = {
-  ingredients: [];
+  ingredients: Array<any>;
   ingredientsIsLoading: boolean;
   ingredientsFailed: boolean;
 
-  cartBun: any;
+  cartBun: Array<any>;
 
   cartIng: any;
 
-  ingredientDetails: any;
+  ingredientDetails: TIingredient | null;
 
-  orderDetails: any;
+  orderDetails:TOrderDetails | null ;
   orderDetailsIsLoading: boolean;
   orderDetailsFailed: boolean;
 };

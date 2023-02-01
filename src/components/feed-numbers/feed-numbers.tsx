@@ -2,7 +2,7 @@ import styles from "./feed-numbers.module.css";
 import { useSelector, useDispatch } from "../../utils/hooks";
 import { TIingredient, TOrders } from "../../types/ingredients";
 
-function FeedNumbers({ numbers }: any) {
+function FeedNumbers({ numbers }: {numbers:any} ) {
   const orders = useSelector((state) => state.ws.table.orders);
 
   const ready = orders

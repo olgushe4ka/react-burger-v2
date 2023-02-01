@@ -6,9 +6,9 @@ import styles from "./feed-burgers.module.css";
 import { Link, useLocation, useHistory } from "react-router-dom";
 //import { useSelector } from "react-redux";
 import { useSelector, useDispatch } from "../../utils/hooks";
-import { TIingredient } from "../../types/ingredients";
+import { TIingredient, TOrders } from "../../types/ingredients";
 
-function FeedBurgers({ order }: any) {
+function FeedBurgers({ order }: {order: TOrders}) {
   const history = useHistory();
 
   const pathFeedOrOrder = history.location.pathname;
@@ -20,7 +20,7 @@ function FeedBurgers({ order }: any) {
   const ingredientsIds = order.ingredients;
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients: any = [];
+  const ingredients: Array<TIingredient> = [];
 
   ingredientsAll.forEach((item: TIingredient) => {
     ingredientsIds.forEach((id: string) => {

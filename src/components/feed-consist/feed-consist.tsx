@@ -4,7 +4,7 @@ import styles from "./feed-consist.module.css";
 import { useSelector, useDispatch } from "../../utils/hooks";
 import { TIingredient } from "../../types/ingredients";
 
-function FeedСonsist({ props }: any) {
+function FeedСonsist({ props }: {props: string | any}) {
   const ingredients: TIingredient[] = useSelector(
     (state) => state.ingredients.ingredients
   );

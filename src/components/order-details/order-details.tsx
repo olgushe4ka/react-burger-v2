@@ -37,9 +37,9 @@ function OrderDetails() {
         <div className={`${OrderDetailsStyles.loading} `}>
           <TailSpin
             color="white"
-            strokeColor="grey"
-            strokeWidth="5"
-            animationDuration="0.75"
+           // strokeColor="grey"
+           // strokeWidth="5"
+           // animationDuration="0.75"
             width="96"
             visible={true}
           />

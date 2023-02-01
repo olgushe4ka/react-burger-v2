@@ -12,7 +12,7 @@ import { TIingredient, TOrders } from "../../types/ingredients";
 function OrderInfoModal({ orders }: {orders: TOrders}) {
   const props = orders;
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
-  const ingredients: any[] = [];
+  const ingredients: Array<any> = [];
 
 console.log(orders)
 
@@ -30,7 +30,7 @@ console.log(orders)
     return item._id;
   });
 
-  const countIngridients: any[] = [];
+  const countIngridients: Array<number> = [];
 
   for (const item of ingredientsIDs) {
     countIngridients[item] = countIngridients[item]

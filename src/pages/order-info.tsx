@@ -19,7 +19,7 @@ import { TIingredient, TOrders } from "../types/ingredients";
 
 function OrderInfo() {
   const dispatch = useDispatch();
-  const { id }: any = useParams();
+  const { id }:{id: string} = useParams();
 
   const history = useHistory();
   const pathFeedOrOrder = history.location.pathname;
@@ -42,7 +42,7 @@ function OrderInfo() {
   const props = orders?.find((order) => order?._id === id);
   const ingredientsAll = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients: any[] = [];
+  const ingredients: Array<any> = [];
 
   ingredientsAll.forEach((item: TIingredient) => {
     props?.ingredients.forEach((id: string) => {
@@ -53,11 +53,11 @@ function OrderInfo() {
   });
 
   //Считаем повторение ингридиентов
-  const ingredientsIDs = ingredients.map((item: TIingredient) => {
+  const ingredientsIDs = ingredients.map((item) => {
     return item._id;
   });
 
-  const countIngridients: any = [];
+  const countIngridients: Array<number> = [];
 
   for (const item of ingredientsIDs) {
     countIngridients[item] = countIngridients[item]
