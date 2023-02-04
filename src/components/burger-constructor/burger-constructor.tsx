@@ -20,6 +20,7 @@ function BurgerConstructor() {
 
   const ingredientInTheCart = useSelector((state) => state.ingredients.cartIng);
   const bunInTheCart = useSelector((state) => state.ingredients.cartBun);
+  const orderDeyatailRequest = useSelector((state) => state.ingredients.orderDetails);
 
   const ingredientsAll = [...bunInTheCart, ...ingredientInTheCart];
 
@@ -93,7 +94,7 @@ function BurgerConstructor() {
             <Button
               type="primary"
               size="medium"
-              onClick={openModal}
+              onClick={() => openModal()}
               htmlType="button"
             >
               Оформить заказ
@@ -102,7 +103,10 @@ function BurgerConstructor() {
         </section>
       )}
 
-      {isOrderDetailsOpened && (
+      {
+      //orderDeyatailRequest !== null 
+         isOrderDetailsOpened 
+      && (
         <Modal closeAllModals={closeModal}>
           <OrderDetails />
         </Modal>

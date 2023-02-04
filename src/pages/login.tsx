@@ -5,7 +5,7 @@ import {
   EmailInput,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./pages-styles.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { login, getProfileInfo } from "../services/actions/login";
 import { useState, useEffect, useCallback, FormEvent } from "react";
 import { useSelector, useDispatch } from "../utils/hooks";
@@ -45,6 +45,16 @@ function LoginPage() {
   // if (loginSuccess) {
   //   window.location.reload();
   // }
+
+  const location = useLocation<{ from: Location }>();
+  const history = useHistory();
+
+  if (loginSuccess) {
+    const { from } = location.state || {
+      from: { pathname: "/", state: { background: location } },
+    };
+    history.push(from.pathname);
+  }
 
   return (
     <>
