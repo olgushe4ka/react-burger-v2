@@ -16,16 +16,16 @@ function OrderIngConstructor(props: TIingredientOrderConstructor) {
 
   const dispatch = useDispatch();
 
-  type exponentCallback = (
-    dragIndex: number | undefined,
-    hoverIndex?: number | undefined
-  ) => void;
+  type exponentCallback = (payload: {
+    dragIndex: number | undefined;
+    hoverIndex?: number | undefined;
+  }) => void;
 
-  const moveCard = useCallback<exponentCallback>((dragIndex, hoverIndex) => {
+  const moveCard = useCallback<exponentCallback>((payload) => {
     dispatch({
       type: CONSTRUCTOR_SORT_INGREDIENTS,
-      payload: dragIndex,
-      hoverIndex,
+      payload: payload,
+      // hoverIndex,
     });
   }, []);
 
@@ -69,7 +69,7 @@ function OrderIngConstructor(props: TIingredientOrderConstructor) {
         return;
       }
 
-      moveCard(dragIndex, hoverIndex);
+      moveCard({ dragIndex, hoverIndex });
 
       item.index = hoverIndex;
     },

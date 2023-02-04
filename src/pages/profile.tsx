@@ -27,7 +27,7 @@ function Profile() {
     sendRequest();
     eraseCookie("accessToken");
     localStorage.removeItem("refreshToken");
-    window.location.reload();
+   // window.location.reload();
   };
 
   const valuesChanged = () => {

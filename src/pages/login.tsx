@@ -42,9 +42,9 @@ function LoginPage() {
     dispatch(getProfileInfo(value));
   }, []);
 
-  if (loginSuccess) {
-    window.location.reload();
-  }
+  // if (loginSuccess) {
+  //   window.location.reload();
+  // }
 
   return (
     <>

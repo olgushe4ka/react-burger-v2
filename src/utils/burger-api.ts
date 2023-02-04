@@ -35,7 +35,7 @@ export function saveOrder(data: {}) {
   });
 }
 
-export function resetPasswordRequest(data: any) {
+export function resetPasswordRequest(data: { email: string }) {
   return request(`${baseUrl}/password-reset`, {
     method: "POST",
     headers: {
@@ -45,7 +45,13 @@ export function resetPasswordRequest(data: any) {
   });
 }
 
-export function resetPassword(data: any) {
+export function resetPassword(data: {
+  value: {
+    password: string;
+    token: string| number;
+  };
+}) {
+  console.log(data);
   return request(`${baseUrl}/password-reset/reset`, {
     method: "POST",
     headers: {

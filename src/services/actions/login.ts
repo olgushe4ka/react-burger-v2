@@ -157,7 +157,7 @@ export type TLoginActions =
 
 // Генераторы экшенов
 
-export function passwordResetRequest(email: {}) {
+export function passwordResetRequest(email:any) {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: PASSWORD_RESET_REQUEST_REQUEST,
@@ -181,7 +181,7 @@ export function passwordResetRequest(email: {}) {
   };
 }
 
-export function passwordReset(data: {}) {
+export function passwordReset(data: any) {
   return function (dispatch: AppDispatch) {
     dispatch({
       type: PASSWORD_RESET_REQUEST,
